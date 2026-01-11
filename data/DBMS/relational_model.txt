@@ -1,0 +1,118 @@
+THE RELATIONAL MODEL
+
+The Relational Model, introduced by E. F. Codd in 1970, is the foundation of modern database systems. It represents data using tables (relations) and provides a mathematically sound framework based on set theory and first-order predicate logic. Most major DBMS (MySQL, PostgreSQL, Oracle, SQL Server) use the relational model.
+
+Basic Concepts of the Relational Model
+
+1.1 Relation (Table)
+A relation is a table with rows (tuples) and columns (attributes).
+Example STUDENT relation:
+
+RollNo | Name | Branch | GPA
+
+1.2 Attributes
+Represent fields or properties; each has a defined domain.
+Examples:
+Age → integer
+Name → string
+GPA → decimal(3,2)
+
+1.3 Tuple
+A single row representing a record.
+
+1.4 Domain
+Set of permitted values for an attribute.
+Examples:
+Boolean → {TRUE, FALSE}
+DaysOfWeek → {Mon, Tue, …}
+GPA → range [0.0, 10.0]
+
+1.5 Degree and Cardinality
+Degree: number of attributes in a relation
+Cardinality: number of tuples in a relation
+Example: STUDENT(RollNo, Name, Branch) → degree = 3; if 500 rows → cardinality = 500
+
+Relational Keys
+
+2.1 Super Key
+A set of attributes that uniquely identifies a tuple.
+Examples: {RollNo}, {RollNo, Name}
+
+2.2 Candidate Key
+Minimal super key; no attribute can be removed.
+Example: {RollNo}
+
+2.3 Primary Key
+Chosen candidate key used to uniquely identify tuples.
+Properties: unique, not null, stable
+
+2.4 Alternate Key
+Candidate keys not selected as primary key.
+
+2.5 Foreign Key
+Attribute that refers to a primary key in another table.
+Example: ENROLL(StudentID) references STUDENT(StudentID)
+Enforces referential integrity.
+
+Integrity Constraints
+
+3.1 Domain Integrity
+Values must match attribute domain.
+Example: Age INT CHECK (Age > 0)
+
+3.2 Entity Integrity
+Primary key values must not be null.
+
+3.3 Referential Integrity
+Foreign key value must match an existing primary key or be null.
+
+3.4 Key Constraints
+Primary key values must be unique.
+
+Relational Schema
+A schema describes the structure of a relation.
+Example: STUDENT(RollNo, Name, Branch, GPA)
+A database schema = collection of relation schemas.
+
+Relational Database State
+Snapshot of data in the database at a particular time.
+Changes occur through insert, delete, update operations.
+
+Relational Operations
+Two formal languages operate on relations:
+• Relational Algebra (procedural)
+• Relational Calculus (non-procedural)
+
+Properties of the Relational Model
+• Simple data structure (tables)
+• Declarative querying (SQL)
+• Based on solid mathematics
+• Data independence
+• Integrity enforcement
+
+Advantages of Relational Model
+• Easy to understand and use
+• Strong theoretical foundation
+• Supports SQL
+• Reduces redundancy through normalization
+• Ensures consistency and integrity
+• Scalable for large applications
+
+Limitations of Relational Model
+• Less effective for hierarchical or graph data
+• Expensive joins on large datasets
+• Limited handling of semi-structured data (JSON, XML)
+• Vertical scaling limitations
+Modern alternatives include NoSQL, NewSQL, and columnar databases.
+
+Mapping ER to Relational Model (Quick Summary)
+• Entity → Table
+• Composite attribute → Flatten into simple attributes
+• Multivalued attribute → Separate table
+• Weak entity → Table + FK from owner
+• 1:N → FK on N-side
+• M:N → New intersection table
+• ISA hierarchy → Single table / multiple tables / shared PK approach
+
+Summary
+The relational model stores data in tables and enforces structure using keys, constraints, and schemas. It remains the most widely used model in traditional DBMS because of its simplicity, reliability, and strong theoretical basis.

@@ -1,0 +1,121 @@
+RECOVERY SYSTEM (WAL, CHECKPOINTS, ARIES)
+
+A recovery system ensures that a database remains correct and durable after failures by implementing logging, checkpointing, and recovery algorithms. It preserves ACID properties, especially durability and atomicity.
+
+Types of Failures
+
+1.1 Transaction Failure
+Caused by logical errors, deadlocks, or constraint violations.
+Requires rollback of the transaction.
+
+1.2 System Failure
+Main memory lost; disk contents safe.
+Caused by OS crash, power failure, hardware fault.
+Uncommitted changes must be undone; committed changes must be redone.
+
+1.3 Media Failure
+Disk becomes corrupted or damaged.
+Requires backup restoration and archived logs.
+
+Logging and Write-Ahead Logging (WAL)
+
+Logs record every update before the database is modified.
+Log format typically:
+<TID, PageID, OldValue, NewValue>
+
+WAL Principle:
+• Old value must be logged before writing data to disk → UNDO support
+• New value must be logged before commit → REDO support
+
+Ensures recovery from both uncommitted and committed updates.
+
+Buffer Management Policies
+
+3.1 STEAL
+Dirty pages may be written before commit
+→ Needs UNDO during recovery
+
+3.2 NO-STEAL
+Dirty pages not written before commit
+→ No UNDO required
+
+3.3 FORCE
+All pages updated by a transaction are written at commit
+→ No REDO required
+
+3.4 NO-FORCE
+Do not write pages at commit
+→ Needs REDO during recovery
+
+Most DBMS use: STEAL + NO-FORCE
+→ Requires both UNDO and REDO
+
+Checkpoints
+
+Checkpoints reduce recovery work by flushing log and dirty pages periodically.
+
+Types:
+• Sharp checkpoint: stops processing; flush everything (rare)
+• Fuzzy checkpoint: records checkpoint info without halting transactions (commonly used)
+
+Checkpoint log records:
+<START CHECKPOINT, active_transactions>
+<END CHECKPOINT>
+
+During recovery, start scanning log from the last checkpoint.
+
+Undo and Redo Operations
+
+UNDO → revert effects of incomplete transactions (using OldValue)
+REDO → reapply committed updates that may not be on disk (using NewValue)
+
+Undo and redo guarantee consistency after system failure.
+
+ARIES Recovery Algorithm
+
+ARIES = Algorithms for Recovery and Isolation Exploiting Semantics
+Supports WAL, STEAL + NO-FORCE, and fuzzy checkpoints.
+Used in major DBMS (e.g., SQL Server, DB2, PostgreSQL variants)
+
+ARIES performs recovery in three phases:
+
+6.1 Analysis Phase
+Identify active transactions and dirty pages using log
+Build:
+• Dirty Page Table (DPT)
+• Transaction Table (TT)
+
+6.2 Redo Phase
+Repeat history of all actions from earliest recLSN
+→ Ensures all committed effects are reflected on disk
+
+6.3 Undo Phase
+Rollback all incomplete transactions
+Uses Compensation Log Records (CLRs) to ensure recovery is restart-safe
+
+Types of Log Records
+
+• Update log record
+• Compensation Log Record (CLR)
+• Commit record
+• Abort record
+• Checkpoint record
+
+CLRs allow recovery to be re-run if another crash occurs during recovery.
+
+Media Recovery
+
+For disk failures:
+• Restore from backup
+• Apply archived logs to redo committed updates
+Undo/redo alone is not sufficient for media recovery.
+
+Summary
+
+Recovery ensures correctness after failures using:
+• Write-Ahead Logging (WAL)
+• Checkpoints for faster restart
+• UNDO + REDO operations
+• ARIES algorithm (Analysis → Redo → Undo)
+
+These mechanisms maintain durability and consistency while supporting high concurrency in modern DBMS.

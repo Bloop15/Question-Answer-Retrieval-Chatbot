@@ -1,0 +1,272 @@
+CHAPTER 6 — DEADLOCKS
+
+A deadlock occurs when multiple processes are waiting for each other in a cycle, and none can proceed.
+They permanently block, wasting system resources.
+
+Classic example:
+Two processes, each holding a resource and waiting for the other → deadlock.
+
+=========================================================
+1. WHAT IS A DEADLOCK?
+=========================================================
+
+A deadlock is a situation where:
+
+Each process in a set is waiting for an event that only another process in the same set can cause.
+
+Thus, none of them can continue.
+
+Deadlocks typically involve:
+
+Mutexes
+
+Semaphores
+
+Files
+
+Memory
+
+I/O devices
+
+=========================================================
+2. FOUR NECESSARY CONDITIONS (Coffman Conditions)
+=========================================================
+
+Deadlock can occur only if all four conditions hold:
+
+2.1 Mutual Exclusion
+
+At least one resource must be non-shareable.
+
+2.2 Hold and Wait
+
+Process holds one resource and waits for others.
+
+2.3 No Preemption
+
+Resources cannot be forcibly taken away.
+
+2.4 Circular Wait
+
+Processes form a cycle:
+
+P1 waits for P2
+P2 waits for P3
+...
+Pn waits for P1
+
+
+If any one condition is broken, deadlock is prevented.
+
+=========================================================
+3. RESOURCE-ALLOCATION GRAPHS
+=========================================================
+
+Nodes:
+
+Processes (circles)
+
+Resources (squares)
+
+Edges:
+
+Request edge: P → R
+
+Assignment edge: R → P
+
+Deadlock exists if there is a cycle:
+
+For single instance of each resource → cycle means deadlock
+
+For multiple instances → cycle may or may not indicate deadlock
+
+=========================================================
+4. METHODS FOR HANDLING DEADLOCKS
+=========================================================
+
+Three strategies:
+
+Prevention
+
+Avoidance
+
+Detection & Recovery
+
+=========================================================
+5. DEADLOCK PREVENTION
+=========================================================
+
+Ensure that at least one Coffman condition never occurs.
+
+5.1 Prevent Mutual Exclusion
+
+Make resources sharable (rarely possible).
+
+5.2 Prevent Hold and Wait
+
+Processes must:
+
+Request all resources at once, OR
+
+Release what they hold before requesting more
+
+Leads to low utilization.
+
+5.3 Prevent No Preemption
+
+OS forcibly takes resource away (only safe for CPU, memory).
+
+5.4 Prevent Circular Wait
+
+Impose a global ordering on resources.
+
+E.g., A < B < C
+Processes must request in this order.
+
+This breaks cycles.
+
+=========================================================
+6. DEADLOCK AVOIDANCE
+=========================================================
+
+Requires processes to declare maximum resource needs in advance.
+
+System ensures allocation never leads to unsafe state.
+
+6.1 Safe vs Unsafe States
+
+Safe state:
+
+Even if all processes demand maximum resources, the system can avoid deadlock.
+
+Unsafe ≠ deadlocked, but risky.
+
+6.2 Banker's Algorithm
+
+Classic avoidance algorithm.
+
+Works like a bank giving loans:
+
+Data structures:
+
+Max matrix
+
+Allocation matrix
+
+Need matrix
+
+Available vector
+
+Algorithm checks whether granting a request keeps system in a safe state.
+
+=========================================================
+7. DEADLOCK DETECTION
+=========================================================
+
+Allow deadlock to occur → detect afterward.
+
+Detection methods:
+
+7.1 For Single Instance Resources
+
+Cycle detection in resource-allocation graph.
+
+7.2 For Multiple Instances
+
+Use an algorithm similar to Banker's but run periodically.
+
+Steps:
+
+Mark processes with zero allocation
+
+Mark processes whose needs can be satisfied
+
+Unmarked processes at end → deadlocked
+
+=========================================================
+8. DEADLOCK RECOVERY
+=========================================================
+
+Once deadlock is detected, OS must recover.
+
+8.1 Recovery via Process Termination
+
+Kill all deadlocked processes
+
+Kill one at a time until deadlock disappears
+
+Choose victim based on:
+
+Priority
+
+Progress
+
+Resources held
+
+8.2 Recovery via Resource Preemption
+
+Take resources away from processes.
+
+Issues:
+
+Selecting preemption victim
+
+Rollback (process must restart)
+
+Starvation risk
+
+=========================================================
+9. DEADLOCKS IN PRACTICE
+=========================================================
+
+Real OSes rarely use avoidance due to overhead.
+
+Instead:
+
+Use prevention through resource ordering
+
+Use timeouts
+
+Use lock hierarchies
+
+Apply best practices in programming
+
+Example:
+
+Database systems detect & roll back transactions
+
+Linux drivers avoid circular locking patterns
+
+JVM handles monitor deadlocks poorly
+
+=========================================================
+10. CLASSICAL DEADLOCK EXAMPLES
+=========================================================
+10.1 Dining Philosophers
+
+Each philosopher needs two chopsticks (shared resources) → circular wait.
+
+Solutions:
+
+Number chopsticks
+
+Limit number of philosophers eating
+
+Use arbitrator
+
+10.2 Train Deadlock
+
+Trains on a circular track waiting on each other → perfect circular wait.
+
+10.3 Resource ordering in code
+
+Improper lock order causes deadlocks:
+
+Thread 1: lock(A); lock(B)
+Thread 2: lock(B); lock(A)
+
+Summary
+
+Deadlocks occur when processes wait indefinitely for resources.
+The OS can prevent, avoid, detect, or recover from deadlocks.
+Understanding conditions, graphs, algorithms, and handling strategies is essential for reliable system design and concurrent programming.

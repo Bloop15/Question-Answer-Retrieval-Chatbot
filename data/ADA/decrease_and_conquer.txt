@@ -1,0 +1,87 @@
+Decrease and Conquer is an algorithmic strategy where a problem is reduced to a smaller version of itself, solved recursively, and then extended to solve the full problem. It is simpler than Divide and Conquer because each step reduces the size by only one or a constant factor rather than splitting into multiple subproblems. It is commonly used in sorting, searching, and graph algorithms.
+
+Types of Decrease and Conquer:
+
+Decrease-by-a-Constant-Factor:
+Reduces the problem size by a constant factor, usually half.
+Examples:
+Binary Search
+Fake coin detection
+Search tree operations
+Typical Complexity: O(log n)
+
+Decrease-by-One:
+Reduces the problem size by exactly one.
+Examples:
+Insertion Sort
+Topological Sort
+DFS, BFS
+Shell Sort
+Typical Complexity: O(n), O(n log n), or O(n²) depending on algorithm
+
+Variable-Size Decrease:
+Reduction amount varies based on input.
+Examples:
+Euclid’s GCD Algorithm
+Partition-based selection (Quickselect)
+Binary Tree operations
+
+Classic Algorithms Using Decrease and Conquer:
+
+Insertion Sort:
+Sort first n−1 elements, then insert nth element into position.
+Worst Time: O(n²)
+Best Time: O(n)
+Space: O(1)
+Stable
+
+Topological Sort (DFS-based):
+Remove node with no incoming edges.
+Used in scheduling and compilation dependency order.
+Complexity: O(V + E)
+
+DFS:
+Visits one unvisited vertex at a time recursively.
+Applications: cycle detection, connectivity, topological order.
+Complexity: O(V + E)
+
+BFS:
+Processes one vertex, explores neighbors, reduces unvisited nodes.
+Applications: shortest paths in unweighted graphs, bipartite check.
+Complexity: O(V + E)
+
+Binary Search:
+Halves search interval repeatedly.
+Complexity: O(log n)
+
+Selection by Partition (Quickselect):
+Partition and recurse on only one part.
+Average Complexity: O(n)
+Used for finding k-th smallest or median.
+
+Euclid’s GCD Algorithm:
+Replace (a, b) with (b, a mod b) until b = 0.
+Complexity: O(log min(a, b))
+
+Strengths:
+Simple structure
+Easy to implement
+Efficient for many common tasks
+Widely applicable in sequences and graphs
+Often leads to linear or logarithmic time
+
+Weaknesses:
+May still be quadratic for some algorithms
+Less parallelizable than divide-and-conquer
+Requires guaranteed progress to the base case
+
+Where It Is Used:
+Searching (Binary Search)
+Sorting (Insertion Sort, Shell sort)
+Graph algorithms (DFS, BFS, Topological Sort)
+Math algorithms (GCD)
+Partition-based selection
+Tree operations
+
+Summary:
+Decrease and Conquer reduces a problem step-by-step until a trivial input remains. It underlies many important sorting, searching, graph, and arithmetic algorithms and forms a bridge between brute-force approaches and more advanced algorithm paradigms.

@@ -1,0 +1,182 @@
+CLUSTERING
+
+Clustering is an unsupervised learning method that groups data points into clusters based on similarity without using labels. It aims to ensure high similarity within clusters and low similarity between clusters.
+
+Applications include customer segmentation, document clustering, image segmentation, anomaly detection, and recommender systems.
+
+1. Definition
+
+Given data points x1, x2, ..., xn
+Clustering partitions them into K clusters C1, C2, ..., CK.
+
+Similarity measures commonly used:
+
+Euclidean distance
+
+Manhattan distance
+
+Cosine similarity
+
+Mahalanobis distance
+
+2. K-Means Clustering
+
+Objective: minimize within-cluster sum of squared distances to the cluster mean.
+
+Algorithm:
+
+Initialize K centroids (random or K-means++)
+
+Assign each point to the nearest centroid
+
+Recompute centroids as mean of assigned points
+
+Repeat until centroids stabilize
+
+Advantages:
+
+Simple and fast
+
+Works well for spherical, well-separated clusters
+
+Limitations:
+
+Must specify K
+
+Sensitive to initial centroids and outliers
+
+Handles only roughly spherical clusters
+
+3. Hierarchical Clustering
+
+Produces a dendrogram representing nested clusters.
+
+Two types:
+
+Agglomerative (bottom-up): start with single points and merge closest clusters
+
+Divisive (top-down): start with one cluster and split iteratively
+
+Linkage methods:
+
+Single linkage
+
+Complete linkage
+
+Average linkage
+
+Centroid linkage
+
+Advantages:
+
+No need to choose K initially
+
+Finds complex cluster shapes
+
+Disadvantages:
+
+High time complexity (typically O(n^3))
+
+4. Density-Based Clustering (DBSCAN)
+
+Classifies points into:
+
+Core points (dense regions)
+
+Border points
+
+Noise points
+
+Parameters:
+
+eps: neighborhood radius
+
+minPts: minimum number of points for density
+
+Advantages:
+
+Handles arbitrary shapes
+
+Robust to noise
+
+Does not require specifying K
+
+Limitations:
+
+Struggles with varying densities
+
+5. Model-Based Clustering (Gaussian Mixture Models)
+
+Data is assumed to be generated from a mixture of K Gaussian distributions:
+p(x) = sum over k of pi_k * N(x | mu_k, Sigma_k)
+
+Estimated using the Expectation-Maximization (EM) algorithm:
+
+E-step: compute posterior of component memberships
+
+M-step: update means, covariances, and mixture weights
+
+Advantages:
+
+Soft clustering (probabilistic)
+
+Captures more complex shapes than K-means
+
+6. Cluster Evaluation
+
+Internal evaluation (no labels needed):
+
+Distortion / WCSS
+
+Silhouette score
+
+Davies-Bouldin index
+
+External evaluation (requires ground-truth labels):
+
+Rand index
+
+Mutual information
+
+Purity
+
+7. Kernel K-Means
+
+Uses kernel functions to project data into a higher-dimensional space, enabling detection of nonlinear cluster boundaries.
+
+8. Self-Organizing Maps (SOM)
+
+Neural network-based clustering:
+
+Competitive learning on a grid of neurons
+
+Useful for dimensionality reduction and visualization
+
+9. Choosing the Number of Clusters
+
+Methods include:
+
+Elbow method
+
+Gap statistic
+
+Silhouette analysis
+
+BIC/AIC for mixture models
+
+10. Applications
+
+Market segmentation
+
+Document grouping
+
+Medical data analysis
+
+Gene expression clustering
+
+Fraud and anomaly detection
+
+Summary
+
+Clustering groups unlabeled data based on similarity.
+K-means is fast for simple partitions, hierarchical clustering provides full structure, DBSCAN identifies dense regions with noise handling, and Gaussian mixtures allow probabilistic, flexible cluster shapes. Cluster validation methods help determine quality, while kernel-based and neural approaches capture complex structures.

@@ -1,0 +1,145 @@
+EVALUATION METRICS IN INFORMATION RETRIEVAL
+
+Evaluation measures how well an Information Retrieval (IR) system retrieves relevant documents.
+Effectiveness is measured using metrics such as Precision, Recall, F1, MAP, NDCG, etc.
+
+Relevance Judgments
+
+For evaluation, we need:
+• A set of queries
+• System-returned documents
+• Human-labeled relevance judgments
+
+Example:
+Query: machine learning
+Relevant documents = {D1, D4, D7}
+
+Evaluation compares system output with relevance judgments.
+
+Precision
+
+Defines how many retrieved documents are relevant.
+
+Precision = |Relevant ∩ Retrieved| / |Retrieved|
+
+Example:
+Retrieved = 10, Relevant among them = 6
+Precision = 6/10 = 0.6
+
+Recall
+
+Defines how many relevant documents are retrieved by the system.
+
+Recall = |Relevant ∩ Retrieved| / |Relevant|
+
+Example:
+Total relevant = 12, Retrieved relevant = 6
+Recall = 6/12 = 0.5
+
+Precision-Recall Tradeoff
+
+Increasing number of retrieved documents increases recall but may decrease precision.
+Search engines aim to balance both.
+
+F1 Score
+
+Harmonic mean of Precision and Recall.
+
+F1 = 2 × (Precision × Recall) / (Precision + Recall)
+
+Used when both metrics are equally important.
+
+Precision@k (P@k)
+
+Measures precision in the top-k retrieved results.
+
+P@k = (# relevant in top k) / k
+
+Example:
+Top 5 results include 3 relevant
+P@5 = 3/5 = 0.6
+
+Reflects user behavior on ranked search engines.
+
+Recall@k
+
+Recall restricted to top-k results.
+
+Recall@k = (# relevant in top k) / (# total relevant)
+
+Example:
+Total relevant = 12, relevant in top 10 = 8
+Recall@10 = 8/12 = 0.67
+
+R-Precision
+
+R = number of relevant documents.
+R-Precision = Precision at rank R.
+
+Balances between precision and recall.
+
+Average Precision (AP)
+
+Rewards systems that retrieve relevant documents early.
+
+AP = average of Precision@k values at every rank where a relevant document occurs
+
+Example:
+Relevant at ranks 2, 4, 9 → Compute P@2, P@4, P@9 → average them.
+
+MAP (Mean Average Precision)
+
+Mean of AP across all queries.
+
+MAP = (1/Q) × Σ AP(q)
+
+One of the most widely used IR metrics in research evaluations.
+
+DCG (Discounted Cumulative Gain)
+
+Measures ranking quality with graded relevance (0,1,2,...).
+
+DCG@k = rel1 + Σ(rel_i / log2(i))
+
+Documents lower in ranking contribute less.
+
+NDCG (Normalized DCG)
+
+DCG normalized by the ideal order.
+
+NDCG@k = DCG@k / IDCG@k
+
+Range: 0 to 1
+Used in modern search ranking systems.
+
+Example (NDCG Calculation)
+
+Retrieved relevance scores: [3, 0, 2]
+
+DCG = 3 + (0 / log2(2)) + (2 / log2(3))
+Ideal ranking: [3, 2, 0] → compute IDCG
+NDCG = DCG / IDCG
+
+Choosing the Right Metric
+
+Metric	Used For
+Precision	Top results must be accurate
+Recall	Must retrieve all relevant data (e.g., legal, medical)
+F1 Score	Balance between precision and recall
+P@k	Ranking of first k results (typical web search)
+MAP	Binary relevance ranking evaluation
+NDCG	Graded relevance and ranking performance (search engines)
+
+Summary
+
+Evaluation metrics measure retrieval quality based on relevance and ranking.
+
+Main metrics:
+• Precision: relevance of retrieved results
+• Recall: coverage of relevant results
+• F1: balance of precision and recall
+• P@k, R@k: top-k evaluation
+• AP and MAP: ranking with binary relevance
+• DCG and NDCG: ranking with graded relevance
+
+NDCG and MAP are widely used in modern IR systems, especially web search and recommendation systems.

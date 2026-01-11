@@ -1,0 +1,371 @@
+CHAPTER 12 — OPERATING SYSTEM DESIGN
+
+Operating system design involves making high-level architectural decisions as well as detailed implementation choices.
+This chapter discusses the goals, principles, tradeoffs, design strategies, and testing approaches used when building real-world operating systems.
+
+=========================================================
+1. GOALS OF OPERATING SYSTEM DESIGN
+=========================================================
+
+Design goals vary by system type (desktop, server, embedded, mobile), but core goals include:
+
+1.1 Reliability
+
+System should run correctly for long periods.
+
+1.2 Security
+
+Protect resources from unauthorized access.
+
+1.3 Portability
+
+OS should run on multiple hardware platforms.
+
+1.4 Performance
+
+Efficient CPU, memory, and I/O usage.
+
+1.5 Scalability
+
+Support growing workloads and multiple CPUs.
+
+1.6 Flexibility & Extensibility
+
+Easily add new features/drivers.
+
+1.7 Usability
+
+User-friendly interfaces and tools.
+
+=========================================================
+2. MONOLITHIC VS MICROKERNEL DESIGN
+=========================================================
+
+Two major design philosophies:
+
+2.1 Monolithic Kernels
+
+Entire OS (drivers, FS, networking) runs in kernel mode.
+
+Pros:
+
+Fast due to fewer context switches
+
+Easy direct access to hardware
+
+Mature (Linux, UNIX)
+
+Cons:
+
+Large trusted computing base
+
+Harder to maintain & debug
+
+2.2 Microkernels
+
+Only minimal core runs in kernel mode:
+
+IPC
+
+Scheduling
+
+Low-level memory management
+
+Everything else in user space.
+
+Pros:
+
+High security
+
+Reliability
+
+Modular design
+
+Cons:
+
+More IPC overhead
+
+Historically slower (modern ones optimized)
+
+Examples: MINIX 3, QNX
+
+2.3 Hybrid Kernels
+
+Combine monolithic + microkernel approaches.
+Examples: Windows NT, XNU (macOS)
+
+=========================================================
+3. SYSTEM STARTUP & BOOTING
+=========================================================
+
+Typical boot sequence:
+
+CPU loads firmware (BIOS/UEFI)
+
+Firmware loads bootloader
+
+Bootloader loads OS kernel
+
+Kernel initializes hardware & memory
+
+Kernel starts system processes
+
+User-mode services start
+
+Designing a reliable boot process is critical.
+
+=========================================================
+4. PROCESS MANAGEMENT DESIGN
+=========================================================
+4.1 Address Space Structure
+
+Separate kernel & user space
+
+Efficient virtual memory layout
+
+4.2 Scheduling Policies
+
+Decide how CPUs are shared:
+
+CFS (Linux)
+
+O(1) scheduler
+
+Priority-based scheduling (Windows)
+
+4.3 Communication
+
+Signals
+
+Pipes
+
+Sockets
+
+RPC
+
+Message queues
+
+=========================================================
+5. MEMORY MANAGEMENT DESIGN
+=========================================================
+
+Key design decisions:
+
+✔ Paging vs segmentation
+✔ TLB management
+✔ Working set policies
+✔ NUMA support
+✔ Kernel memory allocators
+✔ Swap strategies
+
+Memory design affects:
+
+Performance
+
+Isolation
+
+Predictability
+
+=========================================================
+6. I/O SYSTEM DESIGN
+=========================================================
+
+Major responsibilities:
+
+Device driver architecture
+
+Interrupt handling (fast path vs slow path)
+
+DMA usage
+
+Block & character device abstractions
+
+Buffering and caching
+
+Naming & protection
+
+Drivers are a major source of bugs → careful design important.
+
+=========================================================
+7. FILE SYSTEM DESIGN
+=========================================================
+
+Design includes:
+
+Directory structure
+
+Metadata layout (inodes, MFT)
+
+Block allocation strategy
+
+Journaling vs copy-on-write (COW)
+
+Crash consistency guarantees
+
+Storage technology support (disks, SSDs, NVM)
+
+=========================================================
+8. SECURITY DESIGN
+=========================================================
+
+OS must enforce:
+
+Authentication
+
+Access control
+
+Isolation between processes
+
+Kernel integrity
+
+Secure IPC
+
+Sandboxing
+
+Memory protection
+
+Prevent buffer overflows
+
+Includes:
+
+MAC/RBAC enforcement
+
+Secure boot
+
+Cryptographic APIs
+
+=========================================================
+9. DISTRIBUTED SYSTEM DESIGN
+=========================================================
+
+Modern OSes support distributed features:
+
+Distributed file systems (NFS, SMB)
+
+Remote process execution
+
+Cloud integration
+
+Network transparency
+
+Load balancing
+
+Challenges include:
+
+Network failures
+
+Clock synchronization
+
+Consistency
+
+=========================================================
+10. VIRTUALIZATION SUPPORT
+=========================================================
+
+OS designs integrate:
+
+Hypervisors
+
+Paravirtualized drivers
+
+Virtual CPUs
+
+Nested page tables
+
+Containerization (namespaces, cgroups)
+
+Essential for:
+
+Cloud computing
+
+Sandbox security
+
+Resource isolation
+
+=========================================================
+11. TESTING & VERIFICATION
+=========================================================
+
+OS testing is challenging due to:
+
+Concurrency
+
+Hardware interactions
+
+Race conditions
+
+Testing techniques:
+
+Unit testing
+
+Stress testing
+
+Fuzz testing
+
+Fault injection
+
+Formal verification (used in seL4 kernel)
+
+=========================================================
+12. PERFORMANCE MEASUREMENT
+=========================================================
+
+Tools & metrics:
+
+Profilers (perf, VTune)
+
+System tracing
+
+Benchmarks (SPEC, UnixBench)
+
+Scheduler latency tests
+
+Memory throughput & TLB performance
+
+Disk & network benchmarks
+
+Performance optimization is iterative.
+
+=========================================================
+13. DESIGN FOR RELIABILITY & FAULT TOLERANCE
+=========================================================
+
+Approaches:
+
+Process isolation
+
+Error recovery
+
+Watchdog timers
+
+Redundant storage (RAID)
+
+Checkpointing
+
+Journaling FS
+
+Crash-only design
+
+Microkernel fault resilience
+
+=========================================================
+14. ENERGY-AWARE DESIGN
+=========================================================
+
+Power-saving techniques:
+
+Dynamic Voltage/Frequency Scaling (DVFS)
+
+CPU idle states
+
+Device power gating
+
+Green computing strategies
+
+Critical for mobile & data center systems.
+
+Summary
+
+Operating system design balances performance, modularity, reliability, security, and scalability.
+Design choices include kernel architecture, memory and process management, file systems, I/O, security policies, and virtualization support.
+Testing, performance tuning, and reliability engineering ensure a stable, efficient OS.

@@ -1,0 +1,125 @@
+INTRODUCTION TO INFORMATION RETRIEVAL (IR)
+
+Information Retrieval (IR) is the process of searching and retrieving relevant information from large collections of unstructured or semi-structured data.
+Search engines (Google, Bing, etc.) are practical examples of IR systems.
+
+IR focuses on relevance-based retrieval rather than exact matching.
+
+What is Information Retrieval?
+
+IR involves:
+• Representing and indexing text documents
+• Searching collections efficiently
+• Ranking documents based on similarity
+• Retrieving the most relevant results to the query
+
+Works with unstructured text such as:
+• Web pages
+• Articles
+• Books
+• Emails
+• Reports
+
+IR output is a ranked list of documents.
+
+IR vs DBMS
+
+Feature	IR	DBMS
+Data type	Unstructured/semi-structured text	Structured tables
+Query type	Keywords, natural language	SQL (exact match)
+Results	Ranked by relevance	Exact matching results
+Matching	Approximate	Precise
+Evaluation	Relevance scoring	Correctness-based
+Index structure	Inverted index	B-tree, Hash index
+
+Basic IR System Architecture
+
+Components:
+3.1 Document Collection
+Documents to be searched (web pages, PDFs, articles, e-books)
+
+3.2 Text Processing
+Tokenization, stopword removal, stemming/lemmatization, normalization
+
+3.3 Indexing
+Builds inverted index: term → document postings
+
+3.4 Query Processing
+Transforms user input into searchable form
+
+3.5 Ranking and Retrieval
+Scores documents using similarity (TF-IDF, cosine similarity, BM25)
+
+3.6 Evaluation
+Measures retrieval performance using precision, recall, MAP, NDCG
+
+Information Retrieval Models
+
+4.1 Boolean Model
+Uses logical operators (AND, OR, NOT)
+Exact matching only
+No ranking
+
+4.2 Vector Space Model (VSM)
+Documents represented as numeric vectors
+Uses TF-IDF and cosine similarity
+Supports ranked retrieval
+Widely used in IR
+
+4.3 Probabilistic Models
+Estimates probability of document relevance
+Examples: BM25, Binary Independence Model
+High performance in many applications
+
+Text Processing Pipeline
+
+IR systems preprocess text for indexing:
+
+• Tokenization: splitting into terms
+• Stopword removal: remove frequent meaningless words
+• Stemming: reduce to root form (running → run)
+• Lemmatization: dictionary form reduction (studies → study)
+• Normalization: lowercasing, punctuation removal, number handling
+
+Inverted Index
+
+Key structure for efficient search.
+
+term → posting list of (document ID, frequency, positions)
+
+Example:
+data → (doc1:3), (doc5:1), (doc9:2)
+
+Supports fast query evaluation.
+
+Evaluating IR Systems
+
+Common metrics:
+• Precision: relevant retrieved / retrieved
+• Recall: relevant retrieved / relevant total
+• F1 Score: harmonic mean of precision and recall
+• MAP: mean average precision across queries
+• NDCG: measures ranking quality with graded relevance
+
+Challenges in IR
+
+• Polysemy (one word, many meanings: bank)
+• Synonymy (different words, same meaning: car, automobile)
+• Short queries (ambiguous), long queries (noisy)
+• Scale: billions of documents require distributed indexing
+
+Applications of IR
+
+• Search engines
+• Digital libraries
+• E-commerce product search
+• QA systems and chatbots
+• Recommendation systems
+• Legal and medical search
+• Retrieval-Augmented Generation (RAG)
+
+Summary
+
+Information Retrieval aims to retrieve the most relevant information from large unstructured data collections.
+It uses preprocessing, inverted indexes, retrieval models (Boolean, VSM, probabilistic), ranking, and evaluation metrics.
+IR technologies power today’s web-scale search engines and intelligent systems.

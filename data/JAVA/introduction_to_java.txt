@@ -1,0 +1,108 @@
+INTRODUCTION TO JAVA
+
+Java is one of the most popular programming languages used to build applications such as mobile apps, enterprise software, cloud applications, and distributed systems.
+
+FEATURES OF JAVA
+
+1.1 Simple
+Java has a clean and understandable syntax similar to C++, but without complex features such as pointers. It includes automatic garbage collection.
+
+1.2 Object Oriented
+Java is based on the concepts of classes and objects. It supports inheritance, encapsulation, polymorphism, and abstraction.
+
+1.3 Platform Independent
+Java follows the Write Once, Run Anywhere principle. Java code is compiled to bytecode which runs on the JVM.
+Source code → Bytecode → JVM execution
+
+1.4 Secure
+Java does not allow direct pointer manipulation and verifies bytecode for safety. It also uses secure class loading mechanisms.
+
+1.5 Robust
+Java provides strong memory management, exception handling, and type checking which makes applications stable.
+
+1.6 Multithreaded
+Java supports multithreading using the Thread class, Runnable interface, and the Executor framework.
+
+1.7 Portable
+Java applications can run on different platforms without modification because bytecode and JVM are platform independent.
+
+1.8 High Performance
+The Just In Time (JIT) compiler improves performance, though Java is still slower than languages like C++ that compile directly to machine code.
+
+1.9 Distributed
+Java provides APIs for networking and distributed computing such as RMI and web services.
+
+JAVA PLATFORM COMPONENTS
+
+2.1 JDK (Java Development Kit)
+JDK contains the compiler, Java libraries, debugger, and JRE. Developers use JDK to write and compile Java code.
+
+2.2 JRE (Java Runtime Environment)
+JRE contains the JVM and core libraries. It is used to run Java programs.
+
+2.3 JVM (Java Virtual Machine)
+JVM executes the bytecode. It handles class loading, memory management, and garbage collection. JVM is platform dependent but bytecode is platform independent.
+
+HOW JAVA PROGRAMS RUN
+
+Step 1: Write program in Program.java
+Step 2: Compile using javac Program.java which generates Program.class (bytecode)
+Step 3: Run using java Program
+
+BASIC STRUCTURE OF A JAVA PROGRAM
+
+Example:
+class Hello {
+public static void main(String[] args) {
+System.out.println("Hello, Java!");
+}
+}
+
+class keyword defines a class.
+main method is the entry point.
+System.out.println() prints text to console.
+
+JAVA EDITIONS
+
+Java SE: Standard Edition for desktop and general-purpose programming.
+Java EE: Enterprise Edition for web and enterprise applications such as servlets and web services.
+Java ME: Micro Edition for embedded systems and small devices.
+JavaFX: Used for GUI applications.
+
+APPLICATIONS OF JAVA
+
+Java is used for:
+Android applications
+Banking and finance applications
+Enterprise backend systems
+Cloud computing platforms
+Big Data technologies such as Hadoop
+E-commerce systems
+Scientific and gaming applications
+
+ADVANTAGES OF JAVA
+
+Platform independent
+Highly secure and stable
+Strong community support
+Large number of libraries and frameworks
+Powerful IDE support
+Cross-platform GUI support
+
+LIMITATIONS OF JAVA
+
+Slower than native languages
+Consumes more memory
+Verbosity in syntax
+GUI tools are less modern compared to others
+
+DIFFERENCE BETWEEN JAVA AND C++
+
+Java uses automatic garbage collection, while C++ requires manual memory management.
+Java does not support pointer usage or operator overloading.
+Java does not support multiple inheritance with classes; C++ does.
+Java is platform independent using JVM, while C++ generates platform dependent machine code.
+
+SUMMARY
+
+Java is a secure, robust, and platform independent object oriented language widely used for enterprise and mobile applications. It runs on the JVM and offers strong community support and library availability, making it one of the leading programming languages today.

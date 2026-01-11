@@ -1,0 +1,124 @@
+The C Preprocessor (CPP) runs before compilation. It performs textual transformations on source code such as macro expansion, file inclusion, conditional compilation, and symbol definition. Directives begin with #.
+
+File Inclusion (#include):
+Includes external code such as header files.
+
+Standard headers:
+#include <stdio.h>
+#include <math.h>
+Angle brackets search standard library paths.
+
+User-defined headers:
+#include "myheader.h"
+Quotes search the current directory first.
+
+The preprocessor copies included file contents directly into the source.
+
+Macro Substitution (#define):
+Defines symbolic constants or macros.
+
+Object-like macros:
+#define PI 3.14159
+#define MAX 100
+
+Function-like macros:
+#define SQUARE(x) ((x)*(x))
+Parentheses avoid precedence bugs.
+
+Macros spanning multiple statements:
+#define SWAP(a, b)
+{ int temp = a; a = b; b = temp; }
+
+Undefining Macros (#undef):
+#undef MAX
+Used to remove or redefine a macro.
+
+Conditional Compilation:
+Controls which code segments are compiled.
+
+#if / #endif:
+#if SIZE == 100
+printf("Size is 100");
+#endif
+
+#ifdef / #ifndef:
+#ifdef DEBUG
+printf("Debug enabled");
+#endif
+
+#ifndef CONFIG
+#define CONFIG 1
+#endif
+
+#elif / #else also supported.
+
+Macro Operators:
+
+Stringizing (#):
+#define STR(x) #x
+STR(Hello) → "Hello"
+
+Token pasting (##):
+#define JOIN(a, b) a##b
+JOIN(var, 1) → var1
+
+Predefined Macros:
+DATE compilation date
+TIME compilation time
+FILE filename
+LINE line number
+func function name
+
+Example:
+printf("%s %s", DATE, TIME);
+
+Header Guards:
+Prevent multiple inclusion of a header.
+
+#ifndef MYHEADER_H
+#define MYHEADER_H
+// declarations
+#endif
+
+#error Directive:
+Generates compile-time errors.
+
+#if VERSION < 2
+#error "VERSION must be at least 2"
+#endif
+
+#pragma Directive:
+Compiler-specific instructions.
+Examples:
+#pragma once
+#pragma pack(1)
+Not portable.
+
+Macro Pitfalls:
+Missing parentheses:
+#define SQUARE(x) xx // wrong
+Use:
+#define SQUARE(x) ((x)(x))
+
+Side effects:
+SQUARE(i++) increments i twice.
+
+Hard to debug: macros expand before compilation.
+Inline functions are safer and prefered in modern C.
+
+Example: Conditional Debug Logging:
+#ifdef DEBUG
+#define LOG(msg) printf("DEBUG: %s\n", msg)
+#else
+#define LOG(msg)
+#endif
+
+Compilation Process with Preprocessing:
+Steps:
+Preprocessing → Compilation → Assembly → Linking
+
+View expanded preprocessed output:
+gcc -E file.c
+
+Summary:
+The C Preprocessor handles header inclusion, macro expansion, conditional compilation, token manipulation, and compile-time checks. It improves modularity and flexibility but must be used carefully due to debugging and safety issues.

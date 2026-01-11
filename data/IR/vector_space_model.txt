@@ -1,0 +1,49 @@
+VECTOR SPACE MODEL (VSM)
+The Vector Space Model (VSM) represents documents and queries as vectors in a high-dimensional space. Relevance is measured using similarity such as cosine similarity. VSM supports ranked retrieval unlike the Boolean model.
+
+WHY VSM
+The Boolean model provides only binary relevance, has no ranking, and does not support partial matching. VSM solves these issues by assigning weights to terms, computing similarity measures, and producing ranked results.
+
+DOCUMENT AND QUERY AS VECTORS
+Each unique term corresponds to a dimension. Example vocabulary: [machine, learning, database]
+D1: “machine learning” → [1, 1, 0]
+D2: “machine database” → [1, 0, 1]
+Q: “learning database” → [0, 1, 1]
+Documents closer to the query vector are considered more relevant.
+
+TERM FREQUENCY (TF)
+TF measures the occurrence of a term in a document.
+TF(t, d) = count of term t in document d
+
+INVERSE DOCUMENT FREQUENCY (IDF)
+IDF reduces weight of common terms and increases weight of rare terms.
+IDF(t) = log(N / df(t))
+N = total number of documents
+df(t) = number of documents containing t
+
+TF-IDF WEIGHTING
+TF-IDF(t, d) = TF(t, d) × IDF(t)
+High TF-IDF: term important to document
+Low TF-IDF: term too common
+
+COSINE SIMILARITY
+cos(d, q) = (d · q) / (|d| × |q|)
+Range: 1 = identical, 0 = unrelated
+Used to rank documents by decreasing similarity to the query.
+
+RANKING EXAMPLE (SHORT)
+For query: machine learning
+sim(D1, Q) > sim(D2, Q) > sim(D3, Q)
+Thus D1 ranks highest.
+
+ADVANTAGES
+Supports partial matching, ranked retrieval, and efficient TF-IDF weighting. Works well with inverted index search.
+
+LIMITATIONS
+Ignores word order, no semantic understanding, high-dimensional sparse vectors, and heuristic weighting.
+
+EXTENSIONS
+BM25 for improved ranking. Word embeddings (Word2Vec, GloVe). Transformer-based models (BERT) for semantic retrieval. Vector databases (FAISS, Pinecone, Milvus) for large-scale similarity search.
+
+SUMMARY
+VSM represents documents and queries as weighted vectors using TF-IDF and ranks them using cosine similarity. It forms the foundation of classical IR and influences modern retrieval models.

@@ -1,0 +1,348 @@
+CHAPTER 9 — SECURITY
+
+Security is a critical part of modern operating systems.
+It ensures that data, users, and system resources remain protected against unauthorized access, attacks, and failures.
+
+Operating system security provides:
+
+Confidentiality (data is protected)
+
+Integrity (data is accurate and unaltered)
+
+Availability (system remains usable)
+
+These form the classic CIA triad.
+
+=========================================================
+1. THREATS & ATTACKS
+=========================================================
+
+A threat is a potential danger; an attack is an attempt to exploit it.
+
+Common threat categories:
+
+Information theft (passwords, private data)
+
+Espionage
+
+Vandalism (malware, ransomware)
+
+Denial of Service (DoS)
+
+Privilege escalation
+
+Attack types:
+
+Passive attacks → eavesdropping
+
+Active attacks → altering data, impersonation
+
+=========================================================
+2. MALWARE
+=========================================================
+
+Malware includes:
+
+2.1 Viruses
+
+Self-replicating code attached to files.
+
+2.2 Worms
+
+Self-replicating across networks without user action.
+
+2.3 Trojans
+
+Malicious software disguised as legitimate programs.
+
+2.4 Ransomware
+
+Encrypts data and demands payment.
+
+2.5 Spyware & Keyloggers
+
+Stealth data collection.
+
+2.6 Rootkits
+
+Hide presence of malware by altering the OS.
+
+=========================================================
+3. DEFENSE MECHANISMS
+=========================================================
+
+Security relies on layered defense:
+
+3.1 Authentication
+
+Verify user identity.
+
+Methods:
+
+Passwords
+
+Biometrics
+
+Multi-factor authentication (MFA)
+
+Certificates
+
+3.2 Authorization
+
+Control access to resources using:
+
+Permissions
+
+Access Control Lists (ACLs)
+
+Capabilities
+
+3.3 Encryption
+
+Protect data confidentiality.
+
+Types:
+
+Symmetric (AES)
+
+Asymmetric (RSA, ECC)
+
+Hashing (SHA-256)
+
+Applications:
+
+Disk encryption
+
+Secure communication (TLS/SSL)
+
+3.4 Auditing & Logging
+
+Track system activity for detection and analysis.
+
+=========================================================
+4. ACCESS CONTROL MODELS
+=========================================================
+4.1 DAC — Discretionary Access Control
+
+Access rights managed by users.
+Example: UNIX file permissions.
+
+4.2 MAC — Mandatory Access Control
+
+OS enforces policies based on confidentiality labels.
+Used in:
+
+Military systems
+
+SELinux
+
+4.3 RBAC — Role-Based Access Control
+
+Permissions assigned to roles, not users.
+Common in enterprise systems.
+
+=========================================================
+5. BUFFER OVERFLOWS & MEMORY ATTACKS
+=========================================================
+
+Classic exploit: exceeding boundaries of a buffer to overwrite memory, modify return addresses, or inject shellcode.
+
+Defenses:
+
+Address Space Layout Randomization (ASLR)
+
+Stack canaries
+
+Non-executable stack (NX bit)
+
+Compiler checks (Fortify, stack protection)
+
+=========================================================
+6. SOFTWARE SECURITY VULNERABILITIES
+=========================================================
+6.1 Race Conditions
+
+TOCTOU (time-of-check to time-of-use) errors.
+
+6.2 Integer Overflows
+
+Used to bypass bounds checks.
+
+6.3 Format String Attacks
+
+Exploiting uncontrolled printf format specifiers.
+
+6.4 Code Injection
+
+Script injection, SQL injection, command injection.
+
+=========================================================
+7. PRINCIPLE OF LEAST PRIVILEGE
+=========================================================
+
+Processes should run with minimum necessary rights.
+
+Applies to:
+
+File permissions
+
+User accounts
+
+Services/daemons
+
+Containers
+
+Virtual machines
+
+Reduces attack surface.
+
+=========================================================
+8. KERNEL SECURITY
+=========================================================
+
+Kernel-mode attacks are severe.
+
+Common strategies:
+
+Kernel code signing
+
+Isolating drivers
+
+Minimizing attack surface
+
+Mandatory Access Control (MAC)
+
+Hypervisor protection
+
+Linux uses:
+
+SELinux
+
+AppArmor
+
+Windows uses:
+
+Secure Boot
+
+Device Guard
+
+=========================================================
+9. NETWORK SECURITY
+=========================================================
+
+Many attacks originate from the network.
+
+Tools:
+
+Firewalls (packet filters/stateful inspection)
+
+Intrusion Detection Systems (IDS)
+
+Intrusion Prevention Systems (IPS)
+
+VPNs
+
+TLS/SSL
+
+Example network threats:
+
+MITM attacks
+
+ARP spoofing
+
+DNS poisoning
+
+SYN flooding
+
+=========================================================
+10. WEB SECURITY
+=========================================================
+
+Common web threats:
+
+Cross-site scripting (XSS)
+
+Cross-site request forgery (CSRF)
+
+SQL injection
+
+Session hijacking
+
+Mitigations:
+
+Input validation
+
+Output escaping
+
+Secure cookies
+
+CSP headers
+
+=========================================================
+11. PHYSICAL SECURITY
+=========================================================
+
+Protect hardware from:
+
+Theft
+
+Tampering
+
+Eavesdropping
+
+Techniques:
+
+Locks
+
+Secure enclosures
+
+Surveillance
+
+Hardware encryption modules
+
+=========================================================
+12. SECURITY POLICIES AND PRACTICES
+=========================================================
+
+Every organization needs:
+
+Security policy
+
+Incident response plan
+
+Regular audits
+
+Employee training
+
+Patch management
+
+Human factors often the weakest link.
+
+=========================================================
+13. VIRTUALIZATION & CLOUD SECURITY
+=========================================================
+
+Unique risks:
+
+VM escape
+
+Hypervisor attacks
+
+Side-channel leakage
+
+Multi-tenant data exposure
+
+Mitigation:
+
+Hardware virtualization extensions
+
+VM isolation
+
+Secure hypervisors
+
+Encrypted data at rest & in memory
+
+Summary
+
+Security is a multi-layered discipline involving authentication, authorization, malware defense, memory safety, access control models, kernel protections, and network/web security.
+OS security ensures confidentiality, integrity, and availability while defending against evolving threats and vulnerabilities.

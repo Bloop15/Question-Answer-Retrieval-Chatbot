@@ -1,0 +1,85 @@
+ABSTRACTION IN JAVA
+Abstraction is an OOP principle used to hide implementation details and show only essential features. It reduces complexity, improves modularity, and enhances maintainability. In Java, abstraction is achieved using abstract classes and interfaces.
+
+WHAT IS ABSTRACTION
+Abstraction focuses on what an object does rather than how it does it. Example: Using a phone without knowing its circuit design, driving a car without knowing engine mechanics. It hides unnecessary details from the user.
+
+ABSTRACTION USING ABSTRACT CLASSES
+An abstract class cannot be instantiated, may contain abstract methods (no body), and may contain concrete methods. Example:
+abstract class Animal {
+abstract void sound();
+void sleep() { System.out.println("Sleeping"); }
+}
+class Dog extends Animal {
+void sound() { System.out.println("Bark"); }
+}
+
+ABSTRACT CLASS RULES
+• Cannot be instantiated
+• Can have constructors
+• Can include concrete and abstract methods
+• Can have variables, static methods, final methods
+• Must be extended by a subclass
+
+USE CASES OF ABSTRACT CLASSES
+Used when partial abstraction is needed, some methods must be overridden, and common functionality should remain in the parent class.
+
+ABSTRACTION USING INTERFACES
+An interface is a blueprint of a class. Earlier, interfaces only had abstract methods. From Java 8, they can include default, static, and from Java 9, private methods.
+Example:
+interface Animal { void sound(); }
+class Dog implements Animal {
+public void sound() { System.out.println("Bark"); }
+}
+
+INTERFACE RULES
+• Methods are public and abstract by default
+• Variables are public static final
+• Supports multiple inheritance through implements
+• No object creation allowed
+• Provides full abstraction (pre-Java 8)
+
+DIFFERENCE BETWEEN ABSTRACT CLASS AND INTERFACE
+Abstract class: includes abstract + concrete methods, any type of variables, no multiple inheritance, constructors allowed, used for partial abstraction.
+Interface: mostly abstract methods (default/static allowed), only public static final variables, supports multiple inheritance, no constructors, used for full abstraction.
+
+REAL WORLD EXAMPLE
+abstract class Car {
+abstract void start();
+void brake() { System.out.println("Braking..."); }
+}
+interface MusicSystem { void play(); }
+class BMW extends Car implements MusicSystem {
+void start() { System.out.println("BMW Starts"); }
+public void play() { System.out.println("Playing music"); }
+}
+
+FULL ABSTRACTION
+Achieved using interfaces or abstract classes containing only abstract methods.
+Example:
+interface Shape { void draw(); }
+
+WHY ABSTRACTION IS USED
+It hides complexity, improves structure, promotes flexibility, reduces code duplication, and enforces required implementations in subclasses.
+
+EXAMPLE PROGRAM
+abstract class Animal {
+abstract void sound();
+void sleep() { System.out.println("Sleeping..."); }
+}
+class Dog extends Animal {
+void sound() { System.out.println("Bark"); }
+}
+public class Test {
+public static void main(String[] args) {
+Animal a = new Dog();
+a.sound();
+a.sleep();
+}
+}
+Output:
+Bark
+Sleeping...
+
+SUMMARY
+Abstraction hides internal implementation and shows only necessary functionality. It is implemented through abstract classes (partial abstraction) and interfaces (full abstraction), supporting clean and scalable OOP design.

@@ -1,0 +1,120 @@
+RELATIONAL ALGEBRA & RELATIONAL CALCULUS
+
+Relational Algebra (RA) and Relational Calculus (RC) are formal query languages used to describe how data is retrieved from relational databases.
+
+Relational Algebra → Procedural
+Specifies how to get the result
+
+Relational Calculus → Non-Procedural
+Specifies what result is required
+
+SQL is strongly influenced by both.
+
+PART 1 — RELATIONAL ALGEBRA
+
+Relational Algebra is a set of operations used to manipulate relations (tables). Each operation takes relations as input and produces a new relation as output.
+
+Basic Relational Algebra Operations
+
+1.1 Selection (σ)
+Filters rows.
+Notation: σ(condition)(Relation)
+Example: σ(GPA > 9)(Student)
+
+1.2 Projection (π)
+Selects required columns.
+Notation: π(column_list)(Relation)
+Example: π(Name, Branch)(Student)
+Removes duplicates automatically.
+
+1.3 Rename (ρ)
+Renames relation or attributes.
+Notation:
+ρ(NewName)(Relation)
+ρ(RelationName(NewAttr1, NewAttr2))(Relation)
+
+Example: ρ(S)(Student)
+
+Set Operations
+(Relations must be union compatible)
+
+2.1 Union (∪) — rows in either relation
+2.2 Intersection (∩) — rows in both relations
+2.3 Set Difference (−) — rows in R not in S
+
+Cartesian Product (×)
+Combines each row of R with each row of S.
+Used as basis for joins.
+
+Joins
+Combine related tuples from two relations.
+
+4.1 Theta Join (⋈θ)
+4.2 Equi-Join
+4.3 Natural Join (⋈) — automatically joins on common attributes and removes duplicates
+4.4 Outer Joins — Left, Right, Full (adds unmatched tuples using NULLs)
+
+Division (÷)
+Used for “for all” type queries. Example: StudentCourse ÷ Course
+
+Extended Relational Algebra
+Aggregation (SUM, COUNT, AVG, MIN, MAX)
+Grouping
+Sorting
+Assignment
+
+PART 2 — RELATIONAL CALCULUS
+
+A declarative query language that specifies what data is required without specifying how to obtain it.
+
+Two forms:
+
+Tuple Relational Calculus (TRC)
+
+Domain Relational Calculus (DRC)
+
+Tuple Relational Calculus (TRC)
+
+General form:
+{ t | Condition(t) }
+Example:
+{ t.Name | t ∈ Student AND t.GPA > 9 }
+
+Quantifiers:
+∃ (exists)
+∀ (for all)
+
+Domain Relational Calculus (DRC)
+
+General form:
+{ <x1, x2, …, xn> | Condition(x1, x2, …, xn) }
+Example:
+{ <Name, GPA> | ∃r (r ∈ Student AND r.Name = Name AND r.GPA > 9) }
+
+Safety Rule
+Expressions must return finite results
+Example of unsafe expression:
+{ x | NOT(x ∈ Student) }
+
+Comparison: Relational Algebra vs Relational Calculus
+
+Feature	Relational Algebra	Relational Calculus
+Type	Procedural	Declarative
+Output	Always a relation	Set of tuples/values
+Basis	Set theory	Predicate logic
+Expressive Power	Equivalent	Equivalent
+Similar to SQL	Partially	Strongly
+
+Codd’s Theorem: RA and RC have equal expressive power.
+
+Relationship to SQL
+
+SQL combines:
+• Relational Algebra operators (SELECT, PROJECT, JOIN)
+• Relational Calculus logic (conditions, quantifiers)
+
+Summary
+
+Relational Algebra is a procedural query language using operators like selection, projection, join, union, difference, and division.
+Relational Calculus is a declarative language using logical expressions (TRC and DRC).
+Both are theoretically equivalent and form the foundation of SQL query processing and optimization.

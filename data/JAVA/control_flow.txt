@@ -1,0 +1,160 @@
+CONTROL FLOW IN JAVA
+
+Control flow statements determine the order in which statements are executed in a Java program. They enable decision making, looping, and branching.
+
+Java supports three categories of control flow:
+Selection statements (if, else, switch)
+Iteration statements (loops: for, while, do while)
+Jump statements (break, continue, return)
+
+SELECTION STATEMENTS
+
+These are used for decision making.
+
+1.1 if statement
+Executes a block when the condition is true.
+if(condition) {
+code
+}
+
+Example:
+if(age >= 18) {
+System.out.println("Eligible");
+}
+
+1.2 if else statement
+if(condition) {
+code if true
+} else {
+code if false
+}
+
+1.3 if else if ladder
+Used for multiple conditions.
+if(x > 0) System.out.println("Positive");
+else if(x < 0) System.out.println("Negative");
+else System.out.println("Zero");
+
+1.4 Nested if
+An if inside another if.
+if(a > 0) {
+if(b > 0) {
+System.out.println("Both positive");
+}
+}
+
+1.5 switch statement
+Used when checking a single value against multiple cases.
+
+switch(variable) {
+case value1: code; break;
+case value2: code; break;
+default: code;
+}
+
+Supported types: byte, short, int, char, enum, String, wrapper types like Integer and Character.
+
+Example:
+switch(day) {
+case 1: System.out.println("Monday"); break;
+case 2: System.out.println("Tuesday"); break;
+default: System.out.println("Invalid Day");
+}
+
+ITERATION STATEMENTS (LOOPS)
+
+Used to repeat code.
+
+2.1 for loop
+Used when number of iterations is known.
+for(initialization; condition; update) {
+code
+}
+
+Example:
+for(int i = 1; i <= 5; i++) {
+System.out.println(i);
+}
+
+2.2 Enhanced for loop (for each)
+Used for arrays and collections.
+for(int x : arr) {
+System.out.println(x);
+}
+
+2.3 while loop
+Used when number of iterations is unknown.
+while(condition) {
+code
+}
+
+Example:
+int i = 1;
+while(i <= 5) {
+System.out.println(i);
+i++;
+}
+
+2.4 do while loop
+Executes at least once regardless of condition.
+do {
+code
+} while(condition);
+
+Example:
+int i = 1;
+do {
+System.out.println(i);
+i++;
+} while(i <= 5);
+
+JUMP STATEMENTS
+
+3.1 break
+Used to exit a loop or switch statement.
+for(int i = 1; i <= 10; i++) {
+if(i == 5) break;
+}
+
+3.2 continue
+Skips current iteration.
+for(int i = 1; i <= 5; i++) {
+if(i == 3) continue;
+}
+
+3.3 return
+Used to return from a method.
+
+NESTED LOOPS
+
+Loops inside loops.
+for(int i = 1; i <= 3; i++) {
+for(int j = 1; j <= 3; j++) {
+System.out.println(i + " " + j);
+}
+}
+
+Used for matrices, patterns, and two dimensional structures.
+
+SWITCH VS IF ELSE
+
+Use switch for single variable with many values or enum or string comparison.
+Use if else for range conditions, relational operators, and boolean decisions.
+
+COMMON LOOPING ERRORS
+
+Infinite loop: while(true) { }
+Missing update statement causes infinite loop: for(int i = 1; i <= 10; )
+Off by one errors where loop executes one time more or less than expected.
+
+CONTROL FLOW BEST PRACTICES
+
+Use enhanced for loop for arrays and collections.
+Avoid deeply nested if else.
+Use switch for multiple fixed conditions.
+Ensure proper loop termination condition.
+Break complex logic into methods.
+
+SUMMARY
+
+Control flow statements allow decision making, repetition, and branching in Java. They include selection (if, else, switch), iteration (for, while, do while, enhanced for), and jump statements (break, continue, return). These concepts are fundamental before learning object oriented programming and advanced Java.

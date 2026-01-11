@@ -1,0 +1,323 @@
+CHAPTER 5 — INPUT/OUTPUT
+
+The Input/Output (I/O) subsystem connects the CPU and memory to external devices such as disks, keyboards, displays, printers, network cards, USB devices, and more.
+I/O is essential for interacting with the external world and is one of the most complex OS components.
+
+=========================================================
+1. I/O HARDWARE
+=========================================================
+
+I/O devices vary widely in speed, function, and complexity.
+
+1.1 Device Categories
+
+Block devices
+
+Store data in fixed-size blocks
+
+Random access (e.g., HDD, SSD)
+
+Character devices
+
+Stream of characters
+
+No random access (e.g., keyboard, mouse)
+
+1.2 Device Controllers
+
+Each device has a controller that:
+
+Controls hardware operation
+
+Manages data transfer
+
+Raises interrupts to signal completion
+
+1.3 Memory-Mapped I/O
+
+Device registers mapped into memory address space.
+
+CPU reads/writes registers as if they were memory.
+
+1.4 Port-Mapped I/O
+
+Special I/O instructions (IN/OUT) access device ports.
+
+Used in some architectures (e.g., x86).
+
+=========================================================
+2. INTERRUPTS
+=========================================================
+
+Interrupts allow the CPU to handle asynchronous events.
+
+2.1 Types of Interrupts
+
+Hardware interrupts
+
+Software interrupts
+
+Traps (exceptions)
+
+2.2 Interrupt Handling Steps
+
+Device sends interrupt
+
+CPU saves current state
+
+Jumps to interrupt handler
+
+Handler services interrupt
+
+CPU restores state
+
+Interrupts allow overlap of computation and I/O.
+
+=========================================================
+3. DIRECT MEMORY ACCESS (DMA)
+=========================================================
+
+DMA controllers transfer data between device and memory without CPU involvement.
+
+Benefits:
+
+Reduces CPU load
+
+Faster I/O
+
+Allows CPU and device to run concurrently
+
+=========================================================
+4. I/O SOFTWARE LAYERS
+=========================================================
+
+I/O software is layered for modularity.
+
+4.1 Interrupt Handlers
+
+Handle device interrupts
+
+Acknowledge and reset device
+
+Wake up blocked processes
+
+4.2 Device Drivers
+
+Device-specific code that manages hardware.
+
+Responsibilities:
+
+Initialize device
+
+Handle read/write commands
+
+Manage device states
+
+Provide uniform API to OS
+
+4.3 Device-Independent I/O Software
+
+Provides abstractions common to all devices:
+
+Buffering
+
+Caching
+
+Error handling
+
+Naming
+
+Protection
+
+Device allocation
+
+4.4 User-Level I/O
+
+Library calls (e.g., fread, fwrite) map to system calls.
+
+=========================================================
+5. DISKS
+=========================================================
+
+Disks are classic block devices.
+
+5.1 Disk Structure
+
+A disk consists of:
+
+Platters
+
+Tracks
+
+Sectors
+
+Cylinders
+
+5.2 Disk Performance
+
+Time to access data consists of:
+
+Seek time → move head
+
+Rotational latency → wait for sector
+
+Transfer time → read/write data
+
+5.3 Disk Scheduling Algorithms
+
+Goal: minimize seek time.
+
+Algorithms:
+
+FCFS
+
+SSTF (Shortest Seek Time First)
+
+SCAN (Elevator)
+
+C-SCAN
+
+LOOK, C-LOOK
+
+5.4 RAID (Redundant Array of Independent Disks)
+
+Used for reliability and speed.
+
+Levels:
+
+RAID 0: Striping
+
+RAID 1: Mirroring
+
+RAID 5: Block-level striping with parity
+
+RAID 6: Dual parity
+
+RAID 10: Mirror + stripe
+
+=========================================================
+6. CLOCKS AND TIMERS
+=========================================================
+
+Used for:
+
+Preemptive CPU scheduling
+
+Time measurement
+
+Profiling
+
+Two types:
+
+Programmable interval timers
+
+Real-time clocks
+
+=========================================================
+7. KEYBOARDS, MONITORS, AND MICE
+=========================================================
+7.1 Keyboards
+
+Generate scan codes → device driver interprets.
+
+7.2 Display Devices
+
+Raster displays
+
+Frame buffer
+
+GPU acceleration
+
+7.3 Mice & Pointing Devices
+
+Report movement using:
+
+Optical sensors
+
+Mechanical sensors
+
+=========================================================
+8. NETWORK INTERFACES
+=========================================================
+
+Network Interface Cards (NICs):
+
+Handle packet transmission
+
+Checksum calculation
+
+Interrupt generation
+
+Buffer management
+
+Network stack (TCP/IP) often processed partially by hardware.
+
+=========================================================
+9. POWER MANAGEMENT
+=========================================================
+
+Modern OSes implement energy-saving features:
+
+Techniques:
+
+Dynamic Voltage and Frequency Scaling (DVFS)
+
+Sleep states (S1–S5)
+
+Device power gating
+
+Idle detection
+
+Essential in laptops & mobile devices.
+
+=========================================================
+10. USER-SPACE I/O
+=========================================================
+
+Techniques to improve performance:
+
+10.1 Zero-Copy I/O
+
+Avoid unnecessary data copying between kernel/user.
+
+10.2 Memory-Mapped I/O (mmap)
+
+Applications access files directly in user-space memory.
+
+=========================================================
+11. EXTERNAL STORAGE DEVICES
+=========================================================
+11.1 SSDs
+
+No head movement → lower latency
+Use NAND flash
+Require wear leveling
+
+11.2 Tape Drives
+
+Used for archival backups
+Sequential access only
+
+11.3 USB Devices
+
+Use device descriptors and standardized protocols.
+
+=========================================================
+12. DEADLOCKS IN I/O
+=========================================================
+
+Improper ordering of I/O and locks can create deadlocks.
+
+Prevent by:
+
+Fixed resource ordering
+
+Request all resources at once
+
+Use non-blocking I/O
+
+Summary
+
+The I/O subsystem coordinates communication with hardware devices using interrupts, DMA, device drivers, and layered software abstractions.
+Modern I/O systems incorporate complex scheduling, caching, and power management strategies.
+Understanding I/O is essential for systems performance, reliability, and efficient hardware utilization.

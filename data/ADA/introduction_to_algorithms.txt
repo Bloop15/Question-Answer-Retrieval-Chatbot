@@ -1,0 +1,74 @@
+What Is an Algorithm:
+An algorithm is a finite sequence of well-defined instructions that takes input, processes it, and produces output. It must satisfy:
+Input: Takes zero or more inputs
+Output: Produces one or more outputs
+Definiteness: Steps are clear and unambiguous
+Finiteness: Terminates after a finite number of steps
+Effectiveness: Operations are basic and executable
+Algorithms define how a problem is solved, independent of programming languages or hardware.
+
+Algorithm Specification:
+Algorithms can be described using English, pseudocode, flowcharts, or programming languages.
+Pseudocode is preferred because it is language-independent, clear, and focuses on logic over syntax.
+
+Performance Analysis of Algorithms:
+Performance analysis measures resource usage:
+Time complexity: execution time vs input size
+Space complexity: memory usage vs input size
+Different algorithms for the same problem may have very different performance, especially for large inputs.
+
+Types of Performance Analysis:
+
+Priori Analysis:
+Theoretical analysis done before implementation
+Assumes constant time per basic operation
+Ignores system-dependent factors
+
+Posteriori Analysis:
+Experimental analysis after implementation
+Performance depends on hardware, OS, compiler, and input
+
+Asymptotic Notations:
+Used to express growth rate of resource requirements independent of machine details
+
+Big-O (O):
+Upper bound, worst-case growth
+Example: 3n² + 5n + 2 is O(n²)
+
+Omega (Ω):
+Lower bound, best-case growth
+Example: binary search best-case is Ω(1)
+
+Theta (Θ):
+Tight bound, both upper and lower same
+Example: merge sort is Θ(n log n)
+
+Growth of Functions (in increasing order):
+1 < log n < n < n log n < n² < n³ < 2ⁿ < n!
+Logarithmic and polynomial complexities are efficient
+Exponential and factorial are generally infeasible
+
+Time Complexity Examples:
+O(1): Constant time — array access, even/odd check
+O(n): Linear — linear search, summing array
+O(log n): Logarithmic — binary search, balanced trees
+O(n²): Quadratic — bubble sort, selection sort, nested loops
+
+Space Complexity:
+Measures total memory used including input and auxiliary space
+Examples:
+Merge sort uses O(n)
+Quicksort uses O(log n) recursion stack in best/avg case
+
+Algorithmic Problem Categories:
+Numeric problems: GCD, matrix operations
+String problems: pattern matching, text processing
+Graph problems: shortest paths, MST, network flow
+Combinatorial problems: knapsack, TSP, scheduling
+
+Characteristics of a Good Algorithm:
+Correct: always gives correct output
+Efficient: minimal time and space usage
+Scalable: performs well for large inputs
+Simple: easy to understand and implement
+Deterministic: predictable behavior

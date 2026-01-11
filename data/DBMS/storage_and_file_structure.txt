@@ -1,0 +1,145 @@
+STORAGE & FILE STRUCTURE
+
+Database systems store large amounts of data on disk. Efficient storage structures and file organizations are essential for:
+
+Fast data access
+Reduced I/O cost
+Efficient search and updates
+Optimal use of memory and disk
+
+This topic explains how DBMS manages data at the physical level.
+
+Memory Hierarchy in DBMS
+
+DBMS storage layers:
+
+• CPU Registers
+• Cache
+• Main Memory (RAM)
+• Disk Storage (primary DB storage)
+• Tape/Cloud Storage (backup)
+
+Disk I/O is much slower than RAM access. Minimizing disk operations is critical.
+
+Disk Storage: Blocks and Records
+
+DBMS stores data in blocks.
+
+2.1 Blocks
+Smallest unit of data transfer between disk and memory.
+Typical size: 4 KB to 64 KB
+DBMS always reads/writes entire blocks.
+
+2.2 Records
+Data stored inside blocks.
+Records can be fixed-length or variable-length.
+
+File Organization in DBMS
+
+Defines how records are stored on disk.
+
+3.1 Heap (Unordered) File Organization
+• New records inserted at end
+• Fast insertion
+• Slow search (full scan)
+
+Used when search is not frequent.
+
+3.2 Sequential (Ordered) File Organization
+• Sorted by a key
+• Fast range queries
+• Slow insert/delete due to order maintenance
+
+Used for batch/report-oriented systems.
+
+3.3 Hashing File Organization
+Hash function maps key to a bucket:
+
+h(key) → bucket
+
+• Fast equality search
+• Collisions cause overflow
+• Not suitable for range queries
+
+Buffer Manager
+
+Manages movement of blocks between disk and RAM.
+
+4.1 Buffer Pool
+Pages in memory storing copies of disk blocks.
+
+4.2 Replacement Policies
+If buffer is full, DBMS chooses which page to remove:
+• LRU
+• MRU
+• Clock
+• FIFO
+
+Goal: reduce future I/O.
+
+Record Organization Within Blocks
+
+5.1 Fixed-Length Records
+• Easy storage and indexing
+• Predictable positions
+
+5.2 Variable-Length Records
+• Due to variable fields like names
+• DBMS uses a directory for locating records
+
+Indexed File Organization
+
+A separate structure (index) is used to locate records efficiently.
+Can be primary, secondary, clustered, or non-clustered.
+Detailed index structures (B+ Trees, Hash Indexing) are discussed in indexing topic.
+
+Blocking Factor and Slots
+
+7.1 Blocking Factor (bfr)
+Number of records stored per block:
+
+bfr = floor(BlockSize / RecordSize)
+
+Higher bfr → fewer blocks to scan → better performance.
+
+7.2 Slotted Page Structure
+Pointer table used for variable-length records.
+Supports record movement without reorganizing the page.
+
+File Operations and Cost Model
+
+Operations include scan, search, insert, delete, update.
+
+Disk access cost:
+Seek Time + Rotational Latency + Transfer Time
+
+Goal: minimize block accesses.
+
+Free Space Management
+
+DBMS maintains lists of free blocks and deleted spaces to support insertions and hash overflow handling.
+
+Multi-File and Multi-Tier Storage
+
+Data layers may include:
+
+• SSD (frequently used data)
+• HDD (less frequently used)
+• Tape/Cloud (archives/backups)
+
+Redo/Undo Log Storage
+
+Logs stored on stable storage for recovery:
+
+• Redo logs ensure committed changes persist
+• Undo logs ensure rollback of uncommitted changes
+• WAL (Write-Ahead Logging) rule applies
+
+Summary
+
+• Data is stored in disk blocks
+• File organization affects performance (heap, sequential, hashed)
+• Buffer manager reduces I/O
+• Record layout affects storage efficiency
+• Slotted pages support dynamic data
+• Efficient physical storage improves indexing and query performance

@@ -1,0 +1,262 @@
+CHAPTER 1 — INTRODUCTION TO OPERATING SYSTEMS
+
+(Clean, concise, RAG-optimized summary)
+
+An Operating System (OS) is a program that manages the resources of a computer and provides an interface between users/applications and hardware. It acts as a resource manager, extended machine, and control program.
+
+=========================================================
+1. WHAT IS AN OPERATING SYSTEM?
+=========================================================
+
+An OS is software that controls hardware and provides essential services to applications.
+Key responsibilities:
+
+Manage CPU, memory, storage, I/O devices
+
+Provide abstraction of hardware (files, processes, sockets)
+
+Enforce protection and security
+
+Schedule processes and allocate resources
+
+Handle communication among processes
+
+=========================================================
+2. COMPUTER HARDWARE OVERVIEW
+=========================================================
+
+OS interacts with hardware components:
+
+2.1 CPU
+
+Executes instructions
+
+Runs in kernel mode (OS) or user mode (applications)
+
+2.2 Memory
+
+Contains running programs and OS kernel
+
+Managed through paging, segmentation
+
+2.3 I/O Devices
+
+Disks, SSDs, keyboards, network cards
+
+Controlled via device controllers and device drivers
+
+2.4 Buses
+
+Communication paths between CPU, memory, and devices.
+
+=========================================================
+3. OPERATING SYSTEM AS A RESOURCE MANAGER
+=========================================================
+
+OS coordinates resource usage:
+
+CPU scheduling
+
+Memory allocation
+
+Disk & file management
+
+I/O device handling
+
+Goal → maximize performance, fairness, efficiency, and reliability.
+
+=========================================================
+4. OPERATING SYSTEM AS AN EXTENDED MACHINE
+=========================================================
+
+Raw hardware is complex.
+The OS abstracts it into simple, usable units:
+
+Hardware → OS → Applications
+Examples:
+
+Hardware sectors → files
+
+Instruction sets → system calls
+
+DMA/I/O devices → virtualized device interfaces
+
+=========================================================
+5. SYSTEM CALLS
+=========================================================
+
+System calls are the API between user programs and OS.
+
+Categories:
+
+Process control
+
+File management
+
+Device management
+
+Memory management
+
+Information maintenance
+
+Communication
+
+System calls use a trap instruction to switch to kernel mode.
+
+=========================================================
+6. TYPES OF OPERATING SYSTEMS
+=========================================================
+6.1 Mainframe OS
+
+Supports high-throughput batch jobs and transactions.
+
+6.2 Server OS
+
+For multiuser, networked systems (Linux, Windows Server).
+
+6.3 Multiprocessor OS
+
+Supports multi-core CPUs, symmetric multiprocessing (SMP).
+
+6.4 Personal Computer OS
+
+Desktop systems (Windows, macOS, Linux distributions).
+
+6.5 Mobile OS
+
+Android, iOS.
+
+6.6 Embedded OS
+
+Minimalistic systems for appliances, IoT devices.
+
+6.7 Real-Time OS
+
+Guarantees deadlines (hard/soft real time).
+
+=========================================================
+7. OS STRUCTURES
+=========================================================
+7.1 Monolithic Systems
+
+Entire OS runs in kernel mode.
+Fast but less modular.
+
+7.2 Layered Systems
+
+OS built in layers (hardware → apps).
+Better structure, slower.
+
+7.3 Microkernels
+
+Minimal kernel; services run in user space.
+More modular and secure, slightly slower.
+
+7.4 Modular Kernels
+
+Combination of monolithic + microkernel (Linux loadable modules).
+
+7.5 Virtual Machines
+
+Provide fully virtualized hardware environments.
+
+=========================================================
+8. VIRTUALIZATION
+=========================================================
+
+OS can run inside another OS via a hypervisor.
+
+Types:
+
+Type 1 (bare-metal): VMware ESXi, Hyper-V
+
+Type 2 (hosted): VirtualBox
+
+Benefits:
+
+Isolation
+
+Testing multiple OSes
+
+Efficient server utilization
+
+=========================================================
+9. PROCESS CONCEPT
+=========================================================
+
+Process = program in execution, with:
+
+Program counter
+
+Registers
+
+Address space
+
+Open files
+
+Resources
+
+OS provides:
+
+Creation
+
+Termination
+
+Scheduling
+
+Interprocess communication
+
+(This will be explored deeply in Chapter 2.)
+
+=========================================================
+10. DESIGN ISSUES
+=========================================================
+10.1 Interrupts & Exceptions
+
+Hardware signals to OS for asynchronous events.
+
+10.2 Protection
+
+Prevent processes from interfering with one another.
+
+10.3 Reliability
+
+Fault tolerance, error handling.
+
+10.4 Performance
+
+Throughput, latency, resource utilization.
+
+=========================================================
+11. BOOTING THE COMPUTER
+=========================================================
+
+Steps:
+
+CPU starts in firmware (BIOS/UEFI)
+
+Loads bootloader
+
+Bootloader loads OS kernel into memory
+
+OS initializes hardware & starts system processes
+
+=========================================================
+12. HISTORY OF OPERATING SYSTEMS (Very Short)
+=========================================================
+
+1940s–50s: Batch systems
+
+1960s: Multiprogramming, time-sharing
+
+1970s: UNIX revolution
+
+1980s: PCs, MS-DOS, MacOS
+
+1990s: NT kernel, Linux
+
+2000s+: Mobile OS, virtualization, cloud systems
+
+Summary
+
+The OS is a fundamental part of every computer system, acting as a resource manager, extended machine, and control program. It abstracts hardware complexity, enforces protection, manages processes and memory, and provides essential system services. Understanding its structure sets the foundation for chapters on processes, memory, file systems, and multiprocessor systems.

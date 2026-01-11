@@ -1,0 +1,172 @@
+FILE HANDLING IN JAVA
+
+Java provides APIs for working with files, streams, and directories. The main packages used are java.io and java.nio.file. Java supports byte streams, character streams, buffered streams, and file or directory manipulation.
+
+FILE CLASS
+
+java.io.File represents files and directories.
+
+Example:
+File f = new File("data.txt");
+
+Common methods:
+exists()
+getName()
+length()
+isDirectory()
+isFile()
+mkdirs()
+delete()
+
+READING FILES
+
+Two main methods:
+Character based reading
+Byte based reading
+
+2.1 Using FileReader (character stream)
+FileReader fr = new FileReader("abc.txt");
+int ch;
+while((ch = fr.read()) != -1) {
+System.out.print((char)ch);
+}
+fr.close();
+
+2.2 Using BufferedReader (efficient reading)
+BufferedReader br = new BufferedReader(new FileReader("abc.txt"));
+String line;
+while((line = br.readLine()) != null) {
+System.out.println(line);
+}
+br.close();
+
+2.3 Using FileInputStream (byte stream)
+FileInputStream fis = new FileInputStream("img.jpg");
+int b;
+while((b = fis.read()) != -1) {
+System.out.print(b);
+}
+fis.close();
+
+WRITING FILES
+
+3.1 Using FileWriter
+FileWriter fw = new FileWriter("out.txt");
+fw.write("Hello Java");
+fw.close();
+
+Append mode:
+new FileWriter("out.txt", true);
+
+3.2 Using BufferedWriter
+BufferedWriter bw = new BufferedWriter(new FileWriter("out.txt"));
+bw.write("Hello");
+bw.newLine();
+bw.write("World");
+bw.close();
+
+3.3 Using FileOutputStream (binary data)
+FileOutputStream fos = new FileOutputStream("data.bin");
+fos.write(65);
+fos.close();
+
+TRY WITH RESOURCES (Java 7 and above)
+
+Automatically closes streams.
+try(BufferedReader br = new BufferedReader(new FileReader("a.txt"))) {
+System.out.println(br.readLine());
+}
+
+SERIALIZATION (OBJECT I/O)
+
+Serialization converts an object into a byte stream. The class must implement Serializable.
+
+Serialize:
+ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("data.obj"));
+oos.writeObject(obj);
+oos.close();
+
+Deserialize:
+ObjectInputStream ois = new ObjectInputStream(new FileInputStream("data.obj"));
+MyClass obj = (MyClass) ois.readObject();
+ois.close();
+
+JAVA NIO (NEW I/O)
+
+Part of java.nio.file package. More efficient than java.io.
+
+6.1 Read file using NIO
+List<String> lines = Files.readAllLines(Paths.get("data.txt"));
+
+6.2 Write file using NIO
+Files.write(Paths.get("out.txt"), "Hello NIO".getBytes());
+
+6.3 Copy, move, delete files
+Files.copy(src, dest, StandardCopyOption.REPLACE_EXISTING);
+Files.move(src, dest);
+Files.delete(path);
+
+6.4 Check file properties
+Files.exists(path);
+Files.isDirectory(path);
+Files.size(path);
+
+DIRECTORY OPERATIONS
+
+Create directory:
+new File("folder").mkdir();
+
+Create nested directories:
+new File("a/b/c").mkdirs();
+
+List files:
+File f = new File(".");
+for(File file : f.listFiles())
+System.out.println(file.getName());
+
+BUFFERED VS UNBUFFERED STREAMS
+
+Buffered streams are faster than unbuffered streams because they reduce disk access operations. Example: BufferedReader is faster than FileReader.
+
+CHARACTER STREAMS VS BYTE STREAMS
+
+Character streams: for text files, examples include FileReader and FileWriter.
+Byte streams: for binary files like images and videos, examples include FileInputStream and FileOutputStream.
+
+COMMON EXCEPTIONS IN FILE HANDLING
+
+FileNotFoundException
+IOException
+SecurityException
+
+Always use try catch or throws.
+
+EXAMPLE PROGRAM
+
+import java.io.*;
+public class Demo {
+public static void main(String[] args) throws Exception {
+FileWriter fw = new FileWriter("out.txt");
+fw.write("Hello Java");
+fw.close();
+
+    BufferedReader br = new BufferedReader(new FileReader("out.txt"));
+    String line = br.readLine();
+    System.out.println(line);
+    br.close();
+}
+
+
+}
+
+BEST PRACTICES
+
+Prefer NIO for new applications.
+Always close file resources or use try with resources.
+Use buffering for large files.
+Use serialization carefully.
+Avoid unnecessary file operations.
+
+SUMMARY
+
+Java supports robust file handling using java.io and java.nio.file. It provides character and byte streams, buffering, serialization, and directory control. File handling is essential for backend, system programming, and data processing applications.

@@ -1,0 +1,102 @@
+Brute Force is a simple and direct approach to problem solving. It tries all possible solutions or explores the entire search space without using optimization techniques. It is used when:
+
+The problem size is small
+
+No better strategy is known
+
+A baseline solution is needed
+
+Correctness is more important than efficiency
+
+Characteristics of Brute Force:
+
+Straightforward and naive
+
+Exhaustive enumeration or simple scanning
+
+Does not exploit structure or shortcuts
+
+Easy to understand and implement
+
+Used as a benchmark for optimized algorithms
+
+Often has poor time complexity such as O(n²), O(n³), or worse
+
+Brute force methods help with building intuition, prototyping, and verifying optimized solutions.
+
+Common Brute Force Problems:
+
+Linear Search
+Searches an element by comparing sequentially from first to last.
+Time Complexity: Worst O(n), Best O(1)
+Space Complexity: O(1)
+
+Brute Force String Matching
+Finds occurrences of a pattern P in text T.
+Align pattern at each possible position and compare characters.
+Time Complexity: O((n − m + 1) × m) or O(nm)
+Used for small texts or as a baseline for optimized methods.
+
+Brute Force Sorting:
+
+Selection Sort
+Repeatedly find the minimum and place it in correct position.
+Time: O(n²)
+Space: O(1)
+Not stable, in-place.
+
+Bubble Sort
+Compare adjacent elements and swap if needed until sorted.
+Time: Worst O(n²), Best O(n) with optimization
+Stable.
+
+Closest Pair of Points (Brute Force)
+Calculate distance between every pair of points and record minimum.
+Time: O(n²), Space: O(1)
+Used as comparison against faster divide-and-conquer methods.
+
+Brute Force in Combinatorial Problems:
+
+Generating All Permutations:
+Used in TSP and anagram checking.
+Time: O(n × n!)
+Practical only for very small n.
+
+Generating All Subsets:
+Used in knapsack, subset sum, power set.
+Number of subsets: 2ⁿ
+
+Advantages:
+
+Very simple to design and code
+
+Works for many problems
+
+Always correct because all possibilities are checked
+
+Good baseline for testing other methods
+
+Disadvantages:
+
+Very slow for large inputs
+
+High time complexity (often exponential or polynomial)
+
+Does not utilize constraints or problem structure
+
+Impractical for large real-world cases
+
+When to Use Brute Force:
+
+Small input size
+
+Loose time requirements
+
+NP-hard problems requiring exact solutions for small n
+
+Quick correct prototype required
+
+Verification of optimized algorithms
+
+Summary:
+Brute Force algorithms are foundational and guarantee correctness by exploring all possible outcomes. They are important for conceptual learning, performance comparison, and small input cases. They form the basis before learning more advanced algorithmic techniques like Divide and Conquer, Dynamic Programming, and Greedy Algorithms.

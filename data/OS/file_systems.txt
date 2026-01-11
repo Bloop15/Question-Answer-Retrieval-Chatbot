@@ -1,0 +1,401 @@
+CHAPTER 4 — FILE SYSTEMS
+
+A file system provides a way to store, organize, retrieve, and manage data on disks or SSDs.
+It defines how information is named, stored, accessed, and protected.
+
+File systems are crucial for:
+
+Data persistence
+
+Structured storage
+
+Security & permissions
+
+Performance optimization
+
+=========================================================
+1. FILE CONCEPT
+=========================================================
+
+A file is an abstraction for a sequence of bytes stored on disk.
+
+Files have:
+
+Name
+
+Type (text, binary, executable, directory, device file)
+
+Size
+
+Access permissions
+
+Timestamps (create, modify, access)
+
+Owner and group
+
+=========================================================
+2. FILE OPERATIONS
+=========================================================
+
+Common operations supported by file systems:
+
+create
+
+delete
+
+open
+
+close
+
+read
+
+write
+
+seek (move file pointer)
+
+truncate
+
+append
+
+permissions (chmod, chown)
+
+=========================================================
+3. FILE ATTRIBUTES
+=========================================================
+
+Stored in metadata structures (like inodes).
+
+Common attributes:
+
+File size
+
+User ID / Group ID
+
+Protection bits (r/w/x)
+
+Timestamps
+
+File flags
+
+Link count
+
+=========================================================
+4. FILE TYPES
+=========================================================
+
+Regular files
+
+Directories
+
+Character device files
+
+Block device files
+
+Named pipes (FIFOs)
+
+Symbolic links
+
+Sockets
+
+=========================================================
+5. DIRECTORY SYSTEMS
+=========================================================
+
+A directory maps names → file metadata/inodes.
+
+Directory structures:
+
+Single-level
+
+Two-level
+
+Tree-structured (most common)
+
+Acyclic graphs (with hard/soft links)
+
+General graphs (require cycle detection)
+
+=========================================================
+6. FILE SYSTEM IMPLEMENTATION
+=========================================================
+
+File systems are stored on disk using data structures.
+
+6.1 File System Layout
+
+Typical disk partitions contain:
+
+Boot block
+
+Superblock (file system metadata)
+
+Free block list or bitmap
+
+Inodes (file metadata)
+
+Data blocks (actual file contents)
+
+6.2 Inodes
+
+In UNIX-like systems, each file has an inode with:
+
+File type
+
+Permissions
+
+Timestamps
+
+Block pointers
+
+Owner
+
+Size
+
+6.3 Block Allocation
+
+Three main methods:
+
+1️⃣ Contiguous Allocation
+
+Each file stored in consecutive blocks.
+
+Pros:
+
+Fast sequential access
+
+Simple
+
+Cons:
+
+External fragmentation
+
+Difficult to grow files
+
+2️⃣ Linked Allocation
+
+Each block points to next block.
+
+Pros:
+
+Easy file growth
+
+No fragmentation
+
+Cons:
+
+Slow random access
+
+Pointer overhead
+
+3️⃣ Indexed Allocation
+
+Use index block storing all block pointers.
+
+Pros:
+
+Fast random access
+
+No fragmentation
+
+Cons:
+
+Index block overhead
+
+Large files may need multiple index levels
+
+=========================================================
+7. FILE ACCESS METHODS
+=========================================================
+
+Sequential access → read/write in order
+
+Direct/Random access → jump anywhere
+
+Memory-mapped I/O → map file to memory
+
+Indexed access → used in database systems
+
+=========================================================
+8. FREE SPACE MANAGEMENT
+=========================================================
+
+Methods to track free disk blocks:
+
+✔ Bitmaps
+
+1 = used
+0 = free
+
+✔ Free lists
+
+Linked list of free blocks.
+
+✔ Grouping
+
+Store addresses of free blocks in groups.
+
+✔ Counting
+
+Store free block runs (consecutive free blocks).
+
+=========================================================
+9. FILE SYSTEM PERFORMANCE
+=========================================================
+
+Optimizations include:
+
+✔ Buffer cache (page cache)
+
+Keep frequently accessed blocks in memory.
+
+✔ Write-back caching
+
+Group writes to reduce disk seeks.
+
+✔ Prefetching (read-ahead)
+
+Load next blocks before needed.
+
+✔ Block clustering
+
+Store related data blocks close together.
+
+✔ Journaling
+
+Log metadata updates before applying them for crash recovery.
+
+=========================================================
+10. LOG-STRUCTURED FILE SYSTEMS
+=========================================================
+
+Write all modifications to disk sequentially in a log.
+
+Benefits:
+
+Fast writes
+
+Good for SSDs
+
+Simple crash recovery
+
+Challenges:
+
+Garbage collection required
+
+Cleaning can be expensive
+
+=========================================================
+11. VIRTUAL FILE SYSTEM (VFS)
+=========================================================
+
+Layer between user and actual file systems.
+
+Provides:
+
+Common API (open, read, write)
+
+Support for multiple FS types
+
+Mounting mechanism
+
+Enables integration of:
+
+ext4
+
+NTFS
+
+FAT
+
+NFS
+
+tmpfs
+
+procfs
+
+=========================================================
+12. JOURNALING & CRASH RECOVERY
+=========================================================
+
+Modern file systems ensure consistency using journaling.
+
+Workflow:
+
+Log intent to change metadata
+
+Apply actual change
+
+Mark log entry as committed
+
+If crash occurs:
+
+Replay log
+
+Restore consistent state
+
+Examples:
+
+ext3 / ext4
+
+NTFS
+
+XFS
+
+ReiserFS
+
+=========================================================
+13. SSD VS HDD FILE SYSTEM DESIGN
+=========================================================
+HDD:
+
+Slow seeks
+
+Use locality optimizations
+
+Rotational delay important
+
+SSD:
+
+No seek latency
+
+Need write leveling
+
+Avoid frequent rewrites
+
+Benefit from log-structured FS
+
+=========================================================
+14. CASE STUDIES
+=========================================================
+✔ FAT32
+
+Simple, used in USB drives.
+
+✔ ext2/ext3/ext4
+
+Linux file systems; ext4 supports:
+
+Journaling
+
+Extents
+
+Large volumes
+
+✔ NTFS
+
+Windows file system; supports:
+
+Journaling
+
+Access control lists (ACLs)
+
+Master File Table (MFT)
+
+✔ NFS
+
+Network file system — client/server architecture.
+
+Summary
+
+File systems provide persistent storage and define how data is organized, accessed, and protected.
+Key components include directory structures, inodes, block allocation, free space management, and journaling.
+Modern file systems optimize for performance, reliability, and crash recovery, using techniques like caching, logging, and virtual file systems.

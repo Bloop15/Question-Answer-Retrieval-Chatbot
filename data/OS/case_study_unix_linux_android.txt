@@ -1,0 +1,345 @@
+CHAPTER 10 — CASE STUDY: UNIX, LINUX, AND ANDROID
+
+This chapter explores real-world operating systems—UNIX, Linux, and Android—focusing on their architecture, design principles, process management, file systems, security, and system calls.
+
+=========================================================
+1. UNIX ARCHITECTURE & PHILOSOPHY
+=========================================================
+
+UNIX pioneered many OS concepts still used today.
+
+Key design principles:
+
+Everything is a file
+
+Simplicity (“Do one thing well”)
+
+Composability (pipes, filters)
+
+Hierarchical file system
+
+Portable, written mostly in C
+
+1.1 UNIX Architecture
+
+User space programs
+
+Kernel handling processes, files, devices
+
+System calls providing interface
+
+1.2 System Calls in UNIX
+
+Common system calls:
+
+fork()
+
+exec()
+
+open, read, write, close
+
+wait()
+
+kill()
+
+UNIX system calls are minimal and elegant.
+
+=========================================================
+2. UNIX PROCESS MANAGEMENT
+=========================================================
+
+Processes are central to UNIX design.
+
+✔ fork()
+
+Creates a child process (copy of parent).
+
+✔ exec()
+
+Replaces process memory with a new program.
+
+✔ wait()
+
+Parent waits for child termination.
+
+✔ Signals
+
+Used for asynchronous events (SIGINT, SIGKILL, etc.).
+
+=========================================================
+3. UNIX FILE SYSTEM
+=========================================================
+
+UNIX uses a multi-layered FS based on inodes.
+
+Features:
+
+Hierarchical directory tree
+
+Regular files, directories, device files
+
+Hard links & symbolic links
+
+Permissions: rwx for owner/group/others
+
+=========================================================
+4. LINUX — OVERVIEW
+=========================================================
+
+Linux is a UNIX-like, POSIX-compliant, open-source OS.
+
+Characteristics:
+
+Monolithic kernel with loadable modules
+
+Portability (supports hundreds of devices)
+
+Widely used in servers, cloud, embedded systems
+
+Community-driven development
+
+=========================================================
+5. LINUX KERNEL ARCHITECTURE
+=========================================================
+
+Linux kernel is monolithic, but modular.
+
+Modules:
+
+Device drivers
+
+File systems
+
+Networking stack
+
+Memory manager
+
+Scheduler
+
+System call interface
+
+Modules can be loaded/unloaded dynamically.
+
+=========================================================
+6. LINUX PROCESS MANAGEMENT
+=========================================================
+
+Linux uses:
+
+A task struct to store PCB
+
+Preemptive, priority-based scheduling
+
+CFS (Completely Fair Scheduler) as default
+
+Process creation:
+
+fork() + exec() (like UNIX)
+
+clone() for lightweight processes (threads)
+
+=========================================================
+7. LINUX FILE SYSTEMS
+=========================================================
+
+Linux supports many file systems:
+
+ext2/ext3/ext4
+
+Journaling
+
+Extents
+
+Large file support
+
+XFS
+
+High-performance, scalable FS.
+
+Btrfs
+
+Advanced FS with:
+
+Snapshots
+
+Checksums
+
+Built-in RAID
+
+procfs & sysfs
+
+Virtual FSes for system information.
+
+=========================================================
+8. LINUX SECURITY
+=========================================================
+
+Linux security tools:
+
+SELinux (Mandatory Access Control)
+
+AppArmor (profile-based security)
+
+Capabilities (break up root privileges)
+
+iptables/nftables firewall
+
+Pluggable Authentication Modules (PAM)
+
+=========================================================
+9. ANDROID — INTRODUCTION
+=========================================================
+
+Android is a Linux-based mobile OS developed by Google.
+
+Design goals:
+
+Touch-based interface
+
+App ecosystem (APK packages)
+
+Energy-efficient
+
+Secure sandboxing of apps
+
+9.1 Android Architecture (Layers)
+✔ Layer 1 — Linux Kernel
+
+Process & thread management
+
+Memory management
+
+Drivers (Bluetooth, Wi-Fi, Binder IPC)
+
+✔ Layer 2 — Hardware Abstraction Layer (HAL)
+
+Standard interface for hardware vendors.
+
+✔ Layer 3 — Android Runtime (ART)
+
+Runs apps
+
+Ahead-of-Time (AOT) compilation
+
+Garbage collection
+
+✔ Layer 4 — Libraries & Framework
+
+SQLite
+
+WebKit
+
+Media codecs
+
+UI toolkit
+
+✔ Layer 5 — Applications layer
+
+Apps written in Java/Kotlin.
+
+=========================================================
+10. ANDROID SECURITY MODEL
+=========================================================
+✔ Application Sandbox
+
+Each app runs as a unique user ID.
+
+✔ Permissions System
+
+Apps must request explicit permissions.
+
+✔ Verified Boot
+
+Ensures OS not tampered with.
+
+✔ SELinux Enforced Mode
+
+Strict security policies for all apps.
+
+=========================================================
+11. ANDROID FILE SYSTEM
+=========================================================
+
+Android uses:
+
+ext4 → system & data partitions
+
+F2FS → optimized for flash storage
+
+File structure:
+
+/system → OS libraries
+
+/data → apps & user data
+
+/sdcard → media
+
+=========================================================
+12. BINDER IPC SYSTEM (ANDROID)
+=========================================================
+
+Binder is Android’s core interprocess communication mechanism.
+
+Features:
+
+Efficient
+
+Secure
+
+Supports remote method calls
+
+Handles reference counting
+
+Used for communication between:
+
+Activities
+
+Services
+
+System services
+
+=========================================================
+13. PACKAGE MANAGEMENT
+=========================================================
+
+APK packages contain:
+
+App code
+
+Resources
+
+Manifest (permissions)
+
+Signatures
+
+Android verifies signatures before installation.
+
+=========================================================
+14. APP LIFECYCLE MANAGEMENT
+=========================================================
+
+Apps move through states:
+
+Active
+
+Paused
+
+Stopped
+
+Destroyed
+
+OS kills background apps under memory pressure.
+
+=========================================================
+15. COMPARISON: UNIX vs LINUX vs ANDROID
+=========================================================
+Feature	UNIX	Linux	Android
+Kernel	Monolithic	Monolithic + modules	Linux-based
+UI	CLI	CLI/GUI	Touch GUI
+Apps	Native C	Native C/ELF	APK Java/Kotlin
+Security	Simple	Advanced (SELinux)	Strong sandbox
+IPC	Pipes, signals	Same + extras	Binder IPC
+Summary
+
+UNIX introduced core OS concepts; Linux extended them with modularity, performance, and open-source development.
+Android builds on Linux to provide a secure, mobile-oriented platform with sandboxing, Binder IPC, and a tailored application runtime.

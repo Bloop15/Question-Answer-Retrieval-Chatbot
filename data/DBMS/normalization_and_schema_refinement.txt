@@ -1,0 +1,110 @@
+NORMALIZATION AND SCHEMA REFINEMENT
+
+Normalization is a process for organizing relational database tables to reduce redundancy and prevent anomalies such as update, insert, and delete anomalies.
+Schema refinement ensures an efficient, consistent, and logically correct structure based on functional dependencies and normal forms.
+
+What Is Normalization?
+
+Normalization decomposes relations into smaller, well-structured relations using:
+• Functional dependencies
+• Keys
+• Attribute relationships
+
+Goals:
+• Reduce redundancy
+• Remove anomalies
+• Maintain consistency
+• Improve schema clarity
+• Support efficient updates
+
+Anomalies Before Normalization
+
+• Update anomaly: multiple updates required when one fact changes
+• Insert anomaly: cannot insert certain data due to missing related data
+• Delete anomaly: deleting data removes unintended information
+
+Functional Dependencies
+
+FD X → Y means:
+If two tuples match on X, they must match on Y.
+FDs are used to identify keys and detect design issues.
+
+Normal Forms
+
+4.1 First Normal Form (1NF)
+Conditions:
+• All attributes are atomic
+• No repeating groups
+
+4.2 Second Normal Form (2NF)
+Conditions:
+• In 1NF
+• No partial dependency of non-key attributes on part of a composite key
+
+Fix: Separate data dependent on only part of key.
+
+4.3 Third Normal Form (3NF)
+Conditions:
+• In 2NF
+• No transitive dependency of non-key attributes
+
+Fix: Move transitive attributes to new relation.
+
+4.4 Boyce–Codd Normal Form (BCNF)
+Conditions:
+• For every FD X → Y, X must be a superkey
+
+Stronger than 3NF. Removes all FD-based anomalies.
+
+4.5 Fourth Normal Form (4NF)
+Conditions:
+• In BCNF
+• No non-trivial multivalued dependencies unless determinant is a superkey
+
+Used when attributes contain independent multi-valued information.
+
+4.6 Fifth Normal Form (5NF)
+Conditions:
+• No decomposition needed to preserve data
+• Handles complex join dependencies
+
+Rarely needed in practice.
+
+Decomposition Principles
+
+5.1 Lossless Join
+Decomposition must allow full reconstruction of original relation.
+
+5.2 Dependency Preservation
+All FDs must still be enforceable without joining relations.
+
+Example Refinement Cases
+
+• 2NF: Remove partial dependency
+• 3NF: Remove transitive dependency
+• BCNF: Ensure determinant is a superkey
+
+Normalization step-by-step refines schema structure.
+
+When Denormalization Is Used
+
+Sometimes normalization is partially reversed for performance:
+• Many read-heavy queries
+• Too many joins decrease performance
+• OLAP and analytic workloads
+
+Trade-off:
+• Better performance
+• Risk of redundancy and anomalies
+
+Summary
+
+Normalization organizes data into well-structured relations using:
+• 1NF → Remove repeating groups
+• 2NF → Remove partial dependencies
+• 3NF → Remove transitive dependencies
+• BCNF → Full FD-based correctness
+• 4NF and 5NF → Handle MVDs and join dependencies
+
+Goal:
+Maintain integrity, eliminate redundancy, and improve database reliability.

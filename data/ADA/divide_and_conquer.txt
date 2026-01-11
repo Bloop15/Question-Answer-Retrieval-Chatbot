@@ -1,0 +1,92 @@
+Divide and Conquer is an algorithmic paradigm in which a problem is divided into smaller subproblems, each subproblem is solved recursively, and then the solutions are combined to form the final result. It is widely used for solving complex problems efficiently.
+
+General Strategy:
+
+Divide: Split the problem into smaller instances of the same problem.
+
+Conquer: Solve the subproblems recursively.
+
+Combine: Merge the solutions to solve the original problem.
+Small subproblems are solved directly using a base case.
+
+Complexity Recurrence:
+Divide and Conquer algorithms commonly follow:
+T(n) = a T(n/b) + f(n)
+Where:
+a = number of subproblems
+b = reduction factor per recursion
+f(n) = time to divide and combine
+Examples:
+Merge Sort: a = 2, b = 2, f(n) = O(n)
+Binary Search: a = 1, b = 2, f(n) = O(1)
+Strassen’s Matrix Multiplication: a = 7, b = 2, f(n) = O(n²)
+
+Advantages:
+Efficient for large inputs
+Parallelizable
+Modular and clean recursive structure
+Useful in sorting, searching, matrix operations, geometry, etc.
+
+Classical Divide and Conquer Algorithms:
+
+Merge Sort:
+Split array, sort halves recursively, merge sorted halves.
+Time: O(n log n)
+Space: O(n)
+Stable, good for linked lists and external sorting.
+
+Quick Sort:
+Partition around a pivot, sort partitions recursively.
+Time: Best and Average O(n log n), Worst O(n²)
+In-place and fast in practice.
+
+Binary Search:
+Check middle of sorted array, search one half recursively.
+Time: O(log n)
+
+Large Integer Multiplication:
+Splits numbers into halves to reduce digit operations.
+Faster than classical O(n²) multiplication.
+
+Strassen’s Matrix Multiplication:
+Splits matrices into submatrices, uses 7 multiplications.
+Time: O(n^2.81)
+Faster than classical cubic method.
+
+Convex Hull (Divide and Conquer):
+Split points, compute hulls separately, merge hulls.
+
+Closest Pair of Points:
+Divide points, compute pair distances in halves, check near divide.
+Time: O(n log n)
+Improves on brute-force O(n²).
+
+Maximum Subarray (Divide and Conquer form):
+Compute max in left, right, and mid-crossing regions.
+Time: O(n log n)
+
+Master Theorem (Quick Reference):
+For T(n) = a T(n/b) + f(n):
+Case 1:
+If f(n) = O(n^(log_b(a) − ε)):
+T(n) = Θ(n^(log_b(a)))
+Case 2:
+If f(n) = Θ(n^(log_b(a))):
+T(n) = Θ(n^(log_b(a)) log n)
+Case 3:
+If f(n) = Ω(n^(log_b(a) + ε)) with regularity condition:
+T(n) = Θ(f(n))
+
+Strengths:
+Improves time efficiency for many problems
+Works well on tree-structured data
+Highly parallelizable
+
+Weaknesses:
+Requires recursion overhead
+May use extra space (e.g., merge sort)
+Combining step may be complex
+Efficiency depends on balanced division
+
+Summary:
+Divide and Conquer simplifies complex problems by recursively breaking them into smaller subproblems and combining results efficiently. It is fundamental in sorting, searching, matrix operations, and geometric computing, forming a core strategy in algorithm design and analysis.

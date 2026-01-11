@@ -1,0 +1,141 @@
+DECISION TREES
+
+Decision trees are nonparametric models that recursively split data to make decisions. They handle classification and regression tasks and divide the feature space into regions by applying decision tests at internal nodes.
+
+Advantages:
+
+Easy to interpret and explain
+
+Handles both categorical and numerical data
+
+Can model nonlinear boundaries
+
+No need for feature normalization
+
+1. Structure of a Decision Tree
+
+Components:
+
+Root node: the first and most important split
+
+Internal nodes: decision tests on features
+
+Branches: outcomes of the tests
+
+Leaf nodes: final output (class label or numeric prediction)
+
+2. Decision-Making Process
+
+Classification:
+
+Follow decision tests from root to leaf
+
+Leaf label determines predicted class
+
+Regression:
+
+Leaf contains average or constant numeric value
+
+3. Learning the Tree (Top-Down Induction)
+
+General procedure:
+
+Start with all data at the root
+
+Choose the best feature and split
+
+Partition data into subsets
+
+Recursively repeat splitting until a stopping rule is met
+
+Trees are trained greedily using local best splits (algorithms: ID3, C4.5, CART).
+
+4. Splitting Criteria
+
+For classification:
+
+Entropy and Information Gain
+Entropy measures impurity. Information Gain = reduction in entropy after splitting.
+
+Gini Impurity (used in CART)
+Lower Gini means purer node.
+
+For regression:
+
+Variance reduction (minimize mean squared error)
+
+5. Overfitting and Pruning
+
+Trees may grow too deep and memorize noise.
+
+Pre-pruning:
+
+Set max depth
+
+Set minimum samples per node
+
+Stop if improvement is small
+
+Post-pruning:
+
+Grow full tree first
+
+Remove branches that do not improve validation accuracy
+
+Includes reduced-error pruning and cost-complexity pruning
+
+6. Handling Different Feature Types
+
+Numerical features:
+
+Binary splits: feature < threshold
+
+Categorical features:
+
+Split into subsets of categories
+
+Missing values:
+
+Surrogate splits or assign based on distribution
+
+7. Stability
+
+Decision trees are highly sensitive to small changes in data, which can lead to entirely different structures. Ensemble methods like Random Forests and Gradient Boosted Trees improve stability and accuracy.
+
+8. Interpretability
+
+Decision trees provide human-readable rules such as:
+IF feature1 < threshold AND feature3 = value THEN class = X
+
+Useful in domains requiring explainability.
+
+9. Regression Trees
+
+Output is continuous. Leaf stores mean of target values. Creates piecewise constant predictions.
+
+10. Binary vs Multiway Splits
+
+CART uses binary splits for all data types.
+ID3 and C4.5 allow multiple branches for categorical features but may create very wide trees.
+
+11. Decision Regions
+
+A decision tree partitions the feature space into axis-aligned rectangular regions. Decision boundaries are piecewise constant and step-like.
+
+12. Limitations
+
+High variance and risk of overfitting
+
+Prefers features with many unique values
+
+Poor with smooth decision boundaries
+
+Often improved using ensembles:
+
+Random Forests
+
+Gradient Boosting
+
+Summary
+
+Decision trees recursively split data into homogeneous groups using impurity measures like entropy, Gini, or variance reduction. They are simple and interpretable but prone to overfitting and instability. Pruning and ensemble methods help improve performance and robustness.

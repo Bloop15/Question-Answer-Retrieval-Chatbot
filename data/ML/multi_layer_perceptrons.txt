@@ -1,0 +1,113 @@
+MULTI-LAYER PERCEPTRONS (MLPs)
+
+Multi-Layer Perceptrons (MLPs) extend perceptrons by using hidden layers and nonlinear activation functions to learn complex, nonlinear relationships. They are widely used in classification and regression tasks and are considered universal function approximators.
+
+Limitation of Linear Models
+
+Linear models can only form linear decision boundaries. Many problems require nonlinear boundaries. MLPs address this by stacking layers and applying nonlinear transformations.
+
+Architecture of an MLP
+
+An MLP consists of:
+Input layer: takes feature vector x
+Hidden layer(s): apply nonlinear transformations
+Output layer: produces final predictions
+
+For a network with one hidden layer:
+Hidden representation: h = g(W1 x + b1)
+Output: y = f(W2 h + b2)
+
+W1, W2 are weight matrices, b1, b2 are bias vectors, g is hidden activation, and f is output activation.
+
+Activation Functions
+
+Nonlinearity enables MLPs to learn complex mappings.
+
+Common activations:
+Sigmoid: used in binary classification
+Tanh
+ReLU: reduces vanishing gradient effect
+Softmax: used for multiclass probabilities
+
+Forward Propagation
+
+Computation proceeds layer by layer:
+Compute weighted input
+Apply activation
+Feed to next layer
+Produces the model output deterministically
+
+Loss Functions
+
+Loss depends on task type:
+Regression: mean squared error
+Binary classification: cross-entropy
+Multiclass classification: softmax with cross-entropy
+
+Learning aims to minimize this loss.
+
+Backpropagation
+
+Backpropagation computes gradients of loss with respect to weights.
+
+Steps:
+Forward pass
+Error computation
+Backward propagation of gradients
+Weight update using gradient descent
+
+Gradient update:
+w = w − η (partial derivative of Loss with respect to w)
+
+The chain rule is applied to efficiently compute all gradients.
+
+Training MLPs
+
+Training process includes:
+Weight initialization
+Learning rate selection
+Forward and backward passes
+Parameter optimization
+
+Optimization methods:
+Gradient descent, stochastic gradient descent, mini-batch SGD, Momentum, RMSprop, Adam
+
+Universal Approximation Theorem
+
+A single hidden layer MLP with a sufficient number of neurons can approximate any continuous function. This motivates the use of neural networks for general nonlinear problems.
+
+Deep Multi-Layer Networks
+
+Adding more hidden layers allows learning hierarchical and complex features. MLPs with multiple hidden layers are used in deep learning applications.
+
+Regularization
+
+To avoid overfitting:
+L2 weight decay
+Dropout (deactivate neurons randomly during training)
+Early stopping
+Batch normalization for training stability
+
+Multiclass Classification
+
+Softmax activation is used in the output layer:
+Probability of class i given x is exp(ai) divided by the sum of exp(aj) over all classes
+Cross-entropy loss is used for training
+
+Limitations of MLPs
+
+Require tuning of many hyperparameters
+Prone to overfitting with limited data
+Suffer from vanishing and exploding gradients
+Computationally expensive for large models
+
+Advantages of MLPs
+
+Can approximate highly nonlinear functions
+Effective in many practical tasks
+Work with both structured and unstructured data
+Handle complex decision boundaries
+
+Summary
+
+Multi-Layer Perceptrons model nonlinear functions using hidden layers and activation functions. They are trained with backpropagation and gradient-based optimization. Although powerful and widely used, they require careful tuning and regularization to generalize well.

@@ -1,0 +1,112 @@
+NONPARAMETRIC METHODS
+
+Nonparametric methods do not assume a fixed functional form or fixed number of parameters. Model complexity grows with data. These methods are flexible and capture nonlinear relationships but require large datasets and higher computation.
+
+Definition
+
+Parametric methods:
+• Assume a specific form (e.g., Gaussian)
+• Learn a fixed number of parameters
+
+Nonparametric methods:
+• No strict distribution assumptions
+• Use data directly to make predictions
+• Adapt complexity to the data
+
+Examples include:
+• K-Nearest Neighbors
+• Kernel Density Estimation (Parzen windows)
+• Decision Trees
+• Kernel regression
+
+K-Nearest Neighbors (KNN)
+
+For a query point x:
+• Find K nearest training samples
+• Classification: majority vote among neighbors
+• Regression: average of neighbor outputs
+
+Distance measures include Euclidean, Manhattan, Cosine, and Mahalanobis.
+
+Effect of K:
+• K=1: highly flexible but sensitive to noise
+• Large K: smoother decision boundaries, more bias
+
+Advantages: simple, no training, handles nonlinear patterns
+Disadvantages: slow with large data, high memory use, sensitive to irrelevant features, curse of dimensionality
+
+Parzen Windows (Kernel Density Estimation)
+
+Estimates probability density using kernels centered at training points.
+
+Density estimate:
+p(x) = (1/n) Σ K((x−xi)/h)
+
+K: kernel function (Gaussian, Epanechnikov, etc.)
+h: bandwidth controlling smoothness
+
+Small h → noisy density
+Large h → overly smooth estimate
+
+Can be used for classification by estimating class densities and applying Bayes rule.
+
+Kernel Regression
+
+Predicts output using weighted average of nearby samples:
+
+ŷ(x) = Σ K((x−xi)/h) yi / Σ K((x−xi)/h)
+
+Closer samples receive larger weights, resulting in a smooth regression function.
+
+Decision Trees
+
+Recursively split data using measures like entropy or Gini index.
+
+Properties:
+• Nonlinear decision boundaries
+• Easy to interpret
+• Tend to overfit
+• Unstable (affected by small data changes)
+
+Commonly used in ensemble methods such as Random Forests and Gradient Boosting.
+
+Locally Weighted Regression (LWR)
+
+Fits a model in a local region around each query point using weighted least squares.
+
+Advantages:
+• Highly flexible
+• Adapts to local trends
+
+Disadvantages:
+• Expensive for large datasets
+
+High-Dimensional Behavior
+
+Nonparametric methods struggle with:
+• Sparse high-dimensional data
+• Distance metrics losing meaning
+• Very large data requirements
+
+Solutions include dimensionality reduction and feature selection.
+
+Parametric vs Nonparametric Comparison
+
+Parametric: fixed model form, simpler, less data, lower risk of overfitting
+Nonparametric: flexible, no fixed assumptions, more data and computation, higher risk of overfitting
+
+When to Use Nonparametric Methods
+
+Suitable when:
+• Data is large
+• Underlying structure is complex
+• No prior assumption about distribution
+
+Avoid when:
+• Data is small
+• High dimensionality
+• Fast predictions are required
+
+Summary
+
+Nonparametric methods avoid predefined model forms and allow data to shape the model. They include KNN, Parzen windows, kernel regression, and decision trees. They are powerful but computationally expensive and sensitive to high-dimensional settings, requiring careful choice of bandwidth, neighbors, or tree complexity.

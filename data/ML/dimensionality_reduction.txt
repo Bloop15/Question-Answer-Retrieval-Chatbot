@@ -1,0 +1,170 @@
+DIMENSIONALITY REDUCTION
+
+Dimensionality reduction transforms high-dimensional data into a lower-dimensional representation while preserving important structure. It helps reduce computation, improve visualization, remove noise, and avoid the curse of dimensionality.
+
+Two approaches:
+
+Feature selection: choose subset of original features
+
+Feature extraction: create new transformed features
+(this chapter focuses on extraction)
+
+1. Curse of Dimensionality
+
+High-dimensional spaces cause:
+
+Data sparsity
+
+Distance measures becoming less meaningful
+
+Need for exponentially more samples
+
+Unstable covariance estimation
+
+Reducing dimensionality improves learning performance.
+
+2. Feature Selection vs Feature Extraction
+
+Feature selection:
+
+Keeps subset of original variables
+
+Feature extraction:
+
+Transforms data into a new feature space
+
+Examples: PCA, LDA
+
+This topic focuses on feature extraction methods.
+
+3. Principal Component Analysis (PCA)
+
+PCA finds new directions (principal components) that capture maximum variance. Data is projected into a lower-dimensional subspace while removing correlation.
+
+Key ideas:
+
+Eigenvectors define principal directions
+
+Eigenvalues measure variance in each direction
+
+Keep top components to retain most information
+
+Advantages:
+
+Reduces dimensionality efficiently
+
+Decorrelates features
+
+Widely used for compression and visualization
+
+Limitations:
+
+Linear only
+
+Sensitive to scaling and outliers
+
+Does not use class labels
+
+4. Linear Discriminant Analysis (LDA)
+
+LDA is supervised and maximizes class separability by:
+
+Maximizing between-class scatter
+
+Minimizing within-class scatter
+
+Differences from PCA:
+
+PCA focuses on variance
+
+LDA uses class labels to improve discrimination
+
+Properties:
+
+Produces at most C−1 dimensions for C classes
+
+Works well for classification tasks
+
+Limitations:
+
+Assumes Gaussian class distributions with equal covariance
+
+Fails when feature dimension is much larger than sample size
+
+5. Multidimensional Scaling (MDS)
+
+MDS embeds data into a low-dimensional space while preserving pairwise distances. Used for visualization when only distance information is available.
+
+6. Isomap
+
+Isomap preserves geodesic (manifold-based) distances.
+
+Procedure:
+
+Build nearest-neighbor graph
+
+Compute shortest path distances
+
+Apply classical MDS
+
+Useful for nonlinear manifold structures.
+
+7. Locally Linear Embedding (LLE)
+
+LLE assumes each point can be reconstructed from its neighbors. It finds a low-dimensional embedding preserving local geometry.
+
+Advantages:
+
+Captures nonlinear manifold structure
+
+8. Autoencoders
+
+Autoencoders are neural networks that learn compressed representations.
+
+Structure:
+
+Encoder reduces dimension
+
+Decoder reconstructs input
+
+Properties:
+
+Nonlinear
+
+Scales to complex data (images, speech)
+
+Supports deep architectures
+
+Variants include denoising autoencoders and variational autoencoders.
+
+9. When to Use Each Method
+
+PCA:
+
+Linear relationships
+
+Fast compression
+
+Unsupervised feature reduction
+
+LDA:
+
+Classification tasks with labels
+
+Want maximum class separation
+
+MDS, Isomap, LLE:
+
+Nonlinear manifolds
+
+Visualization and embedding
+
+Autoencoders:
+
+Large datasets
+
+Highly nonlinear structure
+
+Summary
+
+Dimensionality reduction improves learning efficiency and performance. PCA captures maximum variance, whereas LDA uses label information to enhance class separation. Nonlinear methods like MDS, Isomap, LLE, and autoencoders better preserve manifold structure in complex data. These techniques help mitigate high-dimensional challenges such as overfitting and computational cost.

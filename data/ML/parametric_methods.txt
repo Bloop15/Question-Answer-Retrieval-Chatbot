@@ -1,0 +1,188 @@
+PARAMETRIC METHODS (ETHEM ALPAYDIN, ML 2nd Edition)
+
+Parametric methods assume the data is generated from a distribution with a fixed number of parameters, independent of the sample size. The learning task is to choose a model form and estimate its parameters from data.
+
+Examples of parametric methods:
+Gaussian models
+Logistic regression
+Linear regression
+Naive Bayes
+
+Parametric methods are typically simple, fast, and need less data than nonparametric methods.
+
+WHAT ARE PARAMETRIC METHODS?
+
+A parametric method assumes:
+
+A model family p(x | theta)
+
+A fixed set of parameters theta
+
+Goal: find parameter values that best explain the training data. Once the parameters are known, prediction on new data is straightforward.
+
+MAXIMUM LIKELIHOOD ESTIMATION (MLE)
+
+Given data:
+X = {x1, x2, ..., xn}
+
+MLE chooses parameters that maximize the likelihood:
+theta_hat = argmax_theta p(X | theta)
+
+For independent and identically distributed samples:
+p(X | theta) = product over i of p(xi | theta)
+
+It is common to maximize the log-likelihood:
+L(theta) = sum over i of log p(xi | theta)
+
+because logs turn products into sums and are easier to optimize.
+
+PARAMETER ESTIMATION FOR GAUSSIAN DISTRIBUTIONS
+
+Univariate Gaussian:
+p(x | mu, sigma^2) = (1 / sqrt(2 pi sigma^2)) * exp(−(x − mu)^2 / (2 sigma^2))
+
+MLE estimates:
+mu_hat = average of xi
+sigma_hat^2 = average squared deviation from mu_hat
+
+Multivariate Gaussian (for d-dimensional x):
+p(x | mu, Sigma) = (1 / ((2 pi)^(d/2) |Sigma|^(1/2))) * exp(−1/2 (x − mu)^T Sigma^(-1) (x − mu))
+
+MLE estimates:
+mu_hat = sample mean vector
+Sigma_hat = sample covariance matrix
+
+These parameters are used in Gaussian Bayesian classifiers.
+
+DECISION BOUNDARIES FROM PARAMETRIC MODELS
+
+Using Gaussian models for each class:
+
+Case 1: same covariance matrix Sigma for all classes → linear boundaries
+This gives Linear Discriminant Analysis (LDA).
+
+Case 2: different covariance matrices per class → quadratic boundaries
+This gives Quadratic Discriminant Analysis (QDA).
+
+Thus, the parametric assumptions determine whether the decision boundary is linear or quadratic.
+
+BAYES VS MLE
+
+MLE:
+
+Uses only the data
+
+May overfit when data is limited
+
+MAP (Maximum A Posteriori):
+
+Incorporates a prior distribution p(theta)
+
+Maximizes p(X | theta) p(theta)
+
+Can be seen as regularized MLE
+
+REGULARIZATION
+
+When data is scarce, pure MLE can be unstable. Regularization adds constraints or prior knowledge.
+
+Examples:
+
+Shrinking covariance toward identity
+
+Ridge regression (L2 penalty on weights)
+
+Lasso (L1 penalty for sparsity)
+
+Regularization improves generalization and avoids extreme parameter values.
+
+DISCRIMINATIVE VS GENERATIVE MODELS
+
+Parametric models can be:
+
+Generative models:
+
+Model p(x, y) = p(y) p(x | y)
+
+Examples: Gaussian classifiers, Naive Bayes
+
+Can handle missing data and generate samples
+
+Discriminative models:
+
+Model p(y | x) or directly the decision boundary
+
+Examples: logistic regression, linear SVM, neural networks
+
+Often yield better predictive accuracy with enough data
+
+LOGISTIC REGRESSION
+
+Logistic regression models the conditional probability:
+P(y = 1 | x) = 1 / (1 + exp(−w^T x))
+
+Parameters:
+
+Weight vector w estimated by maximizing likelihood (equivalently minimizing cross-entropy loss)
+
+Decision rule:
+
+Predict class 1 if w^T x > 0, else class 0
+
+Widely used for binary classification.
+
+MODEL SELECTION
+
+Choosing the correct parametric model is crucial.
+
+Consider:
+
+Data dimensionality
+
+Amount of training data
+
+Computation budget
+
+Interpretability needs
+
+Approaches:
+
+Compare different models using validation performance
+
+Use criteria such as AIC or BIC that penalize model complexity
+
+OVERFITTING IN PARAMETRIC MODELS
+
+Even parametric models can overfit if:
+
+Too many parameters for the amount of data
+
+Covariance matrices are ill-conditioned
+
+Model assumptions (like Gaussian) are badly violated
+
+Countermeasures:
+
+Regularization
+
+Feature selection
+
+Dimensionality reduction
+
+COMPARISON WITH NONPARAMETRIC METHODS
+
+Parametric vs nonparametric:
+
+Parameters: fixed vs grow with data
+Flexibility: lower vs higher
+Data requirement: smaller vs larger
+Risk: underfitting vs overfitting
+Speed: faster vs slower
+
+Examples:
+Parametric: logistic regression, Gaussian models
+Nonparametric: KNN, Parzen windows, decision trees
+
+Summary
+
+Parametric methods assume a specific functional form and estimate a fixed set of parameters, often via maximum likelihood or MAP. Gaussian models yield linear or quadratic decision boundaries, and logistic regression is a key discriminative parametric model. These methods are efficient and effective when their assumptions match the underlying data.

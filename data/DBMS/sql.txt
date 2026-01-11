@@ -1,0 +1,205 @@
+SQL — Structured Query Language
+
+SQL is the standard language for interacting with relational databases. It is declarative: users specify what result they want, and the DBMS determines how to retrieve it.
+
+SQL Sub-Languages:
+• DDL – Data Definition Language
+• DML – Data Manipulation Language
+• DQL – Data Query Language
+• DCL – Data Control Language
+• TCL – Transaction Control Language
+
+Data Definition Language (DDL)
+
+Used to define and modify database schema.
+
+1.1 CREATE
+Create database:
+CREATE DATABASE college;
+
+Create table:
+CREATE TABLE Student (
+RollNo INT PRIMARY KEY,
+Name VARCHAR(50),
+Branch VARCHAR(20),
+GPA DECIMAL(3,2)
+);
+
+1.2 ALTER
+Add column:
+ALTER TABLE Student ADD Email VARCHAR(50);
+
+Modify column:
+ALTER TABLE Student MODIFY GPA DECIMAL(4,2);
+
+Drop column:
+ALTER TABLE Student DROP COLUMN Email;
+
+1.3 DROP
+Removes a table permanently:
+DROP TABLE Student;
+
+1.4 TRUNCATE
+Removes all rows but keeps structure:
+TRUNCATE TABLE Student;
+
+Data Manipulation Language (DML)
+
+Used to insert, update, and delete data.
+
+2.1 INSERT
+INSERT INTO Student VALUES (101, 'Asha', 'CSE', 9.1);
+
+Insert selective columns:
+INSERT INTO Student (RollNo, Name) VALUES (102, 'John');
+
+2.2 UPDATE
+UPDATE Student
+SET GPA = 9.5
+WHERE RollNo = 101;
+
+2.3 DELETE
+DELETE FROM Student WHERE RollNo = 102;
+
+Data Query Language (DQL)
+
+3.1 SELECT
+Retrieve all:
+SELECT * FROM Student;
+
+Filter:
+SELECT Name, GPA FROM Student WHERE Branch = 'CSE';
+
+Sort:
+SELECT * FROM Student ORDER BY GPA DESC;
+
+Limit:
+SELECT * FROM Student LIMIT 5;
+
+SQL Operators
+
+Comparison: = , != , < , > , <= , >=
+Logical: AND, OR, NOT
+Range: BETWEEN
+Set: IN, NOT IN
+Pattern: LIKE
+Null checks: IS NULL, IS NOT NULL
+Arithmetic: + , – , * , / , %
+
+Aggregate Functions
+
+COUNT, SUM, AVG, MIN, MAX
+
+Example:
+SELECT COUNT(*), AVG(GPA), MIN(GPA), MAX(GPA)
+FROM Student;
+
+5.1 GROUP BY
+SELECT Branch, AVG(GPA)
+FROM Student
+GROUP BY Branch;
+
+5.2 HAVING
+Filters groups:
+SELECT Branch, COUNT()
+FROM Student
+GROUP BY Branch
+HAVING COUNT() > 50;
+
+Joins
+
+Combine rows from multiple tables.
+
+6.1 INNER JOIN
+SELECT S.Name, C.CourseName
+FROM Student S
+INNER JOIN Enroll E ON S.RollNo = E.RollNo
+INNER JOIN Course C ON C.CourseID = E.CourseID;
+
+6.2 LEFT JOIN
+SELECT S.Name, E.CourseID
+FROM Student S LEFT JOIN Enroll E
+ON S.RollNo = E.RollNo;
+
+6.3 RIGHT JOIN
+SELECT S.Name, E.CourseID
+FROM Student S RIGHT JOIN Enroll E
+ON S.RollNo = E.RollNo;
+
+6.4 FULL OUTER JOIN
+Returns all rows when match exists on either side.
+(Some DBMS require UNION to simulate.)
+
+6.5 CROSS JOIN
+Cartesian product of tables.
+
+Subqueries
+
+7.1 Single-row Subquery
+SELECT Name
+FROM Student
+WHERE GPA > (SELECT AVG(GPA) FROM Student);
+
+7.2 Multi-row Subquery
+SELECT Name
+FROM Student
+WHERE RollNo IN (SELECT RollNo FROM Enroll);
+
+7.3 Correlated Subquery
+SELECT Name
+FROM Student S
+WHERE GPA > (
+SELECT AVG(GPA)
+FROM Student
+WHERE Branch = S.Branch
+);
+
+Views
+
+Virtual table based on a query:
+CREATE VIEW CS_Students AS
+SELECT Name, GPA
+FROM Student
+WHERE Branch = 'CSE';
+
+Constraints
+
+Rules to maintain integrity:
+• PRIMARY KEY
+• FOREIGN KEY
+• UNIQUE
+• NOT NULL
+• CHECK
+• DEFAULT
+
+Example:
+CREATE TABLE Course (
+ID INT PRIMARY KEY,
+Title VARCHAR(50) UNIQUE,
+Credits INT CHECK (Credits > 0),
+Dept VARCHAR(20) DEFAULT 'CSE'
+);
+
+Indexes
+
+Improve search speed:
+CREATE INDEX idx_name ON Student(Name);
+
+Indexes speed up SELECT but slow INSERT/UPDATE/DELETE.
+
+Transaction Control Language (TCL)
+
+BEGIN;
+COMMIT;
+ROLLBACK;
+
+Used to enforce ACID properties.
+
+Data Control Language (DCL)
+
+GRANT SELECT, INSERT ON Student TO user1;
+REVOKE INSERT ON Student FROM user1;
+
+Summary
+
+SQL supports schema creation, data manipulation, querying, joins, subqueries, views, constraints, indexing, transactions, and access control. It forms the core of relational database interaction and optimization.

@@ -1,0 +1,123 @@
+This topic covers C data types, constants, variables, operators, expressions, and type conversions. These form the core building blocks of C programs.
+
+Data Types in C:
+C provides several built-in types that define size, range, and interpretation of values.
+
+Basic Types:
+Integer types: char, short, int, long, long long and their unsigned forms
+Floating types: float, double, long double
+char stores single characters (typically 1 byte)
+
+Derived Types:
+Pointers, arrays, structures, unions, functions, and enumerations
+
+Constants (Literals):
+Integer constants:
+10, 255, 0xFF (hex), 037 (octal)
+Floating constants:
+3.14, 2.5e6
+Character constants:
+'A', '\n', '\t'
+String literals:
+"Hello", "ABC\n"
+Stored as arrays of characters terminated by '\0'.
+
+Variable Declaration:
+Variables must be declared before use.
+int count;
+float avg;
+char grade;
+May be initialized:
+int x = 10;
+double pi = 3.14;
+Multiple declarations allowed:
+int a, b = 5, c;
+
+Type Conversions:
+Arithmetic conversions occur in mixed-type expressions using promotion rules.
+Example:
+int i = 5;
+double d = i;
+Explicit conversion (cast):
+double d = 5.6;
+int x = (int)d;
+
+Operators in C:
+
+Arithmetic operators:
+
+/ %
+% works only with integers.
+
+Relational operators:
+< <= > >= == !=
+Result is 1 (true) or 0 (false).
+
+Logical operators:
+&& || !
+Use short-circuit evaluation.
+
+Assignment operators:
+= += -= *= /= %=
+
+Increment and decrement:
+++i, i++, --i, i--
+
+Bitwise operators:
+& | ^ ~ << >>
+Used in hardware control, flags, and compression.
+
+Conditional (ternary) operator:
+condition ? expr1 : expr2
+
+Comma operator:
+Evaluates left to right and returns last value.
+x = (i = 5, i + 2);
+
+sizeof operator:
+Returns number of bytes of a type or variable.
+sizeof(int)
+sizeof x
+
+Expressions:
+Expressions combine operators and operands to compute values.
+Examples:
+a + b * c
+flag = (count > 0)
+
+Precedence and Associativity:
+Determine evaluation order. Higher precedence operators execute first.
+Selected order from highest to lowest:
+() [] -> .
+! ~ ++ --
+
+/ %
+
+<< >>
+< <= > >=
+== !=
+&
+^
+|
+&&
+||
+?:
+= += -=
+,
+
+Associativity:
+Most operators are left-to-right.
+Assignment and ?: are right-to-left.
+
+Type Sizes and Machine Dependence:
+Sizes vary by architecture. Typical 32-bit values:
+char 1 byte
+short 2 bytes
+int 4 bytes
+long 4 bytes
+float 4 bytes
+double 8 bytes
+C remains portable because exact sizes depend on system but standard rules apply.
+
+Summary:
+C provides rich typing, constants, and operators to build efficient expressions. Understanding conversions, precedence, and evaluation rules is critical for correct and optimized programming.

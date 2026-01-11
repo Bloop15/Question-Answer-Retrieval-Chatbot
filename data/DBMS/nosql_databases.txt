@@ -1,0 +1,115 @@
+NOSQL DATABASES
+
+NoSQL (Not Only SQL) databases are non-relational, schema-less systems designed for high scalability, high availability, and handling large volumes of semi-structured or unstructured data. They are widely used in big data, social networks, recommendation systems, and IoT platforms.
+
+Why NoSQL?
+
+Traditional SQL systems struggle with:
+• Horizontal scaling
+• Highly distributed data
+• Flexible schemas
+• High write throughput
+• Real-time processing
+
+NoSQL enables:
+• Distributed architecture
+• Schema-less model
+• Replication and sharding
+• Eventual consistency for high performance
+
+Characteristics of NoSQL
+
+• Schema-less or flexible schemas
+• Supports horizontal scaling
+• High availability through replication
+• BASE properties instead of ACID
+• Partition-tolerant distributed design
+• Optimized for large-scale systems
+
+Types of NoSQL Databases
+
+3.1 Key-Value Stores
+Simple and fast lookups using key → value pairs
+Examples: Redis, DynamoDB, Riak
+Use cases: caching, session data, real-time dashboards
+
+3.2 Document Stores
+Store JSON/BSON/XML documents with flexible structure
+Examples: MongoDB, CouchDB, Firestore
+Use cases: content management, user profiles, catalogs
+
+3.3 Column-Family Stores
+Based on Google Bigtable, store data by column groups
+Examples: Cassandra, HBase, ScyllaDB
+Use cases: analytics, IoT logs, time-series data
+
+3.4 Graph Databases
+Represent highly connected data using nodes and edges
+Examples: Neo4j, Amazon Neptune, TigerGraph
+Use cases: fraud detection, social networks, recommendations
+
+CAP Theorem
+
+Distributed databases can provide only two out of three:
+Consistency, Availability, Partition tolerance
+
+Typical NoSQL choices:
+• AP systems: DynamoDB, Cassandra
+• CP systems: MongoDB (configured), HBase
+
+BASE Model
+
+NoSQL typically follows:
+• Basically Available
+• Soft state
+• Eventually consistent
+
+Provides performance and scalability over strict consistency.
+
+Replication and Partitioning
+
+Replication: master-slave, multi-master, or peer-to-peer
+Partitioning (sharding): hash-based, range-based, consistent hashing
+
+Ensures fault tolerance and horizontal scalability.
+
+Consistency Models
+
+• Strong consistency: always returns latest data
+• Eventual consistency: replicas converge over time
+• Tunable consistency: client chooses level (e.g., Cassandra QUORUM, ONE, ALL)
+
+Querying in NoSQL
+
+Database-specific queries:
+• MongoDB → JSON-style queries
+• Cassandra → CQL
+• Redis → key-based commands
+• Neo4j → Cypher
+
+No JOINs → denormalization is common.
+
+Advantages and Disadvantages
+
+Advantages:
+• High scalability
+• High availability
+• Flexible data model
+• Better performance for distributed big data
+
+Disadvantages:
+• Weaker consistency guarantees
+• Limited complex transactions
+• No JOINs
+• Query optimization challenges
+
+Use Cases
+
+Redis → caching, leaderboards
+MongoDB → content systems, product catalogs
+Cassandra → real-time scalable messaging, IoT
+Neo4j → graph analytics, fraud detection
+
+Summary
+
+NoSQL databases provide scalable, distributed solutions for modern applications. They support flexible schemas, high performance, and large-scale data workloads using key-value, document, column-family, and graph data models, typically relying on BASE consistency and CAP-theorem-driven design.

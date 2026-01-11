@@ -1,0 +1,119 @@
+FUNCTIONAL DEPENDENCIES (FDs)
+
+A Functional Dependency (FD) represents a relationship between attributes in a relation. It is used for identifying keys, detecting anomalies, and guiding normalization.
+
+Definition:
+X → Y means attributes X uniquely determine attributes Y.
+If two tuples match on X, they must match on Y.
+
+Examples:
+RollNo → Name
+RollNo → Branch
+
+Types of Functional Dependencies:
+
+Trivial FD:
+Y ⊆ X
+Example: {RollNo, Name} → RollNo
+
+Non-Trivial FD:
+Y ⊄ X
+Example: RollNo → Branch
+
+Completely Non-Trivial:
+X ∩ Y = Ø
+Example: A → B
+
+Partial Dependency:
+Part of a composite key determines a non-key attribute.
+Violates 2NF.
+Example:
+(StudentID, CourseID) → Grade
+StudentID → StudentName
+
+Transitive Dependency:
+X → Y and Y → Z ⟹ X → Z
+Violates 3NF.
+Example:
+RollNo → DeptID
+DeptID → DeptName
+
+Multivalued Dependency (MVD):
+A ↠ B
+Relevant to 4NF.
+
+Closure of Attributes (X⁺):
+X⁺ = all attributes functionally determined by X.
+
+Algorithm:
+
+Start with X⁺ = X
+
+Add attributes using FDs where LHS ⊆ X⁺
+
+Repeat until no change
+
+Example:
+A → B, B → C
+A⁺ = {A, B, C}
+
+Finding Candidate Keys:
+Steps:
+• Compute closures
+• If X⁺ = all attributes → superkey
+• If no subset is a superkey → candidate key
+
+Example:
+R(A, B, C, D) with:
+A → B
+B → C
+Check AD:
+AD⁺ = {A, B, C, D} → candidate key = {A, D}
+
+Armstrong’s Axioms:
+Used to infer FDs.
+
+Reflexivity: if Y ⊆ X, then X → Y
+
+Augmentation: X → Y ⇒ XZ → YZ
+
+Transitivity: X → Y, Y → Z ⇒ X → Z
+
+Derived Rules:
+• Union: X → Y and X → Z ⇒ X → YZ
+• Decomposition: X → YZ ⇒ X → Y and X → Z
+• Pseudotransitivity: X → Y and YZ → W ⇒ XZ → W
+
+Minimal (Canonical) Cover:
+FD set with:
+• Single attribute on RHS
+• Minimal LHS (no redundant attributes)
+• No redundant FDs
+
+Useful in decomposition and normalization.
+
+Example Applications:
+
+Key Identification:
+R(A, B, C, D), FDs:
+A → B
+B → C
+CD → A
+CD⁺ = {C, D, A, B} → Key = {C, D}
+
+2NF Violation:
+(StudentID, CourseID) → Grade
+StudentID → StudentName → partial dependency
+
+3NF Violation:
+A → B, B → C → transitive dependency
+
+Importance of FDs:
+• Identify keys
+• Enable normalization (2NF, 3NF, BCNF)
+• Remove redundancy
+• Ensure relational integrity
+• Improve schema design
+
+Summary:
+Functional Dependencies specify attribute relationships used to validate relational design. Concepts like closures, candidate keys, minimal cover, and Armstrong’s axioms support schema refinement and normalization.

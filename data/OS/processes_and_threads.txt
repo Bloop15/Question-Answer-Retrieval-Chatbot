@@ -1,0 +1,415 @@
+CHAPTER 2 — PROCESSES AND THREADS
+
+A process is a program in execution.
+A thread is a lightweight execution unit inside a process.
+Together, they form the foundation of multitasking and parallel execution in modern operating systems.
+
+=========================================================
+1. THE PROCESS MODEL
+=========================================================
+
+The OS runs many processes concurrently by using multiprogramming and time-sharing.
+
+A process consists of:
+
+Program code (text segment)
+
+Data (global variables)
+
+Stack (function calls, local variables)
+
+Heap (dynamically allocated memory)
+
+Registers & program counter
+
+Resource handles (files, I/O devices)
+
+1.1 Process States
+
+Standard three-state model:
+
+Running → currently executing
+
+Ready → ready to run but waiting for CPU
+
+Blocked (Waiting) → waiting for I/O or event
+
+Extended model includes:
+
+New (being created)
+
+Terminated (finished execution)
+
+Suspended (temporarily swapped out)
+
+1.2 Process Control Block (PCB)
+
+The OS stores all process information in a PCB:
+
+Contains:
+
+PID (process ID)
+
+Program counter
+
+Register values
+
+Process state
+
+Memory management info
+
+Open files
+
+Accounting information
+
+The PCB is essential for context switching.
+
+=========================================================
+2. PROCESS CREATION & TERMINATION
+=========================================================
+
+Processes can be created by:
+
+2.1 System initialization
+
+Boot-time processes.
+
+2.2 Process creation by another process
+
+Parent creates child (UNIX: fork()).
+
+2.3 User request
+
+Running an application.
+
+2.4 Batch job submission
+
+Mainframe environments.
+
+2.5 Process Termination
+
+Reasons:
+
+Normal exit
+
+Error/exception
+
+Killed by another process
+
+Killed by OS for violating limits
+
+=========================================================
+3. PROCESS HIERARCHY
+=========================================================
+
+In UNIX-like systems:
+
+Processes form a tree
+
+Parent spawns children using fork()
+
+Child replaces memory image using exec()
+
+Parent waits using wait()
+
+Windows uses job objects, not a strict hierarchy.
+
+=========================================================
+4. PROCESS SWITCHING (CONTEXT SWITCHING)
+=========================================================
+
+Occurs when OS moves CPU from one process to another.
+
+Actions:
+
+Save current process register state into PCB
+
+Load next process register state
+
+Update memory management structures
+
+Context switches are expensive → try to minimize.
+
+=========================================================
+5. THREADS
+=========================================================
+
+Threads are multiple execution flows within a process sharing:
+
+Address space
+
+Open files
+
+Global variables
+
+Code
+
+Each thread has:
+
+Program counter
+
+Registers
+
+Stack
+
+Advantages:
+
+Fast creation
+
+Fast context switching
+
+Efficient parallelism
+
+Better resource utilization
+
+=========================================================
+6. USER-LEVEL VS KERNEL-LEVEL THREADS
+=========================================================
+6.1 User-Level Threads (ULT)
+
+Managed by user-space library.
+
+Advantages:
+
+Very fast
+
+No kernel involvement
+
+Fully portable
+
+Disadvantages:
+
+Cannot leverage multiprocessor parallelism
+
+Blocking system calls block whole process
+
+6.2 Kernel-Level Threads (KLT)
+
+Managed by the OS kernel.
+
+Advantages:
+
+True parallelism on multi-core CPUs
+
+Scheduler aware of threads
+
+Blocking call only blocks one thread
+
+Disadvantages:
+
+Slower to create/switch
+
+Kernel involvement required
+
+6.3 Hybrid Models
+
+Many systems use a mix (M:N threading).
+
+=========================================================
+7. MULTITHREADED PROGRAMMING
+=========================================================
+Benefits:
+
+Better performance
+
+Simplified modeling for concurrent tasks
+
+More responsive programs
+
+Resource sharing
+
+Challenges:
+
+Synchronization
+
+Race conditions
+
+Deadlocks
+
+Debugging complexity
+
+=========================================================
+8. INTERPROCESS COMMUNICATION (IPC)
+=========================================================
+
+Processes must communicate & coordinate.
+
+Major mechanisms:
+
+8.1 Race Conditions
+
+Occur when processes/threads access shared data concurrently without proper coordination.
+
+8.2 Critical Sections
+
+Portions of code where shared data is accessed.
+
+Goal:
+
+Allow only one process/thread in the critical section at a time.
+
+8.3 Mutual Exclusion
+
+Achieved by:
+
+Locks (mutex)
+
+Semaphores
+
+Monitors
+
+Spinlocks
+
+8.4 Busy Waiting vs Sleep/Wakeup
+Busy waiting:
+
+Spin in a loop checking a lock
+
+Wastes CPU
+
+Sleep/wakeup:
+
+Put process to sleep until event
+
+More efficient
+
+8.5 Semaphores
+
+Introduced by Dijkstra.
+
+Two operations:
+
+P (wait)
+
+V (signal)
+
+Used for:
+
+Mutual exclusion
+
+Synchronization
+
+8.6 Monitors
+
+Higher-level synchronization primitive.
+
+Contains:
+
+Shared data
+
+Procedures
+
+Condition variables
+
+Guarantees only one active process inside monitor at a time.
+
+8.7 Message Passing
+
+Useful in distributed systems.
+
+Operations:
+
+send(destination, message)
+
+receive(source, message)
+
+Two types:
+
+Blocking
+
+Non-blocking
+
+=========================================================
+9. SCHEDULING
+=========================================================
+
+OS scheduler decides which process/thread runs next.
+
+9.1 Scheduling Goals
+
+Fairness
+
+Efficiency
+
+Low response time
+
+High throughput
+
+Meeting real-time deadlines
+
+9.2 Scheduling Algorithms
+Non-preemptive:
+
+First-Come, First-Served (FCFS)
+
+Shortest Job First (SJF)
+
+Preemptive:
+
+Round Robin
+
+Shortest Remaining Time
+
+Priority Scheduling
+
+Multilevel Queue
+
+Multilevel Feedback Queue (MLFQ)
+
+9.3 Real-Time Scheduling
+
+Hard real-time:
+
+Deadlines must be met
+Soft real-time:
+
+Occasional misses acceptable
+
+Algorithms:
+
+Rate Monotonic
+
+Earliest Deadline First
+
+=========================================================
+10. COMMUNICATION IN CLIENT–SERVER SYSTEMS
+=========================================================
+10.1 Pipes
+
+Unidirectional data streams.
+
+10.2 FIFOs (Named Pipes)
+
+Persistent and can be accessed by unrelated processes.
+
+10.3 Sockets
+
+Used for network communication.
+
+10.4 Remote Procedure Calls (RPC)
+
+Invoke functions on remote machines.
+
+=========================================================
+11. CLASSICAL SYNCHRONIZATION PROBLEMS
+=========================================================
+
+Used to study concurrency.
+
+11.1 Producer–Consumer Problem
+
+Using semaphores.
+
+11.2 Readers–Writers Problem
+
+Coordinate read/write access to shared resource.
+
+11.3 Dining Philosophers Problem
+
+Models deadlocks and starvation.
+
+Summary
+
+Processes represent executing programs with dedicated resources, while threads are lightweight flows within a process.
+The OS supports multitasking using scheduling, context switching, and synchronization.
+Managing processes and threads efficiently is critical for concurrency, multicore utilization, and system performance.

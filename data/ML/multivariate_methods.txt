@@ -1,0 +1,111 @@
+MULTIVARIATE METHODS
+
+Multivariate methods analyze multiple input variables together to capture dependence and interactions across features. They rely on joint distributions and covariance structures to improve decision-making in classification and regression.
+
+Multivariate Normal Distribution
+
+A multivariate Gaussian represents a d-dimensional random variable x using a mean vector μ and covariance matrix Σ.
+
+Mean vector: represents average values
+Covariance matrix: measures how variables vary together
+
+Diagonal values: variances
+Off-diagonal values: correlations
+Symmetric and positive semi-definite
+
+If Σ is proportional to identity → variables are independent
+If Σ has large off-diagonal elements → correlated features
+
+Classification Using Multivariate Gaussians
+
+Class conditional densities are modeled as Gaussian for each class:
+p(x | class i) = N(μi, Σi)
+
+Plug into Bayes classifier:
+
+Shared covariance for all classes → Linear Discriminant Analysis (LDA)
+• Linear boundaries
+• Lower variance, fewer parameters
+
+Different covariance per class → Quadratic Discriminant Analysis (QDA)
+• Quadratic boundaries
+• More flexible, requires more data
+
+High Dimensionality Issues
+
+With high feature dimensions:
+• Data becomes sparse
+• Covariance estimation becomes unreliable
+• Overfitting likely
+
+Solutions:
+• Regularized covariance
+• PCA or other dimensionality reduction
+• Naive Bayes assumption (independence)
+
+Feature Selection and Extraction
+
+Feature Selection:
+Choose subset of original features
+Reduces overfitting, improves interpretability
+Methods: filters, wrappers, embedded methods (like L1 regularization)
+
+Feature Extraction:
+Create new features
+Examples: PCA, LDA, factor analysis
+Project data into lower-dimensional subspace
+
+Regularized Covariance Estimation
+
+Used when features exceed samples or noise is high.
+
+Shrinkage estimation:
+Σ_new = (1 − λ) Σ_empirical + λ I
+
+Stabilizes covariance-based classifiers such as LDA and QDA.
+
+Multivariate Regression
+
+Multiple linear regression models output using multiple input variables:
+y = wᵀx + b
+
+Handles:
+• Correlated predictors
+• Multiple continuous outputs
+
+K-Nearest Neighbors as a Multivariate Method
+
+KNN classification uses distances in multivariate space.
+
+Distance measures:
+• Euclidean
+• Mahalanobis (accounts for covariance structure)
+
+Discriminant Analysis Methods
+
+LDA: shared covariance → linear boundaries
+QDA: class-specific covariance → quadratic boundaries
+Fisher’s LDA: dimensionality reduction that maximizes between-class separation relative to within-class variation
+
+Naive Bayes as a Special Case
+
+Assumes feature independence → covariance matrix is diagonal
+Simplifies modeling
+Effective for text classification
+But ignores feature interactions
+
+Parametric vs Nonparametric Approaches
+
+Parametric (Gaussian):
+• Low complexity
+• Works well with moderate data
+• Assumes distribution form
+
+Nonparametric (KNN, Parzen):
+• Flexible
+• Needs large data
+• High computational cost
+
+Summary
+
+Multivariate methods analyze multiple features together using covariance structures and joint distributions. They support powerful classifiers such as LDA and QDA, but require careful handling of high-dimensional data through regularization and dimensionality reduction.

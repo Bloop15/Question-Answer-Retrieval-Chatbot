@@ -1,0 +1,167 @@
+COLLECTIONS FRAMEWORK IN JAVA
+
+The Java Collections Framework (JCF) provides classes and interfaces for storing and manipulating data efficiently. It supports dynamic data structures, standardized APIs, and algorithms like sorting and searching. It offers high performance and flexibility.
+
+WHAT IS THE COLLECTIONS FRAMEWORK?
+
+It is a unified architecture for representing and manipulating groups of objects. It includes interfaces, classes, and algorithms. It is available in the java.util package.
+
+COLLECTION HIERARCHY
+
+Top-level interfaces:
+Iterable
+Collection
+List
+Set
+Queue
+Map is a separate hierarchy and is not part of Collection.
+
+LIST INTERFACE
+
+An ordered collection that allows duplicate elements and supports index-based access.
+
+Major implementations:
+ArrayList: dynamic array, fast random access, slower insertion and deletion in the middle.
+LinkedList: doubly linked list, faster insertion and deletion, slower random access.
+Vector: legacy, synchronized, slower than ArrayList.
+Stack: legacy, LIFO behavior.
+
+Example declaration:
+ArrayList<Integer> list = new ArrayList<>();
+LinkedList<String> ll = new LinkedList<>();
+Vector<Integer> v = new Vector<>();
+
+SET INTERFACE
+
+Unordered collection that does not allow duplicate elements.
+
+Implementations:
+HashSet: backed by hash table, fast access, no maintained order.
+LinkedHashSet: maintains insertion order.
+TreeSet: sorted set using Red-Black Tree, elements stored in sorted order.
+
+Example:
+HashSet<String> set = new HashSet<>();
+
+QUEUE INTERFACE
+
+Represents FIFO (First In First Out) data structure.
+Implementations:
+PriorityQueue: elements ordered by priority.
+ArrayDeque: fast queue and deque operations.
+
+Example:
+PriorityQueue<Integer> pq = new PriorityQueue<>();
+
+MAP INTERFACE (KEY VALUE PAIRS)
+
+Stores data as key and value pairs. Keys are unique. Not part of the Collection hierarchy.
+
+Implementations:
+HashMap: fast key lookup, allows null keys and values.
+LinkedHashMap: preserves insertion order.
+TreeMap: keys sorted automatically based on Red-Black Tree.
+Hashtable: legacy, synchronized, does not allow null keys or values.
+
+Example:
+HashMap<Integer, String> map = new HashMap<>();
+
+COMMON OPERATIONS
+
+Add:
+list.add(10);
+set.add("A");
+map.put(1, "John");
+
+Remove:
+list.remove(0);
+set.remove("A");
+map.remove(1);
+
+Check element existence:
+list.contains(10);
+set.contains("A");
+map.containsKey(1);
+
+Iterating through elements:
+for (int x : list) { }
+Using Iterator:
+Iterator<String> it = set.iterator();
+while(it.hasNext()) System.out.println(it.next());
+
+SORTING COLLECTIONS
+
+Collections.sort(list);
+Custom sorting:
+Collections.sort(list, (a, b) -> a - b);
+
+COMPARABLE AND COMPARATOR
+
+Comparable: used for natural ordering. Implemented inside the class.
+Example:
+class Student implements Comparable<Student> {
+public int compareTo(Student s) { return this.marks - s.marks; }
+}
+
+Comparator: external comparison logic.
+Example:
+Comparator<Student> byName = (a, b) -> a.name.compareTo(b.name);
+
+COLLECTIONS CLASS
+
+Utility class in java.util.Collections.
+Common methods: sort, reverse, max, min, shuffle.
+
+THREAD SAFE COLLECTIONS
+
+Ways to achieve thread safety:
+Synchronized wrappers:
+List l = Collections.synchronizedList(new ArrayList<>());
+Concurrent utilities (from java.util.concurrent):
+ConcurrentHashMap
+CopyOnWriteArrayList
+BlockingQueue
+
+ARRAY VS ARRAYLIST VS LINKEDLIST
+
+Array: fixed size, fast access, difficult insert and delete.
+ArrayList: dynamic array, moderate speed.
+LinkedList: dynamic, fast insert and delete, slower search.
+
+HASHMAP INTERNALS
+
+Data stored in array of buckets. Buckets contain linked lists (in Java 7) or tree nodes (in Java 8 and above when collisions exceed a threshold). Hash function distributes keys. Collision handling through chaining or tree conversion.
+
+REAL WORLD USE CASES
+
+List: ordered items such as student records, tasks.
+Set: unique values such as IDs, visited nodes.
+Map: key value data such as configurations and dictionaries.
+Queue: scheduling tasks such as BFS or message queues.
+
+BASIC EXAMPLE PROGRAM
+
+import java.util.*;
+public class Demo {
+public static void main(String[] args) {
+List<Integer> list = new ArrayList<>();
+list.add(10); list.add(20); list.add(30);
+
+    Set<String> set = new HashSet<>();
+    set.add("A"); set.add("B");
+
+    Map<Integer, String> map = new HashMap<>();
+    map.put(1, "Alice");
+    map.put(2, "Bob");
+
+    System.out.println(list);
+    System.out.println(set);
+    System.out.println(map);
+}
+
+
+}
+
+SUMMARY
+
+The Java Collections Framework provides List, Set, Queue, and Map data structures, along with utility algorithms, iteration support, generics, and concurrency utilities. Mastering collections is essential for data structures and algorithms, backend development, coding interviews, and real-world application design.

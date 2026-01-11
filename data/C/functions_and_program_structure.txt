@@ -1,0 +1,124 @@
+Functions allow modular programming by breaking large programs into smaller logical units. They improve code reuse, readability, and organization.
+
+Basics of Functions:
+A function has a name, optional parameters, a body, and may return a value.
+Syntax:
+return_type function_name(parameters)
+{
+statements;
+}
+
+Example:
+int add(int a, int b)
+{
+return a + b;
+}
+
+Function Prototypes:
+A function must be declared before calling it so that the compiler knows its return type and parameter types.
+Example:
+int add(int, int);
+Prototypes enable type checking and allow calling functions defined later.
+
+Function Definition and Call:
+float area(float r)
+{
+return 3.14f * r * r;
+}
+result = area(5.0);
+
+Arguments are passed by value.
+
+Call by Value:
+A copy of each argument is passed into a function. Changes inside a function do not affect the original variable.
+Example:
+void modify(int x)
+{
+x = 100;
+}
+int a = 5;
+modify(a);
+a remains 5.
+
+Passing Pointers to Functions:
+Used to modify caller variables or pass large objects efficiently.
+Example:
+void swap(int *a, int *b)
+{
+int temp = *a;
+*a = *b;
+*b = temp;
+}
+swap(&x, &y);
+
+Recursion:
+A function may call itself.
+Example:
+int fact(int n)
+{
+if (n == 0) return 1;
+return n * fact(n - 1);
+}
+Requires a base case and progress toward it. Used in DFS, backtracking, merge sort, quicksort.
+
+Scope Rules and Storage Classes:
+
+Automatic Variables:
+Local to function, created on function entry, destroyed on exit.
+Example: int x; inside a function.
+
+Static Variables:
+Local scope but lifetime is entire program execution.
+Example:
+void counter()
+{
+static int c = 0;
+c++;
+}
+
+External Global Variables:
+Declared outside functions; accessible anywhere in the same file.
+int global = 10;
+To access in other files: extern int global;
+
+Register Variables:
+Suggested to be stored in CPU registers for speed.
+register int i;
+
+Header Files and Modular Programming:
+Header files contain function prototypes, macros, and type definitions.
+Example:
+mathutils.h:
+int add(int, int);
+mathutils.c:
+#include "mathutils.h"
+int add(int a, int b) { return a + b; }
+main.c:
+#include "mathutils.h"
+
+External Declarations and Linkage:
+extern keyword is used to access global variables across files.
+External linkage: global variables and functions
+Internal linkage: static global variables
+No linkage: local variables
+
+Command-Line Arguments:
+int main(int argc, char *argv[])
+argc is number of arguments
+argv is array of strings
+Example: ./prog file.txt makes argv[1] = "file.txt"
+
+Returning Multiple Values:
+Use pointers, structures, or global variables.
+Example using struct:
+typedef struct { int min; int max; } Result;
+
+Function Pointers:
+A function address can be stored in a pointer.
+Example:
+int (*fp)(int, int);
+fp = add;
+fp(3, 4);
+
+Summary:
+Functions divide programs into reusable units. Arguments are passed by value by default. Recursion enables elegant solutions to many problems. Storage classes control scope and lifetime. Header files and extern support multi-file organization. Functions form the foundation of structured program design in C.

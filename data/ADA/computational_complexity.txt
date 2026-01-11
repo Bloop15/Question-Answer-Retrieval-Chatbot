@@ -1,0 +1,136 @@
+Computational Complexity is the study of resources required to solve computational problems. The primary resources are time (execution steps) and space (memory usage). It classifies problems based on difficulty and algorithm efficiency.
+
+Why Computational Complexity Matters:
+
+Compares algorithms beyond implementation differences
+
+Predicts performance for large inputs
+
+Identifies inherently difficult problems
+
+Guides algorithm design and feasibility
+
+Distinguishes efficient vs. intractable problems
+
+Types of Complexity:
+
+Time Complexity:
+Measures execution time as a function of input size n.
+Expressed using:
+Big-O: upper bound
+Big-Omega: lower bound
+Big-Theta: tight bound
+
+Common complexities:
+O(1): constant
+O(log n): logarithmic
+O(n): linear
+O(n log n): efficient sorting
+O(n²): quadratic
+O(2ⁿ), O(n!): exponential and factorial, usually intractable
+
+Space Complexity:
+Measures total memory usage including input and extra space.
+Examples:
+In-place algorithm: O(1)
+Merge sort: O(n)
+DP matrix-based: O(n²) or O(n³)
+
+Computational Tractability:
+A problem solvable in polynomial time is tractable.
+Class P represents tractable problems.
+Problems needing exponential or factorial time are generally intractable.
+
+Growth Rate Comparison (from slowest to fastest):
+1 < log n < n < n log n < n² < n³ < 2ⁿ < n!
+
+Types of Complexity Analysis:
+
+Worst-Case:
+Most commonly used. Guarantees performance limit.
+Example: Quicksort worst case = O(n²)
+
+Average-Case:
+Expected performance over typical inputs.
+Example: Quicksort average = O(n log n)
+
+Best-Case:
+Sometimes useful but not as meaningful.
+Example: Insertion sort best = O(n)
+
+Important Complexity Classes:
+
+PSPACE:
+Problems solvable in polynomial space.
+Example: QBF (Quantified Boolean Formulas)
+
+EXPTIME:
+Solvable in exponential time.
+Example: some deterministic games
+
+LOGSPACE (L):
+Solvable in logarithmic memory.
+Used in streaming and limited-memory computation.
+
+co-NP:
+Complements of NP problems.
+Example: tautology checking (TAUT)
+
+PH (Polynomial Hierarchy):
+Generalizes P, NP, and co-NP in multiple increasing difficulty levels.
+
+Reductions and Completeness:
+A reduces to B means solving B efficiently enables solving A efficiently.
+A problem is complete for a class if:
+
+It belongs to the class
+
+All other problems reduce to it
+
+Examples:
+SAT: NP-Complete
+QBF: PSPACE-Complete
+Regular expression equivalence: EXPTIME-Complete
+
+Intractability:
+NP-Hard and higher problems are intractable.
+Characteristics:
+
+No known polynomial-time solutions
+
+Often exponential runtime
+
+Found in scheduling, AI, optimization, combinatorics
+
+Techniques for intractable problems:
+Approximation
+Heuristics
+Branch and Bound
+Backtracking
+Randomized methods
+
+Lower Bounds in Algorithms:
+Complexity theory proves minimal achievable limits.
+Examples:
+Sorting with comparisons requires Ω(n log n)
+Searching unsorted array requires Ω(n)
+
+Asymptotic Notations Summary:
+Big-O: upper bound
+Big-Omega: lower bound
+Big-Theta: tight bound
+Little-o: strict upper bound
+Little-omega: strict lower bound
+
+Practical Importance:
+
+Guides algorithm selection and design
+
+Determines feasibility for large inputs
+
+Explains limits of computation
+
+Foundation for AI, cryptography, ML, optimization
+
+Summary:
+Computational Complexity analyzes the time and space requirements of algorithms and classifies problem difficulty. It distinguishes between easy and hard problems, establishes theoretical limits, and is essential for efficient algorithm design and analysis.

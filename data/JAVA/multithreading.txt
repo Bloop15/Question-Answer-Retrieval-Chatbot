@@ -1,0 +1,175 @@
+MULTITHREADING IN JAVA
+
+Multithreading allows multiple tasks to run concurrently inside a single program. It improves performance, responsiveness, and efficient CPU utilization. Java supports multithreading using the Thread class, Runnable interface, synchronization mechanisms, and the Executors framework.
+
+WHAT IS A THREAD
+
+A thread is the smallest executable unit of a program. Every Java application starts with the main thread and may create additional threads. Threads execute independently and concurrently.
+
+CREATING THREADS
+
+Two main approaches:
+
+Extending Thread class:
+class MyThread extends Thread {
+public void run() {
+System.out.println("Thread running");
+}
+}
+MyThread t = new MyThread();
+t.start();
+
+Implementing Runnable interface:
+class MyTask implements Runnable {
+public void run() {
+System.out.println("Task executed");
+}
+}
+Thread t = new Thread(new MyTask());
+t.start();
+
+Implementing Runnable is preferred because it supports multiple inheritance and better reusability.
+
+THREAD LIFE CYCLE
+
+New → Runnable → Running → Blocked or Waiting → Terminated
+
+THREAD METHODS
+
+start(): create new thread and call run()
+run(): code executed by thread
+sleep(): pause thread
+join(): wait for another thread to finish
+yield(): give other threads a chance to run
+isAlive(): check if thread is still executing
+
+Example: t.join();
+
+THREAD PRIORITY
+
+t.setPriority(Thread.MAX_PRIORITY);
+
+Priorities range from 1 to 10 but are only scheduling hints.
+
+SYNCHRONIZATION
+
+Used to prevent race conditions when multiple threads access shared data.
+
+synchronized method:
+synchronized void increment() { count++; }
+
+synchronized block:
+synchronized(this) { count++; }
+
+static synchronization protects class level shared data.
+
+DEADLOCK
+
+Two or more threads wait forever for each other’s locks.
+Avoid nested locks and use lock ordering or concurrent lock mechanisms.
+
+WAIT, NOTIFY, NOTIFYALL
+
+Used for inter thread communication.
+Must be used inside synchronized blocks.
+
+wait(): release lock and wait
+notify(): wake one waiting thread
+notifyAll(): wake all waiting threads
+
+THREAD POOLS (Executors)
+
+Efficient way to manage multiple tasks using reusable threads.
+
+Example:
+ExecutorService pool = Executors.newFixedThreadPool(4);
+pool.submit(() -> System.out.println("Task running"));
+pool.shutdown();
+
+CALLABLE AND FUTURE
+
+Callable returns results and can throw exceptions. Future stores results.
+
+Example:
+Callable<Integer> c = () -> 10 * 2;
+Future<Integer> f = pool.submit(c);
+System.out.println(f.get());
+
+LOCK FRAMEWORK (ReentrantLock)
+
+More flexible than synchronized.
+
+Lock lock = new ReentrantLock();
+lock.lock();
+try {
+// critical section
+} finally {
+lock.unlock();
+}
+
+Supports fair locks and try lock options.
+
+VOLATILE KEYWORD
+
+volatile ensures visibility of updates to shared variables and prevents caching issues.
+Does not guarantee atomicity.
+
+ATOMIC VARIABLES
+
+From java.util.concurrent.atomic
+Example:
+AtomicInteger count = new AtomicInteger(0);
+count.incrementAndGet();
+
+Provides lock free thread safety.
+
+CONCURRENT COLLECTIONS
+
+Thread safe data structures such as:
+ConcurrentHashMap
+CopyOnWriteArrayList
+BlockingQueue
+
+Avoid unnecessary synchronization and improve performance.
+
+PRODUCER CONSUMER PROBLEM
+
+Solved easily using BlockingQueue.
+
+Example:
+BlockingQueue<Integer> q = new ArrayBlockingQueue<>(5);
+q.put(10);
+q.take();
+
+EXAMPLE PROGRAM
+
+class MyThread extends Thread {
+public void run() {
+for(int i = 1; i <= 5; i++) {
+System.out.println(Thread.currentThread().getName() + " : " + i);
+}
+}
+}
+class Test {
+public static void main(String[] args) {
+MyThread t1 = new MyThread();
+MyThread t2 = new MyThread();
+t1.start();
+t2.start();
+}
+}
+
+Output order may vary due to scheduling.
+
+BEST PRACTICES
+
+Prefer Executors over manual thread creation
+Avoid shared mutable data
+Use concurrent collections
+Always unlock in finally block
+Avoid deadlocks with careful locking
+Use atomic types for simple thread safe operations
+
+SUMMARY
+
+Multithreading enables concurrent execution in Java applications. Using Thread, Runnable, synchronization tools, Executors, atomic variables, and concurrent collections, Java provides strong support for writing scalable and performant parallel programs.

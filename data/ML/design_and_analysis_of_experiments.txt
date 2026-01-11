@@ -1,0 +1,220 @@
+DESIGN AND ANALYSIS OF MACHINE LEARNING EXPERIMENTS
+
+This topic focuses on designing fair and reliable machine learning experiments. It includes data splitting, performance evaluation, hyperparameter tuning, avoiding leakage, and testing statistical significance. The goal is to estimate true generalization performance and enable valid comparison between methods.
+
+1. Importance of Experiment Design
+
+Good design ensures:
+
+Fair comparison of algorithms
+
+Correct performance estimation
+
+Avoiding data leakage and misleading results
+
+Reproducible conclusions
+
+Poor design leads to:
+
+Overfitting and bias
+
+Invalid claims
+
+Non-reproducible outcomes
+
+2. Training, Validation, Test Strategy
+
+Training set:
+
+Used to learn model parameters
+
+Validation set:
+
+Used for hyperparameter tuning and model selection
+
+Test set:
+
+Used only once at the end to estimate final generalization
+
+Methods:
+
+Holdout method: one-time split (e.g., 70/15/15)
+
+K-fold cross-validation: train on K-1 folds, test on remaining fold, average results
+
+Leave-One-Out CV: special case of K=N (high cost, high variance)
+
+Cross-validation improves stability and reduces sensitivity to a specific data split.
+
+3. Performance Metrics
+
+Classification:
+
+Accuracy
+
+Error rate
+
+Precision, Recall, F1
+
+Confusion matrix
+
+ROC-AUC
+
+Regression:
+
+Mean Squared Error (MSE)
+
+Root Mean Squared Error (RMSE)
+
+Mean Absolute Error (MAE)
+
+R² score
+
+Ranking:
+
+Precision@k
+
+Mean Average Precision
+
+NDCG
+
+Metric must match the problem and class distribution.
+
+4. Statistical Significance Testing
+
+Needed when comparing algorithms to ensure observed improvement is not due to chance.
+
+Common tests:
+
+Paired t-test (with CV results)
+
+McNemar test (same test set predictions)
+
+Wilcoxon signed-rank test (non-parametric alternative)
+
+5. Overfitting, Underfitting, and Model Selection
+
+Overfitting: low training error, high test error
+
+Underfitting: high training and test error
+
+Validation or CV is used to:
+
+Choose model complexity
+
+Select best hyperparameters
+
+Determine early stopping for iterative models
+
+6. Hyperparameter Search
+
+Grid search: exhaustive but expensive
+
+Random search: explores space efficiently
+
+Bayesian optimization: models performance and selects promising configurations
+
+Used to tune parameters like SVM regularization, neural network learning rate, etc.
+
+7. Avoiding Data Leakage
+
+Data leakage occurs when information from test data influences training.
+
+Examples:
+
+Scaling using whole dataset
+
+Feature selection before CV
+
+Cross-contamination between folds
+
+Best practice:
+
+All preprocessing must be performed inside each training fold independently
+
+8. Baselines and Control Methods
+
+Always compare against:
+
+Simple baselines (majority class, random prediction)
+
+Well-known standard methods
+
+Baselines prevent overstating improvements.
+
+9. Experimental Protocol
+
+A complete experiment should include:
+
+Problem statement and goals
+
+Dataset description
+
+Preprocessing procedure
+
+Metrics
+
+Hyperparameter search method
+
+Train/validation/test strategy
+
+Repeated trials and variance reporting
+
+Statistical testing
+
+Reproducible setup (random seeds, code)
+
+10. Confidence Intervals and Variance
+
+Report mean and variability of results:
+
+Standard deviation or confidence intervals
+
+Multiple runs with different random splits
+
+This supports robust comparison.
+
+11. Learning Curves
+
+Plot performance vs. training data size.
+Used to analyze:
+
+Data sufficiency
+
+Overfitting or underfitting behavior
+
+Whether additional data would improve performance
+
+12. Common Failures
+
+Mistakes include:
+
+Using test set for multiple tuning cycles
+
+Ignoring class imbalance
+
+Inconsistent data handling between models
+
+Solutions:
+
+Stratified sampling
+
+Balanced metrics (e.g., F1, AUC)
+
+Careful CV design
+
+13. Reporting and Reproducibility
+
+Reports must allow replication:
+
+Clear procedure
+
+Explicit hyperparameters
+
+Complete dataset and code accessibility
+
+Reproducibility is a core requirement for scientific validity.
+
+Summary
+
+Machine learning experiments must be designed to estimate true generalization performance and fairly compare models. Proper dataset splitting, unbiased evaluation metrics, hyperparameter tuning, and statistical testing are essential. Preventing leakage, reporting uncertainty, and using baselines support reliable and reproducible results.

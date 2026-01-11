@@ -1,0 +1,162 @@
+TEXT CLUSTERING
+
+Text clustering groups similar documents without using labeled data. It is an unsupervised learning approach used for document organization, topic discovery, search result clustering, summarization, and exploratory analysis.
+
+WHAT IS TEXT CLUSTERING?
+
+Given a document set D, clustering assigns documents into groups such that:
+
+Documents in the same cluster are similar
+
+Documents in different clusters are dissimilar
+
+No predefined classes are given; the model discovers structure in the data.
+
+TYPES OF TEXT CLUSTERING METHODS
+
+2.1 Partition-Based Clustering
+
+K-means is the most widely used method.
+
+Process:
+
+Convert documents to vectors (TF-IDF or embeddings)
+
+Select number of clusters k
+
+Assign documents to nearest centroid
+
+Update centroids until convergence
+
+Pros:
+
+Fast and scalable
+
+Works well for large datasets
+
+Cons:
+
+Must choose k beforehand
+
+Sensitive to initialization
+
+Best for spherical clusters
+
+2.2 Hierarchical Clustering
+
+Creates a tree of clusters (dendrogram).
+
+Types:
+
+Agglomerative: start from individual docs and merge
+
+Divisive: start from one cluster and split
+
+Distance options: single, complete, average linkage
+
+Pros:
+
+No need to predefine k
+
+Good interpretability
+
+Cons:
+
+High complexity (O(n²))
+
+Not ideal for very large corpora
+
+2.3 Density-Based Clustering
+
+DBSCAN groups documents that form dense regions.
+
+Pros:
+
+Can detect arbitrary shapes
+
+Identifies noise/outliers
+
+Cons:
+
+Hard to tune parameters
+
+Sparse high-dimensional TF-IDF data reduces effectiveness
+
+2.4 Probabilistic Clustering
+
+Latent Dirichlet Allocation (LDA) models documents as mixtures of topics and topics as word distributions.
+
+Pros:
+
+Produces interpretable topics
+
+Cons:
+
+Sensitive to hyperparameters
+
+Bag-of-words assumption
+
+TEXT REPRESENTATION METHODS
+
+3.1 TF-IDF Vectors
+Sparse vectors suitable for K-means.
+
+3.2 Word Embeddings
+Dense semantic vectors (Word2Vec, GloVe). Document vectors can be averaged embeddings.
+
+3.3 Sentence Embeddings
+Best semantic representations for clustering:
+SBERT, USE, MiniLM, MPNet
+
+3.4 Document Embeddings
+Doc2Vec and transformer-based document encoders.
+
+CLUSTER EVALUATION METRICS
+
+4.1 Internal Metrics
+Used when true labels are not available.
+
+Silhouette Score (higher is better)
+
+Davies-Bouldin Index (lower is better)
+
+4.2 External Metrics
+Used when ground truth labels exist.
+
+Purity
+
+NMI (Normalized Mutual Information)
+
+ARI (Adjusted Rand Index)
+
+APPLICATIONS
+
+Search result clustering
+Topic discovery in news
+Customer feedback grouping
+Corpus exploration
+Digital library organization
+Recommender systems
+Fraud or pattern detection
+Market segmentation
+
+CHALLENGES
+
+High-dimensional sparse text vectors
+Choosing correct number of clusters
+Noise and outliers
+Synonymy and polysemy
+Interpreting cluster meaning
+Scalability for large corpora
+Parameter tuning in probabilistic or density methods
+
+MODERN ADVANCES
+
+7.1 BERT-based clustering using sentence embeddings
+7.2 Spectral clustering for non-spherical clusters
+7.3 Clustering in dense embedding space (DPR, ColBERT)
+7.4 Top2Vec for automatic topic discovery
+
+Summary
+
+Text clustering organizes documents without labels by grouping similar documents together. Common methods include K-means, hierarchical clustering, DBSCAN, and topic modeling (LDA). Stronger semantic representations using SBERT or other embeddings significantly improve clustering quality and interpretability.

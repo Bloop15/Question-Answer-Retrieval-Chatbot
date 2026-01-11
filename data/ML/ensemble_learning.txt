@@ -1,0 +1,157 @@
+ENSEMBLE LEARNING
+
+Ensemble learning combines multiple models to improve accuracy, stability, and generalization. The idea is that a collection of weak learners can form a strong learner.
+
+Ensembles reduce errors by lowering variance, lowering bias, or both.
+
+1. Why Ensembles Work
+
+Single models may overfit or miss patterns. Combining multiple diverse models improves performance.
+
+Diversity can be introduced through:
+
+Different subsets of data
+
+Different model types
+
+Different hyperparameters
+
+Random initializations
+
+Diverse models capture different aspects of the data.
+
+2. Bagging (Bootstrap Aggregating)
+
+Bagging trains multiple models on random bootstrap samples (sampling with replacement) of the data.
+
+Process:
+
+Draw several bootstrap samples
+
+Train a model on each sample
+
+Combine predictions by voting or averaging
+
+Benefits:
+
+Reduces variance
+
+Best for unstable models like decision trees
+
+Out-of-bag data can estimate generalization error without a validation set
+
+3. Random Forests
+
+Random Forests combine bagging with random feature selection.
+
+Method:
+
+Each tree trains on a bootstrap sample
+
+Each split selects from a random subset of features
+
+Trees are grown deep with no pruning
+
+Advantages:
+
+Low variance
+
+Handles high-dimensional data
+
+Robust to noise
+
+Fast and widely applicable
+
+4. Boosting
+
+Boosting trains models sequentially. Each new model focuses on correcting mistakes of previous models. Final prediction uses weighted voting.
+
+4.1 AdaBoost:
+
+Reweights samples after each iteration
+
+Assigns higher weight to misclassified points
+
+4.2 Gradient Boosting:
+
+Views boosting as gradient descent on a loss function
+
+Fits models to residual errors iteratively
+
+Popular implementations:
+
+XGBoost
+
+LightGBM
+
+CatBoost
+
+Boosting typically improves accuracy but can be sensitive to noise and overfitting.
+
+5. Stacking (Stacked Generalization)
+
+Stacking combines predictions of different base models using a meta-model.
+
+Steps:
+
+Train diverse models
+
+Use their outputs as features
+
+Train a final model to combine them
+
+Advantages:
+
+Very flexible
+
+Often yields highest accuracy
+
+6. Bayesian Model Averaging
+
+Combines models based on their posterior probabilities. It is theoretically principled but computationally expensive.
+
+7. How Ensembles Reduce Error
+
+Variance reduction: bagging reduces sensitivity to data fluctuations
+Bias reduction: boosting improves decision boundaries
+Stacking: can reduce both bias and variance
+
+Ensembles leverage complementary strengths of individual models.
+
+8. Importance of Diversity
+
+Models must be both accurate and different. Identical models add no benefit. Too much diversity may reduce consistency.
+
+9. Limitations of Ensemble Methods
+
+Harder to interpret
+
+Higher computational cost
+
+Sensitive to tuning (especially boosting)
+
+Risk of overfitting without regularization
+
+10. Choosing an Ensemble Method
+
+Use bagging or Random Forests when:
+
+Data is noisy
+
+Model variance is high
+
+Use boosting when:
+
+Strong predictive performance is required
+
+Data is relatively clean
+
+Use stacking when:
+
+Combining many different models
+
+Maximum accuracy is desired
+
+Summary
+
+Ensemble learning improves predictive performance by combining multiple models. Bagging reduces variance, boosting reduces bias, Random Forests add randomness to improve robustness, and stacking uses a meta-model to combine outputs. Ensembles are widely used in industry and ML competitions due to their strong performance and generalization.

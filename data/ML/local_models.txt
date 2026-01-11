@@ -1,0 +1,106 @@
+LOCAL MODELS (ETHEM ALPAYDIN, ML 2nd Edition)
+
+Local models make predictions using only the neighborhood of the input query point instead of learning a single global function. They rely on the assumption that nearby points have similar output values. Local models are useful when the global relationship is complex but the function is smooth within small regions.
+
+WHAT ARE LOCAL MODELS?
+
+Local models fit the function locally around the query point. They adapt to local structure and can model nonlinear behavior. They do not attempt to model the entire input space globally.
+
+Examples:
+
+k-nearest neighbors regression
+
+locally weighted regression
+
+local linear or polynomial models
+
+radial basis function networks
+
+K-NEAREST NEIGHBORS (KNN)
+
+KNN is a nonparametric local method.
+
+For regression:
+The prediction is the average of the outputs of the K closest training points to the query.
+
+For classification:
+The prediction is the majority class among the K closest neighbors.
+
+No training phase is required. All computation happens at query time.
+
+RADIAL BASIS FUNCTION NETWORKS (RBFNs)
+
+RBF networks use local activation functions such as Gaussian basis functions. They consist of an input layer, a radial basis function layer, and a linear output layer.
+
+A Gaussian basis function for center c and width sigma:
+phi(x) = exp(−||x − c||² / (2 sigma²))
+
+Training:
+
+Select basis function centers using methods such as k-means.
+
+Learn output layer weights using a linear regression solution.
+
+LOCALLY WEIGHTED REGRESSION (LWR)
+
+Also called locally weighted linear regression or LOESS.
+
+For each query input, fit a linear regression model using weighted least squares. Points closer to the query get higher weights through a distance-based kernel such as a Gaussian kernel.
+
+Properties:
+
+flexible and adaptive to local curvature
+
+strongly dependent on bandwidth selection
+
+LOCALLY LINEAR MODELS
+
+Local models can fit constant functions (like KNN), linear models (like LWR), or low-degree polynomials within neighborhoods. Only the local approximation needs to be accurate.
+
+MODEL COMPLEXITY
+
+Local methods have high complexity because each query point may require a new model fitting or neighborhood search. Complexity typically grows with dataset size.
+
+Advantages:
+
+no global assumptions
+
+naturally nonlinear
+
+Disadvantages:
+
+slow prediction time
+
+sensitive to noise
+
+memory intensive
+
+performance degrades in high dimensions
+
+COMPARISON OF LOCAL MODELS
+
+KNN: nonparametric, relies on nearest neighbors, simple but slow.
+LWR: nonparametric, smooth weighting, good for function smoothing.
+RBF networks: localized parametric models with basis functions.
+
+WHEN TO USE LOCAL MODELS
+
+Use when:
+
+data has strong localized behavior
+
+nonlinearities are local
+
+interpretability in local regions is desired
+
+Avoid when:
+
+dataset is large (slow at query time)
+
+noise is high
+
+feature dimension is high
+
+Summary
+
+Local models focus on regions near the query point. They offer flexibility and adaptiveness without requiring a global function. They include KNN, radial basis function networks, and locally weighted regression. They can model nonlinear structure but may be slow and perform poorly in high-dimensional spaces.

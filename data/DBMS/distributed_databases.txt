@@ -1,0 +1,102 @@
+Database security consists of policies and mechanisms that protect a database from unauthorized access, misuse, attacks, corruption, and data loss. It ensures confidentiality, integrity, and availability (CIA) of data.
+
+Why Database Security Is Important:
+• Protects sensitive and confidential data
+• Ensures authorized access only
+• Prevents unauthorized modifications
+• Maintains availability and reliability
+• Supports compliance and regulations
+
+Security Goals (CIA Triad):
+
+Confidentiality:
+• Prevent unauthorized access to data
+• Methods: authentication, access control, encryption
+
+Integrity:
+• Keep data accurate and unaltered
+• Methods: integrity constraints, hashing, audit trails
+
+Availability:
+• Ensure authorized users can access data at all times
+• Methods: backups, replication, load balancing, DoS protection
+
+Database Security Threats:
+• Unauthorized access
+• SQL injection
+• Malware and viruses
+• Insider attacks
+• Data leakage
+• Denial of service
+• Credential theft and spoofing
+
+Access Control Mechanisms:
+
+Authentication:
+• Verifies user identity
+• Methods: passwords, OTP, biometrics, certificates
+
+Authorization:
+• Controls what authenticated users can access and modify
+
+Access Control Models:
+• DAC: owner grants/revokes access
+• MAC: access controlled by security levels
+• RBAC: permissions assigned to roles and users assigned to roles
+
+Encryption:
+
+Encryption at Rest:
+• Protects files, backups, disks
+
+Encryption in Transit:
+• Protects data over network (SSL/TLS)
+
+Column-Level Encryption:
+• Protects sensitive fields (e.g., passwords)
+
+Hashing:
+• Used for secure password storage
+• Examples: SHA-256, bcrypt, Argon2
+
+Auditing and Monitoring:
+• Tracks logins, actions, changes
+• Helps intrusion detection and compliance
+
+Backup and Recovery:
+• Ensures availability after failure or attack
+• Methods: full, incremental, differential backups
+• Recovery: WAL, checkpoints, ARIES
+• Backups must be secure and encrypted
+
+Database Hardening:
+• Remove unused accounts and services
+• Change default passwords
+• Apply security patches
+• Restrict remote access
+• Enable firewalls
+• Strong credential policies
+
+SQL Injection Prevention:
+• Use prepared statements
+• Validate and sanitize inputs
+• Escape special characters
+• Restrict user privileges
+Example:
+SELECT * FROM users WHERE username = ?;
+
+SQL Security Commands:
+• GRANT: assign privileges
+• REVOKE: remove privileges
+• CREATE ROLE: define RBAC roles
+
+Security in Distributed Databases:
+• Challenges: multi-node environment, network vulnerabilities
+• Solutions: encryption, secure replication, Kerberos, federated identity
+
+Security in Cloud Databases:
+• Risks: shared environments, greater exposure
+• Measures: IAM roles, VPC isolation, KMS encryption, database firewalls, zero-trust policies
+
+Summary:
+Database security ensures that data remains confidential, accurate, and accessible. It relies on authentication, authorization, encryption, auditing, backups, secure configuration, and protection against attacks like SQL injection.

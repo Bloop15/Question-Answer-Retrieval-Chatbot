@@ -1,0 +1,146 @@
+JAVA 8 FEATURES
+
+Java 8 introduced major enhancements including lambda expressions, functional interfaces, the Stream API, default and static methods in interfaces, method and constructor references, the Optional class, the new Date and Time API, and performance improvements. These features made Java more suitable for functional programming.
+
+LAMBDA EXPRESSIONS
+
+Lambda expressions allow writing anonymous functions in a concise way.
+
+Syntax:
+(parameter) -> expression
+(parameter) -> { statements }
+
+Example:
+Runnable r = () -> System.out.println("Hello");
+(a, b) -> a + b
+
+Lambdas simplify collection and stream operations.
+
+FUNCTIONAL INTERFACES
+
+A functional interface contains exactly one abstract method.
+
+Examples:
+Runnable, Callable, Comparator, Comparable, ActionListener
+
+Java 8 added new functional interfaces in java.util.function such as:
+Predicate<T> - test()
+Function<T,R> - apply()
+Consumer<T> - accept()
+Supplier<T> - get()
+UnaryOperator<T> - apply()
+BinaryOperator<T> - apply()
+
+Example:
+Predicate<Integer> isEven = n -> n % 2 == 0;
+
+METHOD REFERENCES
+
+A shorter form of lambda expressions.
+
+Types:
+Reference to static method - Math::sqrt
+Reference to instance method - String::toLowerCase
+Reference to constructor - ArrayList::new
+
+STREAM API
+
+Used for processing collections with filtering, sorting, mapping, reducing, and parallel operations.
+
+Creating streams:
+list.stream()
+Arrays.stream(arr)
+Stream.of(1, 2, 3)
+
+Intermediate operations:
+filter(), map(), sorted(), distinct(), limit(), skip()
+
+Terminal operations:
+forEach(), collect(), reduce(), min(), max(), count()
+
+Example:
+list.stream()
+.filter(x -> x > 10)
+.map(x -> x * 2)
+.forEach(System.out::println);
+
+Parallel processing:
+list.parallelStream().forEach(System.out::println);
+
+DEFAULT METHODS IN INTERFACES
+
+Interfaces can have method bodies using the default keyword.
+interface A {
+default void show() { System.out.println("Hello"); }
+}
+
+STATIC METHODS IN INTERFACES
+
+Interfaces can include static methods.
+MathUtil.square(5);
+
+OPTIONAL CLASS
+
+Provides a container for a value that may be null to prevent NullPointerException.
+
+Optional<String> op = Optional.ofNullable(value);
+op.orElse("Unknown");
+
+Useful methods: isPresent(), ifPresent(), orElse(), orElseThrow()
+
+NEW DATE AND TIME API (java.time)
+
+Modern, immutable, and thread safe date and time classes.
+LocalDate, LocalTime, LocalDateTime, ZonedDateTime, Period, Duration
+
+Example:
+LocalDate now = LocalDate.now();
+LocalDate nextWeek = now.plusWeeks(1);
+
+FOREACH METHOD
+
+list.forEach(System.out::println);
+
+JAVASCRIPT ENGINE (Nashorn)
+
+Allows executing JavaScript inside Java using:
+ScriptEngine engine = new ScriptEngineManager().getEngineByName("nashorn");
+engine.eval("print('Hello');");
+
+Deprecated in Java 15.
+
+COMPLETABLEFUTURE
+
+Supports asynchronous programming with chaining and parallelism.
+CompletableFuture.supplyAsync(() -> compute())
+.thenAccept(result -> System.out.println(result));
+
+BASE64 ENCODING AND DECODING
+
+Base64 encoding utilities added to java.util.Base64.
+
+PERFORMANCE IMPROVEMENTS
+
+Compact strings and better JVM optimization enhance execution speed.
+
+EXAMPLE PROGRAM
+
+import java.util.;
+import java.util.stream.;
+public class Demo {
+public static void main(String[] args) {
+List<Integer> list = Arrays.asList(1,2,3,4,5);
+list.stream()
+.filter(x -> x % 2 == 0)
+.map(x -> x * x)
+.forEach(System.out::println);
+}
+}
+
+Output:
+4
+16
+
+SUMMARY
+
+Java 8 introduced features such as lambda expressions, functional interfaces, the Stream API, Optional class, and the updated Date and Time API. These features provide more readable, flexible, and efficient coding approaches and modernize Java for functional programming.

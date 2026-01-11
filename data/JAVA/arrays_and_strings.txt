@@ -1,0 +1,114 @@
+ARRAYS AND STRINGS IN JAVA
+Arrays and Strings are fundamental data structures in Java used for storing collections of data and text.
+
+ARRAYS IN JAVA
+An array is a fixed-size collection of elements of the same data type stored in contiguous memory. Arrays are objects and can store primitives or references.
+
+Array Declaration
+int[] arr;
+double[] prices;
+String[] names;
+
+Array Allocation
+arr = new int[5];
+or
+int[] arr = new int[5];
+
+Array Initialization
+int[] arr = {10, 20, 30, 40};
+or assign using indexes:
+arr[0] = 10;
+
+Array Length
+int n = arr.length;
+
+Array Traversal
+for(int i = 0; i < arr.length; i++) { System.out.println(arr[i]); }
+Enhanced for-loop:
+for(int x : arr) { System.out.println(x); }
+
+Multidimensional Arrays
+int[][] matrix = new int[3][3];
+int[][] mat = {
+{1, 2, 3},
+{4, 5, 6}
+};
+Access: mat[0][1];
+
+Jagged Arrays
+int[][] jag = new int[3][];
+jag[0] = new int[2];
+jag[1] = new int[5];
+jag[2] = new int[1];
+
+Common Array Errors
+ArrayIndexOutOfBoundsException: invalid index
+NullPointerException: array reference is null
+
+Arrays Utility Class (java.util.Arrays)
+Arrays.sort(arr);
+Arrays.binarySearch(arr, 10);
+Arrays.fill(arr, 0);
+Arrays.toString(arr);
+
+STRINGS IN JAVA
+Strings are immutable sequences of characters. Literal Strings are stored in the String Constant Pool (SCP).
+
+Creating Strings
+String s1 = "Hello"; // SCP
+String s2 = new String("Hello"); // Heap
+
+String Immutability
+String s = "Hi";
+s = s + " there"; // new object created
+
+Important String Methods
+length()
+charAt(i)
+substring(a, b)
+equals(), equalsIgnoreCase()
+compareTo()
+contains()
+indexOf()
+toLowerCase(), toUpperCase()
+trim()
+replace()
+
+String Comparison
+equals() → compares values
+== → compares memory references
+
+StringBuilder and StringBuffer
+Used for dynamic or frequent string modifications.
+StringBuilder sb = new StringBuilder("Hello"); sb.append(" World");
+StringBuffer sb2 = new StringBuffer("Hello"); sb2.append(" World");
+StringBuilder: faster (not thread-safe)
+StringBuffer: thread-safe (synchronized)
+
+String vs StringBuilder vs StringBuffer
+String: immutable, not thread-safe, slower
+StringBuilder: mutable, faster
+StringBuffer: mutable, thread-safe, slower than StringBuilder
+
+Conversions
+String → char[] : char[] arr = s.toCharArray();
+char[] → String : String s = new String(arr);
+int → String : String.valueOf(123);
+String → int : Integer.parseInt("100");
+
+EXAMPLE PROGRAM
+public class Demo {
+public static void main(String[] args) {
+int[] arr = {1, 2, 3, 4};
+for(int x : arr) System.out.println(x);
+String s = "Hello Java";
+System.out.println(s.substring(6));
+System.out.println(s.toUpperCase());
+StringBuilder sb = new StringBuilder("Hi");
+sb.append(" there");
+System.out.println(sb);
+}
+}
+
+SUMMARY
+Arrays store sequential data of the same type. Strings represent immutable character sequences. Java provides efficient tools such as Arrays class and StringBuilder for better performance with string operations.

@@ -1,0 +1,141 @@
+JAVA MEMORY MODEL (JMM)
+
+The Java Memory Model defines how threads interact with memory. It explains how variables are stored, how threads read and write shared data, and when updates by one thread become visible to others. It is essential for writing thread safe concurrent programs.
+
+JVM MEMORY STRUCTURE
+
+Java memory is divided into:
+
+Heap: stores objects and instance variables. Shared across threads.
+Stack: each thread has its own stack for method calls and local variables.
+Method Area: stores class definitions and static data.
+PC Register: holds the current instruction for each thread.
+Native Method Stack: used for native (non Java) code.
+
+WHAT IS THE JAVA MEMORY MODEL
+
+The JMM specifies rules for visibility, ordering, and atomicity of memory operations. It ensures predictable behavior in multithreaded programs.
+
+THREADS AND SHARED MEMORY
+
+Threads do not always read variables directly from main memory. Each thread maintains its own working memory (cache). Updates may not be visible to other threads unless proper synchronization is used.
+
+VISIBILITY PROBLEM
+
+Changes by one thread may not be visible to another thread without synchronization.
+
+Example:
+boolean flag = false;
+Thread 1 sets flag = true
+Thread 2 loops while flag is false
+Thread 2 may never see the change
+
+VOLATILE KEYWORD
+
+volatile ensures visibility and ordering.
+A volatile variable is always read from and written to main memory.
+However, volatile does not provide atomicity.
+
+Example:
+volatile boolean flag;
+
+ATOMICITY
+
+An atomic operation completes fully or not at all.
+Simple variable reads and writes are atomic except long and double in older versions.
+count++ is not atomic because it breaks into read, modify, write.
+Synchronization or atomic classes are needed.
+
+SYNCHRONIZATION IN JMM
+
+synchronized guarantees:
+Visibility: threads read from main memory
+Atomicity: only one thread executes the critical section
+Ordering: prevents instruction reordering
+
+Example:
+synchronized void update() {
+count++;
+}
+
+HAPPENS BEFORE RELATIONSHIP
+
+If action A happens before action B:
+A’s changes are visible to B
+Order must be preserved
+
+Important cases:
+Thread start
+Thread join
+Lock release happens before lock acquire
+Volatile write happens before volatile read
+Program order inside a single thread
+
+INSTRUCTION REORDERING
+
+The JVM and CPU may reorder instructions for optimization.
+Synchronization and volatile prevent harmful reordering.
+
+DOUBLE CHECK LOCKING PROBLEM
+
+Without volatile, a Singleton instance may appear partially constructed due to reordering.
+
+Fix:
+private static volatile Singleton instance;
+
+FALSE SHARING
+
+Updating independent variables located close together in memory may cause cache contention between threads. Padding data or using special annotations can help.
+
+ATOMIC PACKAGE
+
+java.util.concurrent.atomic provides lock free atomic operations.
+
+Examples: AtomicInteger, AtomicBoolean, AtomicLong
+Example operation: incrementAndGet()
+
+EXAMPLE VISIBILITY ISSUE
+
+Without volatile, one thread may not see the updated value of a shared variable.
+volatile keyword fixes this issue.
+
+KEY CONCEPTS
+
+Visibility: threads see each other’s updates
+Atomicity: operations occur completely
+Ordering: operations run in expected order
+volatile: provides visibility and ordering
+synchronized: provides visibility, ordering, and atomicity
+Atomic classes: lock free atomic operations with visibility
+
+EXAMPLE PROGRAM
+
+class Counter {
+private int count = 0;
+public synchronized void increment() {
+count++;
+}
+public synchronized int get() {
+return count;
+}
+}
+class Test {
+public static void main(String[] args) throws Exception {
+Counter c = new Counter();
+Thread t1 = new Thread(() -> {
+for(int i = 0; i < 1000; i++) c.increment();
+});
+Thread t2 = new Thread(() -> {
+for(int i = 0; i < 1000; i++) c.increment();
+});
+t1.start();
+t2.start();
+t1.join();
+t2.join();
+System.out.println("Count = " + c.get());
+}
+}
+
+SUMMARY
+
+The Java Memory Model defines how threads communicate through working memory and main memory. It controls visibility, ordering, and atomicity through volatile, synchronized, happens before rules, and atomic classes. Understanding JMM is required for writing correct concurrent programs.

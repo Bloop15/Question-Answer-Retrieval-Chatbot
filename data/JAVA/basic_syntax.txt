@@ -1,0 +1,132 @@
+BASIC SYNTAX IN JAVA
+
+Java syntax is simple and similar to C/C++. A Java program consists of classes, methods, variables, statements, and expressions.
+
+STRUCTURE OF A JAVA PROGRAM
+
+Example:
+class Hello {
+public static void main(String[] args) {
+System.out.println("Hello, Java");
+}
+}
+
+Key points:
+
+class defines a class
+
+main() is the entry point
+
+System.out.println() prints output to the console
+
+COMMENTS IN JAVA
+
+Used to explain or document code.
+
+Types of comments:
+
+Single-line: // comment
+
+Multi-line: /* comment */
+
+Documentation: /** comment */
+
+IDENTIFIERS
+
+Identifiers are names given to variables, methods, classes, and packages.
+
+Rules:
+
+Cannot begin with a number
+
+Cannot use reserved keywords
+
+Case-sensitive
+
+Can include letters, digits, $ and _
+
+Valid examples: age, count1, _name, $value
+Invalid examples: 2age, class, name@
+
+KEYWORDS (RESERVED WORDS)
+
+Keywords cannot be used as identifiers.
+Examples: class, public, static, void, int, new, return, if, else, break, try, catch
+Java has 53 keywords in Java 17 and above.
+
+DATA TYPES
+
+Java is statically typed. Every variable must have a data type.
+
+Primitive data types:
+byte, short, int, long, float, double, char, boolean
+
+Non-primitive data types:
+Strings, Arrays, Classes, Interfaces, Objects
+
+VARIABLES IN JAVA
+
+Declaration:
+int age;
+
+Initialization:
+age = 20;
+
+Declaration + initialization:
+int age = 20;
+
+Types of variables:
+
+Local: inside methods
+
+Instance: declared inside class but outside methods
+
+Static: shared across all objects of the class
+
+LITERALS IN JAVA
+
+Fixed constant values assigned to variables.
+
+Examples:
+int x = 10;
+double y = 3.14;
+char ch = 'A';
+String s = "Java";
+boolean flag = true;
+
+OPERATORS
+
+Arithmetic operators: + - * / %
+Relational operators: == != > < >= <=
+Logical operators: && || !
+Assignment operators: = += -= *= /= %=
+Increment and decrement: ++ --
+Ternary operator: condition ? value1 : value2
+
+INPUT AND OUTPUT IN JAVA
+
+Console Output:
+System.out.println("Hello");
+System.out.print("Hi");
+
+Console Input using Scanner:
+import java.util.Scanner;
+Scanner sc = new Scanner(System.in);
+int x = sc.nextInt();
+String s = sc.nextLine();
+
+TYPE CASTING
+
+Implicit or widening conversion (automatic):
+int x = 10;
+double y = x;
+
+Explicit or narrowing conversion (manual):
+double a = 9.99;
+int b = (int) a;
+
+ESCAPE SEQUENCES
+
+\n new line
+\t tab
+" double quote

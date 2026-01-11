@@ -1,0 +1,99 @@
+Branch and Bound is an algorithmic approach for optimization problems that require exact solutions, especially NP-hard and combinatorial problems. It improves on backtracking by using bounds to prune subtrees that cannot produce a better result than the current best solution. It is used for solving problems like TSP, 0/1 Knapsack, Assignment, Job Scheduling, etc.
+
+Key Concepts
+
+State Space Tree:
+Root: empty solution
+Node: partial solution
+Leaf: complete solution
+
+Branching:
+Expand the current node into child nodes. For example, in TSP, branching means selecting the next city.
+
+Bounding:
+A bound is an estimate of the best possible solution from a subtree.
+Lower Bound: used for minimization problems
+Upper Bound: used for maximization problems
+If the bound indicates no improvement over the current best, prune the branch.
+
+Pruning:
+If a node’s bound is worse than the best-known solution, discard that subtree.
+This greatly reduces unnecessary searching.
+
+Branch and Bound vs Backtracking
+Goal:
+Backtracking: find feasible solutions
+Branch and Bound: find optimal solution
+Pruning:
+Backtracking: prunes by feasibility
+Branch and Bound: prunes by feasibility and bounds
+BnB is faster for optimization tasks and better for NP-hard problems.
+
+Search Order Types
+
+BFS (FIFO Branch and Bound):
+Explores nodes level by level using a queue.
+
+DFS (LIFO Branch and Bound):
+Uses a stack. Saves memory.
+
+LC Branch and Bound (Least-Cost):
+Uses a priority queue. Expands node with best bound first. Most efficient.
+
+Classic Branch and Bound Applications
+
+0/1 Knapsack:
+Goal: maximize total profit without exceeding capacity.
+Branching: include or exclude an item.
+Bound: use fractional knapsack to estimate optimistic profit.
+Prune: if bound < current best profit.
+
+Traveling Salesman Problem (TSP):
+Goal: minimum cost Hamiltonian cycle.
+Branching: choose next city.
+Bound: reduced cost matrix or minimum edge cost approximations.
+Prune: if bound >= best tour cost.
+More efficient than naive O(n!) search.
+
+Assignment Problem:
+Uses cost matrix reduction for bounds.
+Branches by assigning workers to jobs.
+Prunes based on bounds.
+Hungarian method is an alternative polynomial technique.
+
+Job Scheduling Problems:
+Used for minimizing lateness, completion time, machine allocation, CPU scheduling.
+
+Bounding Functions
+Good bounding improves pruning.
+Types:
+Cost matrix reduction (TSP, assignment)
+Greedy relaxation such as fractional knapsack bounds
+Heuristic bounds like MST lower bound for TSP
+
+Example: LC Branch and Bound for Knapsack (concept)
+best = 0
+Use priority queue sorted by bound.
+Expand best promising node first.
+Update best when full solution found.
+Prune nodes with bound worse than best.
+
+Strengths
+Guarantees optimal solution
+Large pruning of state space
+Effective for NP-hard optimization problems
+Applicable to many domains
+
+Weaknesses
+Worst-case exponential time
+Requires good bounding functions
+May consume high memory
+More complex than backtracking
+
+Where Branch and Bound Excels
+Better than Backtracking: optimization with strong bounds
+Better than Greedy: guarantees optimality
+Better than Dynamic Programming: avoids huge DP tables through pruning
+
+Summary
+Branch and Bound enhances backtracking by using bounds to eliminate non-promising paths. It is highly effective for NP-hard optimization problems like TSP, Knapsack, scheduling, and assignment. Its effectiveness depends on strong bounding functions that reduce the combinatorial explosion while still guaranteeing optimal results.

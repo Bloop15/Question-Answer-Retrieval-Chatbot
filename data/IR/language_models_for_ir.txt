@@ -1,0 +1,115 @@
+LANGUAGE MODELS FOR INFORMATION RETRIEVAL (LMIR)
+
+Language Models in IR estimate the probability that a document would generate the user’s query (Query Likelihood Model). LMIR is a probabilistic approach unlike heuristic models (TF-IDF, BM25).
+
+BASIC IDEA OF LMIR
+
+Each document has a language model defining a probability distribution over terms.
+
+Ranking principle:
+score(D | Q) = P(Q | D)
+
+Documents with higher probability of generating the query are considered more relevant.
+
+QUERY LIKELIHOOD MODEL
+
+Assume query terms are independent:
+P(Q | D) = Π P(qi | D)
+
+MAXIMUM LIKELIHOOD ESTIMATE (MLE)
+
+P(t | D) = TF(t, D) / |D|
+
+Problem: P becomes 0 if term does not appear in the document. Smoothing is required.
+
+SMOOTHING TECHNIQUES
+
+Prevent zero probabilities; combine document and collection statistics.
+
+4.1 Laplace Smoothing
+P(t | D) = (TF(t, D) + 1) / (|D| + V)
+V = vocabulary size
+Rarely used in IR (over-smoothing)
+
+4.2 Jelinek-Mercer (JM) Smoothing
+P(t | D) = (1 − λ) P_MLE(t | D) + λ P(t | C)
+λ typically 0.1–0.4
+Interpolates document and collection models
+
+4.3 Dirichlet Prior Smoothing
+P(t | D) = (TF(t, D) + μ P(t | C)) / (|D| + μ)
+μ ≈ 2000 (common value)
+Balances term probability based on document length
+Most widely used method in search engines
+
+COLLECTION LANGUAGE MODEL (CLM)
+
+P(t | C) = total_count(t) / total_terms_in_collection
+
+Provides background probability for terms across the corpus.
+
+DOCUMENT SCORE COMPUTATION
+
+For query Q = {q1, q2, …, qk}:
+score(D | Q) = Σ log P(qi | D)
+Logs prevent numerical underflow.
+
+ADVANTAGES OF LMIR
+
+Probabilistic foundation
+Accounts for term frequency and collection statistics
+Handles zero probability via smoothing
+Often works well for short queries
+
+LIMITATIONS OF LMIR
+
+Bag-of-words assumption
+No semantic similarity
+Cannot resolve synonyms and polysemy
+Performance drops for long queries
+
+EXTENSIONS OF LMIR
+
+9.1 Relevance Models (RM1/RM2)
+Used in pseudo relevance feedback for query expansion
+
+9.2 Query Expansion
+Enhances vocabulary matching
+
+9.3 Translation Models
+P(q | D) = Σ P(q | t) P(t | D)
+Handles vocabulary mismatch
+
+9.4 Topic Models (LDA)
+Better document representation for retrieval
+
+NEURAL LANGUAGE MODELS IN IR
+
+Modern IR uses neural semantic models:
+
+10.1 Word2Vec / GloVe
+Dense vector embeddings for semantic similarity
+
+10.2 Transformers (BERT)
+Contextual representations, reranking
+
+10.3 DPR (Dense Passage Retrieval)
+Vector-space retrieval via embedding similarity
+
+10.4 ColBERT
+Late interaction, efficient reranking
+
+10.5 SPLADE
+Sparse transformer suitable for indexing and fast retrieval
+
+COMPARISON: LMIR vs BM25 vs Neural IR
+
+Feature | LMIR | BM25 | Neural IR
+Type | Probabilistic | Heuristic | Deep Semantic
+Scoring | Query likelihood | TF normalization | Embedding similarity
+Strength | Strong theory | Practical strong performance | Semantic understanding
+Weakness | No semantics | Heuristic assumptions | High computational cost
+
+Summary
+
+LMIR ranks documents by the probability of generating the query. It uses smoothing (JM, Dirichlet) to avoid zero probabilities and integrates both document and collection statistics. LMIR is a foundational IR model from which modern neural retrieval approaches evolved.

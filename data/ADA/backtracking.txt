@@ -1,0 +1,76 @@
+Backtracking is a depth-first search based problem-solving method that builds a solution step-by-step and abandons a path when it cannot lead to a valid result. It is used for constraint-based and combinatorial search problems.
+
+Core Concepts
+State Space Tree:
+
+Node: partial solution
+
+Root: empty solution
+
+Leaf: complete solution
+
+Branch: possible choice
+
+Feasibility:
+Check if the partial solution can still lead to a valid complete solution.
+If not feasible, prune the branch and backtrack.
+
+Backtracking Process:
+Choose a candidate, check feasibility, recurse, undo the step if it fails, and try another candidate.
+
+Generic Backtracking Algorithm:
+BACKTRACK(x):
+if x is a solution:
+output x
+else:
+for each feasible choice c:
+add c to x
+BACKTRACK(x)
+remove c from x
+
+Common Backtracking Problems
+
+N-Queens:
+Place N queens so that no two queens attack each other. Try each row for each column and prune unsafe positions. Worst-case complexity: O(N!).
+
+Subset Sum:
+Find subsets that sum to a target. Include or exclude each element. Prune when sum exceeds target.
+
+Graph Coloring:
+Color each vertex so that adjacent vertices have different colors. Used in scheduling and register allocation.
+
+Hamiltonian Cycle:
+Find a cycle that visits each vertex exactly once. Exponential time complexity.
+
+Sudoku Solver:
+Fill 9x9 grid so row, column, and subgrid constraints are satisfied by digits 1-9.
+
+Permutations and Combinations:
+Generate permutations, combinations, and power set arrangements.
+
+Types of Problems:
+Decision: check if a solution exists.
+Enumeration: generate all valid solutions.
+Optimization: select the best valid solution.
+
+Comparison with Other Techniques:
+Backtracking: constraint-based search with pruning.
+Dynamic Programming: avoids recomputation using overlapping subproblems.
+Branch and Bound: uses bounds for strong pruning in optimization tasks.
+
+Strengths:
+Simple recursive design.
+Prunes large search areas.
+Suitable for exact and constraint-based problems.
+
+Weaknesses:
+Worst-case exponential time.
+May explore many invalid paths.
+Requires feasibility checks at each step.
+
+When to Use:
+When problems require exact solutions, involve constraints, need multiple solutions, or are combinatorial.
+Examples include N-Queens, Graph Coloring, Sudoku, Subset Sum, Permutation Generation.
+
+Summary:
+Backtracking explores possibilities by choosing, validating, and undoing decisions to reach all valid solutions. It is essential for constraint satisfaction and combinatorial search tasks.

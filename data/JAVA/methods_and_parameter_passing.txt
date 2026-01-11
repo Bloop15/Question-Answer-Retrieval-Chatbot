@@ -1,0 +1,146 @@
+METHODS AND PARAMETER PASSING IN JAVA
+
+Methods in Java are reusable blocks of code designed to perform a specific task. They support modularity, readability, and code reuse. Java allows method definition, method calling, method overloading, and pass-by-value parameter passing.
+
+WHAT IS A METHOD
+
+A method is a group of statements that performs an operation.
+
+Syntax:
+returnType methodName(parameters) {
+// body
+}
+
+Example:
+int add(int a, int b) {
+return a + b;
+}
+
+TYPES OF METHODS
+
+User defined methods: created by the programmer.
+Predefined methods: provided by Java API, such as Math.sqrt() and System.out.println().
+
+Static methods:
+Belong to the class and called using ClassName.method().
+
+Instance methods:
+Belong to a specific object and called using obj.method().
+
+METHOD SIGNATURE
+
+A method's signature includes:
+Method name
+Parameter types and order
+
+Return type is not part of the signature.
+
+Example: add(int, int)
+
+RETURN TYPE
+
+The return statement sends a value back.
+If no value is returned, the method uses void.
+
+Example:
+void print() {
+System.out.println("Hello");
+}
+
+PARAMETERS AND ARGUMENTS
+
+Parameters are variables in method definition.
+Arguments are values passed during method call.
+
+Example:
+void greet(String name) // name is parameter
+greet("Alice") // "Alice" is argument
+
+PARAMETER PASSING IN JAVA
+
+Java uses pass-by-value only.
+
+Meaning:
+A copy of the value is passed. The original is never directly modified by the function call.
+
+6.1 Primitive types
+
+Values are copied. Changing the parameter does not affect the original variable.
+
+Example:
+void change(int x) { x = 10; }
+int a = 5;
+change(a);
+a remains 5
+
+6.2 Objects
+
+Objects are also passed by value, but the value is a reference.
+So the method can modify object contents, but cannot make the caller reference a new object.
+
+Modifying fields affects original object.
+Reassigning the reference does not affect caller.
+
+METHOD OVERLOADING
+
+Same method name, but different parameter types or number or order of parameters.
+
+Example:
+int sum(int a, int b)
+double sum(double a, double b)
+int sum(int a, int b, int c)
+
+Return type alone cannot differentiate overloaded methods.
+
+VARARGS (VARIABLE ARGUMENTS)
+
+Allows passing an unknown number of arguments.
+
+Syntax:
+void fun(int... a)
+
+Rules:
+Only one varargs parameter
+Must be the last parameter
+
+RECURSION
+
+A method calling itself.
+Requires:
+Base case
+Recursive step
+
+Example:
+int factorial(int n) {
+if(n == 0) return 1;
+return n * factorial(n - 1);
+}
+
+SCOPE OF VARIABLES
+
+Local scope: inside method or block
+Instance scope: instance variables accessible through object
+Static scope: shared among all objects of a class
+
+ACCESS MODIFIERS AND METHODS
+
+public: accessible everywhere
+private: within same class
+protected: same package and subclasses
+default: same package only
+
+EXAMPLES
+
+void greet() {
+System.out.println("Hello");
+}
+int add(int a, int b) {
+return a + b;
+}
+static int square(int x) {
+return x * x;
+}
+
+SUMMARY
+
+Methods enable modular and reusable code. Java always uses pass-by-value, including for objects where the reference value is copied. Key concepts include method overloading, static and instance methods, varargs, recursion, and access control.

@@ -1,0 +1,330 @@
+CHAPTER 8 — MULTIPLE PROCESSOR SYSTEMS
+
+Modern computers often contain multiple CPUs (cores) that run in parallel.
+Operating systems must efficiently manage these processors, handle synchronization, scheduling, and memory sharing.
+
+Multiprocessor systems increase:
+
+Performance
+
+Throughput
+
+Scalability
+
+Reliability
+
+=========================================================
+1. TYPES OF MULTIPROCESSOR SYSTEMS
+=========================================================
+✔ 1. Symmetric Multiprocessing (SMP)
+
+All CPUs are identical
+
+Share a single memory
+
+One OS instance manages all CPUs
+
+Popular in modern multicore systems
+
+✔ 2. Asymmetric Multiprocessing (AMP)
+
+Each CPU assigned specific tasks
+
+One master processor controls others
+
+Used in older systems
+
+✔ 3. Massively Parallel Processing (MPP)
+
+Many processors connected via fast network
+
+Used for supercomputing and HPC
+
+✔ 4. Multicore Processors
+
+Multiple cores on one chip
+
+Share caches, memory buses
+
+Efficient communication
+
+=========================================================
+2. ARCHITECTURAL MODELS
+=========================================================
+✔ UMA (Uniform Memory Access)
+
+All CPUs access memory with same latency
+
+Simpler but does not scale well
+
+✔ NUMA (Non-Uniform Memory Access)
+
+Memory divided into nodes
+
+Access to local memory faster
+
+OS must manage memory placement
+
+Used in large servers
+
+✔ COMA (Cache-Only Memory Architecture)
+
+No main memory; everything cached
+
+Rare & experimental
+
+=========================================================
+3. CACHE COHERENCE
+=========================================================
+
+Multiple CPUs with private caches introduce consistency problems.
+
+Two CPUs may have different values for the same memory location.
+
+3.1 Snooping Protocols
+
+All caches monitor (snoop) the bus for changes.
+
+3.2 MESI Cache Coherence Protocol
+
+Four cache states:
+
+Modified
+
+Exclusive
+
+Shared
+
+Invalid
+
+Ensures:
+
+Reads and writes consistent across CPUs
+
+=========================================================
+4. MEMORY CONSISTENCY MODELS
+=========================================================
+
+Defines how memory operations appear to other CPUs.
+
+✔ Sequential Consistency
+
+Operations appear in program order.
+
+✔ Weak Consistency
+
+Reordering allowed for performance.
+
+Examples:
+
+Release consistency
+
+Acquire consistency
+
+Modern CPUs often use weak models for speed.
+
+=========================================================
+5. MULTIPROCESSOR SCHEDULING
+=========================================================
+
+Scheduling is more complex with multiple CPUs.
+
+5.1 Centralized Scheduling
+
+One scheduler assigns tasks to all CPUs.
+
+5.2 Distributed Scheduling
+
+Each CPU schedules its own tasks.
+
+5.3 Processor Affinity
+
+OS tries to keep a process on same CPU:
+
+Better cache performance
+
+Reduced migration overhead
+
+Types:
+
+Soft affinity
+
+Hard affinity
+
+5.4 Load Balancing
+
+Scheduler must distribute work evenly.
+
+Methods:
+
+Work stealing
+
+Periodic rebalancing
+
+Idle CPU pulls tasks
+
+=========================================================
+6. MULTITHREADING ON MULTICORE SYSTEMS
+=========================================================
+
+Parallel programming models:
+
+✔ Fine-Grained Multithreading
+
+Switch threads every cycle.
+
+✔ Coarse-Grained Multithreading
+
+Switch after long stalls (e.g., cache miss).
+
+✔ Simultaneous Multithreading (SMT)
+
+Multiple threads issue instructions every cycle (e.g., Intel Hyper-Threading).
+
+=========================================================
+7. MULTIPROCESSOR SYNCHRONIZATION
+=========================================================
+
+Challenges scale with more CPUs.
+
+Atomic operations
+
+Test-and-set
+
+Compare-and-swap (CAS)
+
+Load-linked/store-conditional (LL/SC)
+
+Used to build:
+
+Locks
+
+Semaphores
+
+Barriers
+
+7.1 Spinlocks
+
+Busy-waiting lock.
+
+Efficient if:
+
+Waiting time is short
+
+Running on multicore
+
+7.2 Blocking Locks
+
+Put thread to sleep if lock unavailable.
+
+Better for long wait times.
+
+7.3 Barriers
+
+Ensure all threads reach a checkpoint before continuing.
+
+Essential in:
+
+Parallel loops
+
+HPC workloads
+
+=========================================================
+8. MULTIPROCESSOR OPERATING SYSTEM DESIGN
+=========================================================
+
+Modern OSes include:
+
+✔ Multithreaded kernel
+
+To utilize all cores.
+
+✔ Fine-grained locking
+
+Split kernel locks into smaller locks:
+
+Per-CPU locks
+
+Per-subsystem locks
+
+✔ Lock-Free & Wait-Free Algorithms
+
+Avoid blocking threads:
+
+Atomic primitives
+
+CAS loops
+
+Hazard pointers
+
+✔ NUMA-Aware Scheduling & Memory Allocation
+
+Keep processes close to their data.
+
+✔ Interrupt Routing
+
+Distribute hardware interrupts across CPUs.
+
+✔ Per-CPU Kernel Data Structures
+
+Avoid cache contention.
+
+=========================================================
+9. VIRTUALIZATION ON MULTICORE
+=========================================================
+
+Virtual Machine Monitors must:
+
+Schedule VMs across cores
+
+Provide virtual CPUs (vCPUs)
+
+Handle NUMA placement
+
+Manage contention
+
+VM migration is more complex in NUMA systems.
+
+=========================================================
+10. DISTRIBUTED SHARED MEMORY (DSM)
+=========================================================
+
+Simulates shared memory over networked machines.
+
+Issues:
+
+Latency
+
+Consistency
+
+Synchronization
+
+Rarely used now; replaced by partitioned distributed architectures.
+
+=========================================================
+11. GPU PROGRAMMING
+=========================================================
+
+GPUs contain thousands of cores.
+
+Programming models:
+
+CUDA
+
+OpenCL
+
+Vulkan compute
+
+OS manages:
+
+GPU memory
+
+Context switching
+
+Kernel scheduling
+
+Summary
+
+Multiprocessor systems include SMP, NUMA, and multicore processors.
+OS responsibilities include scheduling, synchronization, cache coherence, memory placement, and load balancing.
+Efficient multiprocessor support is crucial for performance in modern systems—servers, desktops, and cloud infrastructure.

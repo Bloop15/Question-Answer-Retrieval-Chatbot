@@ -1,0 +1,162 @@
+CLASSES AND OBJECTS IN JAVA
+
+Java is an object-oriented language. Classes and objects are the core building blocks of Java programs.
+
+WHAT IS A CLASS?
+
+A class is a blueprint or template used to create objects. It defines fields (data) and methods (behavior).
+
+Example:
+class Student {
+int roll;
+String name;
+void display() {
+System.out.println(roll + " " + name);
+}
+}
+
+A class does not occupy memory until an object is created.
+
+WHAT IS AN OBJECT?
+
+An object is an instance of a class. It has state (values in variables), behavior (methods), and identity (memory location).
+
+Object creation:
+Student s1 = new Student();
+
+OBJECT CREATION PROCESS
+
+Student s = new Student();
+
+Student is the class name.
+s is the reference variable.
+new allocates memory.
+Student() calls the constructor.
+
+Memory is allocated in heap.
+
+ACCESSING FIELDS AND METHODS
+
+Using dot operator:
+
+s.roll = 1;
+s.name = "John";
+s.display();
+
+FIELDS OR INSTANCE VARIABLES
+
+Declared inside a class but outside methods. Each object has its own copy.
+
+Example:
+class Car {
+String color;
+int speed;
+}
+
+METHODS
+
+Define actions or behavior.
+
+Example:
+void run() {
+System.out.println("Car is running");
+}
+
+THIS KEYWORD
+
+Refers to the current object.
+Used to access instance variables, call constructors, and pass the current object.
+
+Example:
+this.name = name;
+
+STATIC MEMBERS
+
+Belong to the class, not objects.
+
+Example static variable:
+static int count;
+
+Static method:
+static void show() {
+System.out.println("Static method");
+}
+
+Access static members using the class name. Static methods cannot directly access instance variables.
+
+MEMORY ALLOCATION IN JAVA
+
+Heap: objects
+Stack: local variables and method calls
+Method Area: class information and static data
+
+ANONYMOUS OBJECTS
+
+Objects created without a reference.
+Example:
+new Student().display();
+
+Used when object is needed only once.
+
+OBJECT INITIALIZATION
+
+Different ways to initialize objects:
+Using reference variables:
+s.roll = 1;
+s.name = "John";
+
+Using method:
+void setData(int r, String n) {
+roll = r;
+name = n;
+}
+
+Using constructor:
+Student(int r, String n) {
+roll = r;
+name = n;
+}
+
+ACCESS MODIFIERS FOR CLASS MEMBERS
+
+public: accessible everywhere
+private: accessible only in same class
+protected: accessible in same package and subclasses
+default: accessible only in same package
+
+NESTED CLASSES
+
+Class declared inside another class.
+
+Types include: member inner class, static nested class, local inner class, anonymous inner class
+
+DIFFERENCE BETWEEN CLASS AND OBJECT
+
+A class is a blueprint and does not use memory. An object is an instance of a class and occupies memory. One class can create many independent objects.
+
+BASIC EXAMPLE PROGRAM
+
+class Student {
+int roll;
+String name;
+
+void display() {
+    System.out.println(roll + " " + name);
+}
+
+public static void main(String[] args) {
+    Student s1 = new Student();
+    s1.roll = 101;
+    s1.name = "Alice";
+    s1.display();
+}
+
+
+}
+
+Output:
+101 Alice
+
+SUMMARY
+
+A class defines structure and behavior. Objects are created using the new keyword. Important concepts include fields, methods, this keyword, static members, object creation, and memory management. These fundamentals are required before learning constructors, inheritance, and other OOP concepts.

@@ -1,0 +1,85 @@
+Checking a Bit:
+Use bitwise AND to test if k-th bit of x is set:
+if (x & (1 << k))
+
+Extracting Bits:
+Get lowest set bit:
+x & (-x)
+Remove lowest set bit:
+x &= (x - 1);
+Check if a number is a power of 2 (x > 0):
+(x & (x - 1)) == 0
+
+Bitfields in Structures:
+Used to pack data efficiently in memory such as hardware registers, network packet headers, and compression.
+
+Example:
+struct Flags {
+unsigned int a:1;
+unsigned int b:3;
+unsigned int c:4;
+};
+
+Usage:
+struct Flags f;
+f.a = 1;
+f.b = 5;
+
+Common Bitwise Techniques:
+
+Swapping Two Numbers Using XOR:
+a ^= b;
+b ^= a;
+a ^= b;
+
+Counting Set Bits (Brian Kernighan’s Algorithm):
+int count = 0;
+while (x) {
+x &= (x - 1);
+count++;
+}
+Runs in O(number of set bits).
+
+Reversing Bits:
+Iterate from LSB to MSB and accumulate reversed result.
+
+Endianness Detection:
+int x = 1;
+if ((char)&x == 1)
+printf("Little Endian");
+else
+printf("Big Endian");
+
+Application Examples:
+
+Permission Flags (file access):
+#define READ 0x1
+#define WRITE 0x2
+#define EXEC 0x4
+int perm = READ | WRITE;
+if (perm & READ) { ... }
+
+Packing and Unpacking Values:
+Pack two 16-bit values:
+int packed = (x << 16) | y;
+Unpack:
+x = (packed >> 16) & 0xFFFF;
+y = packed & 0xFFFF;
+
+Graphics (color channel operations):
+unsigned int color = (r << 16) | (g << 8) | b;
+r = (color >> 16) & 0xFF;
+
+Microcontroller Register Manipulation:
+PORTA |= (1 << 5); // set pin 5
+PORTA &= ~(1 << 5); // clear pin 5
+
+Pitfalls and Cautions:
+Avoid shifting by number of bits ≥ type width (undefined behavior)
+Avoid mixing signed and unsigned right shift
+Always use parentheses in masks:
+Correct: x & (1 << k)
+Check for overflow before shifting
+
+Summary:
+Bitwise programming allows direct manipulation of data at the bit level using logical operations (&, |, ^, ~), shifts (<<, >>), and bit masks. It supports efficient techniques for checking, setting, clearing, toggling bits, using compact bitfields, and implementing optimized algorithms. These methods are widely used in embedded systems, cryptography, graphics, and performance-critical software.

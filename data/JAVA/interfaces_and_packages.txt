@@ -1,0 +1,163 @@
+INTERFACES AND PACKAGES IN JAVA
+
+Interfaces and packages are important in Java for abstraction, modular development, code organization, and avoiding naming conflicts.
+
+INTERFACES IN JAVA
+
+An interface is a blueprint of a class. It contains abstract methods and may include default methods, static methods, and private methods (Java 9 and above). Interfaces help achieve full abstraction and support multiple inheritance.
+
+Example:
+interface Animal {
+void sound();
+}
+class Dog implements Animal {
+public void sound() {
+System.out.println("Bark");
+}
+}
+
+Features of interfaces:
+Cannot be instantiated.
+Implemented by classes or extended by other interfaces.
+Variables are public static final by default.
+Methods are public and abstract by default.
+Supports multiple inheritance.
+
+1.1 Default methods (Java 8 and above)
+interface Animal {
+default void eat() {
+System.out.println("Eating");
+}
+}
+
+1.2 Static methods in interfaces
+interface MathUtil {
+static int square(int x) {
+return x * x;
+}
+}
+Usage:
+MathUtil.square(5);
+
+1.3 Private methods (Java 9 and above)
+Used for code reusability inside interfaces.
+
+1.4 Multiple inheritance using interfaces
+interface A { void show(); }
+interface B { void display(); }
+class C implements A, B {
+public void show() { }
+public void display() { }
+}
+
+1.5 Interface vs Abstract Class
+
+Interface:
+Supports full abstraction.
+Only constants allowed as variables.
+No constructors.
+Supports multiple inheritance.
+
+Abstract class:
+Supports partial abstraction.
+Allows normal variables.
+Constructors allowed.
+Does not support multiple inheritance using classes.
+
+PACKAGES IN JAVA
+
+A package is a group of related classes and interfaces. It helps in organization, reuse, avoiding naming conflicts, and controlling access.
+
+Two types:
+Built in packages (Java API)
+User defined packages
+
+2.1 Examples of built in packages
+java.lang: basic classes such as String, Math
+java.util: data structures, utility classes like ArrayList and Scanner
+java.io: input and output
+java.net: networking
+java.awt and javax.swing: GUI components
+
+2.2 Creating a package
+Use the package keyword.
+package mypack;
+public class A {
+public void show() {
+System.out.println("Hello");
+}
+}
+
+File must be saved in folder structure:
+mypack/A.java
+
+2.3 Using a package
+import mypack.A;
+class Test {
+public static void main(String[] args) {
+A obj = new A();
+obj.show();
+}
+}
+
+2.4 Accessing without import
+mypack.A obj = new mypack.A();
+
+2.5 Subpackages
+Packages inside packages form hierarchical organization.
+Example:
+com.company.project.module
+
+2.6 Classpath
+Java uses classpath to locate packages.
+Set classpath and execute programs referencing packages when needed.
+
+2.7 Access modifiers and packages
+
+public: accessible everywhere
+protected: accessible in same package and subclasses
+default: accessible only in same package
+private: accessible only inside the same class
+
+INTERFACES INSIDE PACKAGES
+
+Both concepts can be combined.
+
+Example:
+package shapes;
+public interface Shape {
+void draw();
+}
+
+package shapes;
+public class Circle implements Shape {
+public void draw() {
+System.out.println("Circle");
+}
+}
+
+import shapes.*;
+class Test {
+public static void main(String[] args) {
+Shape s = new Circle();
+s.draw();
+}
+}
+
+REAL WORLD USE CASES
+
+Interfaces:
+Payment processing systems
+Logging systems
+API definitions
+Event listeners
+
+Packages:
+Organizing enterprise projects
+Creating reusable modules
+Framework and library development
+Modular backend services
+
+SUMMARY
+
+Interfaces help achieve abstraction and multiple inheritance while packages organize related classes into structured modules. Both concepts are necessary for scalable and maintainable Java applications.

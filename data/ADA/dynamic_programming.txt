@@ -1,0 +1,76 @@
+Divide and Conquer is an algorithmic paradigm in which a problem is divided into smaller subproblems, each subproblem is solved recursively, and then the solutions are combined to form the final result. It is widely used for solving complex problems efficiently.
+
+General Strategy:
+Divide: Split the problem into smaller instances of the same problem.
+Conquer: Solve the subproblems recursively.
+Combine: Merge the solutions to solve the original problem.
+Small subproblems are solved directly using a base case.
+
+Complexity Recurrence:
+Divide and Conquer algorithms commonly follow:
+T(n) = a T(n/b) + f(n)
+Where:
+a = number of subproblems
+b = reduction factor per recursion
+f(n) = time to divide and combine
+Examples:
+Merge Sort: a = 2, b = 2, f(n) = O(n)
+Binary Search: a = 1, b = 2, f(n) = O(1)
+Strassen’s Matrix Multiplication: a = 7, b = 2, f(n) = O(n²)
+
+Advantages:
+Efficient for large inputs
+Parallelizable
+Modular recursive structure
+Useful in sorting, searching, matrix and geometric algorithms
+
+Classical Divide and Conquer Algorithms:
+Merge Sort:
+Split array, sort halves recursively, merge sorted halves.
+Time: O(n log n), Space: O(n), Stable
+
+Quick Sort:
+Partition array using pivot, sort partitions recursively.
+Time: Best/Avg O(n log n), Worst O(n²), In-place
+
+Binary Search:
+Check middle of sorted array, recurse on correct half.
+Time: O(log n)
+
+Large Integer Multiplication:
+Splits numbers to reduce digit operations; faster than O(n²).
+
+Strassen’s Matrix Multiplication:
+Uses 7 submatrix multiplications instead of 8.
+Time: O(n^2.81)
+
+Convex Hull:
+Split points, compute hulls, merge results.
+
+Closest Pair of Points:
+Divide, compute in halves, check strip near division.
+Time: O(n log n)
+
+Maximum Subarray (Divide and Conquer version):
+Compute best in left, right, and crossing middle.
+Time: O(n log n)
+
+Master Theorem Quick Reference:
+For T(n) = a T(n/b) + f(n)
+Case 1: f(n) = O(n^(log_b(a) − ε)) -> T(n) = Θ(n^(log_b(a)))
+Case 2: f(n) = Θ(n^(log_b(a))) -> T(n) = Θ(n^(log_b(a)) log n)
+Case 3: f(n) = Ω(n^(log_b(a) + ε)) with regularity -> T(n) = Θ(f(n))
+
+Strengths:
+Efficient for many problems
+Good with tree-structured data
+Parallelizable
+
+Weaknesses:
+Recursion overhead
+May need extra space
+Combine step can be complex
+Less effective if subproblem sizes are unbalanced
+
+Summary:
+Divide and Conquer breaks a problem into smaller ones, solves recursively, and combines results efficiently. It is foundational in sorting, searching, matrix operations, and computational geometry.

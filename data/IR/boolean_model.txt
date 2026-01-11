@@ -1,0 +1,85 @@
+BOOLEAN MODEL IN INFORMATION RETRIEVAL
+
+The Boolean Model is one of the earliest and simplest Information Retrieval (IR) models.
+It is based on Boolean logic and retrieves documents using logical operators: AND, OR, NOT.
+Documents are either retrieved or not retrieved. There is no ranking.
+
+Basic Idea
+
+Documents and query terms are binary: either present or absent.
+A document is retrieved only if it satisfies the Boolean query condition.
+Output is a binary decision: Relevant (1) or Not Relevant (0).
+
+Boolean Operators
+
+2.1 AND
+Retrieves documents containing all query terms.
+Example:
+machine AND learning → returns only documents with both terms.
+
+2.2 OR
+Retrieves documents containing at least one term.
+Example:
+ai OR ml → returns documents containing either term.
+
+2.3 NOT
+Excludes documents containing a term.
+Example:
+database NOT sql → returns database-related documents excluding sql.
+
+Representation
+
+Documents are represented as sets of terms after preprocessing.
+Example:
+D1 = {machine, learning, algorithm}
+D2 = {deep, learning, neural}
+Query: machine AND learning
+D1 is retrieved, D2 is not.
+
+Retrieval Process
+
+Boolean queries are evaluated using inverted indexes.
+Example inverted index:
+
+Term | Posting List
+machine | {D1, D3, D7}
+learning | {D1, D2, D3, D6}
+
+Query: machine AND learning
+Result: intersection → {D1, D3}
+
+Query Examples
+
+(apple OR banana) AND NOT mango
+("information retrieval" AND indexing) OR search
+(artificial AND intelligence) AND (ml OR ai) NOT robotics
+
+Advantages
+
+Simple and fast
+Based on clear set logic
+Good for expert users
+Effective for precise queries
+Works well with inverted index structure
+
+Limitations
+
+No ranking or scoring
+Exact match only
+Difficult to form good queries
+Can lead to low recall or low precision depending on operators
+No term weighting (all terms equal)
+
+Extensions of Boolean Model
+
+Extended Boolean Model: supports term weights and ranking
+Fuzzy Boolean Model: allows partial relevance (degrees of match)
+Probabilistic Boolean variants: probabilistic scoring on Boolean queries
+
+Use Cases
+
+Useful for legal, patent, medical searching
+Cases where exact control is needed
+Small document collections
+
+Not suitable for general web search due to lack of ranking and partial matching.

@@ -1,0 +1,100 @@
+ENTITY–RELATIONSHIP (ER) MODELING
+
+ER Modeling is a conceptual database design method used to represent data, entities, relationships, and constraints visually. It helps convert real-world requirements into structured database models using ER diagrams.
+
+Purpose of ER Modeling:
+• Understand data requirements
+• Identify entities and relationships
+• Avoid redundancy and anomalies
+• Provide blueprint for relational schema
+• DBMS-independent high-level design
+
+Key Concepts:
+
+Entities:
+A real-world object with distinct existence.
+Examples: Student, Course, Employee
+
+Entity Types:
+• Strong Entity: has its own primary key
+• Weak Entity: depends on strong entity, identified by partial key + owner’s key
+
+Attributes:
+Properties of entities.
+
+Types of Attributes:
+• Simple: indivisible (Age, Salary)
+• Composite: can be subdivided (Address → Street, City)
+• Single-Valued: one value per entity (RollNo)
+• Multi-Valued: multiple values allowed (PhoneNumbers)
+• Derived: computed from others (Age from DOB)
+• Key Attribute: uniquely identifies entity
+
+Relationships:
+Associations between entities.
+Examples: Student enrolls Course, Employee works_for Department
+
+Relationship Degree:
+• Unary: relationship within same entity
+• Binary: between two entities (most common)
+• Ternary: involves three entities
+
+Relationship Cardinality:
+• 1:1 (Person — Passport)
+• 1:N (Department — Employee)
+• M:N (Student — Course → requires bridge table)
+
+Relationship Participation:
+• Total: mandatory participation
+• Partial: optional participation
+
+Keys in ER Modeling:
+• Primary Key
+• Foreign Key
+• Composite Key
+• Partial Key (for weak entity)
+
+Enhanced ER Model (EER):
+
+Specialization:
+One entity → multiple subtypes
+Example: Employee → Full_Time, Part_Time
+
+Generalization:
+Multiple entities → one supertype
+Example: Car, Bike → Vehicle
+
+Inheritance:
+Subtypes inherit attributes of parent
+
+Constraints in Specialization/Generalization:
+• Disjoint: entity belongs to one subtype
+• Overlapping: entity may belong to multiple subtypes
+• Total: every entity must belong to a subtype
+• Partial: optional subtype membership
+
+Aggregation:
+A relationship treated as an entity in another relationship
+Used when a relationship has attributes or participates in additional relations
+
+Mapping ER to Relational Model:
+• Strong entity → table
+• Weak entity → table with owner key + partial key
+• 1:N relationship → foreign key on N-side
+• M:N relationship → separate table with both PKs
+• Multivalued attribute → separate table
+• Composite attribute → split into simple attributes
+
+ER Diagram Symbols:
+• Entity: rectangle
+• Weak entity: double rectangle
+• Attribute: oval
+• Multi-valued attribute: double oval
+• Derived attribute: dashed oval
+• Relationship: diamond
+• Identifying relationship: double diamond
+• Total participation: double line
+• Partial participation: single line
+
+Summary:
+ER Modeling identifies entities, attributes, and relationships to create a structured database design. EER adds inheritance, specialization, generalization, and aggregation for advanced modeling. A well-designed ER model ensures correct, normalized relational databases.

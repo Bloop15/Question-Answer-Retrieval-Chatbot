@@ -1,0 +1,144 @@
+POLYMORPHISM IN JAVA
+
+Polymorphism is a key principle of object oriented programming. It allows a single action (method call) to behave differently based on the object that invokes it. It provides flexibility, extensibility, and dynamic behavior in applications.
+
+TYPES OF POLYMORPHISM
+
+Java supports two types:
+
+Compile time polymorphism:
+Achieved through method overloading and constructor overloading.
+Resolved at compile time.
+
+Runtime polymorphism:
+Achieved through method overriding.
+Resolved at runtime using dynamic method dispatch.
+
+METHOD OVERLOADING (Compile Time)
+
+Multiple methods with the same name but different parameters (type, order, number).
+
+Example:
+class MathUtil {
+int sum(int a, int b) { return a + b; }
+double sum(double a, double b) { return a + b; }
+int sum(int a, int b, int c) { return a + b + c; }
+}
+
+Return type alone cannot distinguish overloaded methods.
+
+METHOD OVERRIDING (Runtime)
+
+Subclass provides new implementation of a parent class method.
+
+Rules:
+Same method name and parameters
+Same or covariant return type
+Cannot be less accessible
+Parent method must not be private or final
+
+Example:
+class Animal {
+void sound() { System.out.println("Some sound"); }
+}
+class Dog extends Animal {
+void sound() { System.out.println("Bark"); }
+}
+
+RUNTIME POLYMORPHISM (Dynamic Method Dispatch)
+
+Reference type determines what methods can be called.
+Actual object decides which method executes.
+
+Example:
+Animal a = new Dog();
+a.sound(); // Bark
+
+UPCASTING AND DOWNCASTING
+
+Upcasting:
+Child reference assigned to parent reference.
+Animal a = new Dog(); // always safe
+
+Downcasting:
+Parent reference cast to child reference.
+Valid only if actual object is a child type.
+Animal a = new Dog();
+Dog d = (Dog) a; // safe
+Animal a2 = new Animal();
+Dog d2 = (Dog) a2; // runtime error
+
+COVARIANT RETURN TYPES
+
+Overridden method can return a subtype of the return type declared in the parent class.
+class A { A get() { return this; } }
+class B extends A {
+B get() { return this; }
+}
+
+POLYMORPHISM WITH INTERFACES
+
+Interfaces allow different implementations to be handled uniformly.
+
+Example:
+interface Shape { void draw(); }
+class Circle implements Shape { public void draw() { System.out.println("Circle"); } }
+Shape s = new Circle();
+s.draw();
+
+STATIC METHODS AND POLYMORPHISM
+
+Static methods are not part of runtime polymorphism because they belong to the class.
+class A { static void show() {} }
+class B extends A { static void show() {} } // method hiding, not overriding
+
+FINAL METHODS
+
+A final method cannot be overridden.
+Therefore it does not support runtime polymorphism.
+
+EXAMPLE PROGRAM
+
+class Animal {
+void sound() { System.out.println("Animal sound"); }
+}
+class Dog extends Animal {
+void sound() { System.out.println("Bark"); }
+}
+class Cat extends Animal {
+void sound() { System.out.println("Meow"); }
+}
+class Test {
+public static void main(String[] args) {
+Animal a;
+a = new Dog();
+a.sound();
+a = new Cat();
+a.sound();
+}
+}
+
+ADVANTAGES OF POLYMORPHISM
+
+Improves flexibility and code reuse
+Enables dynamic and scalable design
+Used extensively in frameworks and APIs
+
+REAL WORLD APPLICATIONS
+
+Payment systems:
+Payment p = new CreditCard();
+
+Drawing applications:
+Shape s = new Circle();
+
+Logging frameworks:
+Logger log = new FileLogger();
+
+SUMMARY
+
+Polymorphism allows the same method to execute different behavior depending on object type. It includes:
+Compile time polymorphism through method overloading
+Runtime polymorphism through method overriding and dynamic dispatch
+
+It is essential for designing maintainable and extensible object oriented applications.

@@ -1,0 +1,106 @@
+WEB SEARCH ENGINES
+Web search engines are large-scale Information Retrieval systems used to search the web and return relevant ranked results. They contain components such as crawling, document processing, indexing, ranking, query processing, and distributed storage.
+
+ARCHITECTURE
+Three major subsystems:
+
+Crawling System: collects web pages using automated bots.
+
+Indexing System: processes extracted text and stores it in an inverted index.
+
+Query Processing System: handles user queries, retrieves and ranks documents.
+
+WEB CRAWLING
+A crawler (spider/bot) downloads pages by following hyperlinks.
+Steps:
+
+Seed URLs: initial starting list
+
+URL Frontier: queue of URLs to fetch
+
+Fetching: downloading page content
+
+Parsing: extracting text, metadata, and links
+
+Link expansion: discovered URLs added to the frontier
+Challenges include infinite/dynamic web, duplicate pages, handling robots.txt, politeness policies, crawler traps.
+
+DOCUMENT PROCESSING
+Before indexing, documents undergo cleaning and normalization:
+
+HTML removal, boilerplate removal
+
+Tokenization, normalization
+
+Stemming or lemmatization
+
+Language detection
+
+Metadata extraction
+
+Duplicate detection using techniques like shingling and MinHash
+
+INDEXING
+Search engines maintain huge inverted indexes distributed across many servers.
+Index stores:
+
+Terms and posting lists
+
+Document IDs
+
+Term frequencies
+
+Anchor text
+
+Page metadata such as PageRank score
+Distributed indexing uses MapReduce, SPIMI, and LSM-tree storage. Compression methods like variable byte coding and Golomb coding reduce size.
+
+QUERY PROCESSING
+Steps during a search:
+
+Query parsing: tokenization, spell correction, query suggestion, entity recognition, query expansion
+
+Candidate retrieval: using inverted index
+
+Ranking: calculates scores using models such as BM25, neural ranking models (e.g., BERT), link analysis scores, freshness, click data, personalization
+Top-k ranked documents returned to user.
+
+LINK ANALYSIS
+Two major algorithms:
+
+PageRank: computes global importance based on inbound links and their weights.
+
+HITS: computes both authority score (importance) and hub score (linking to good pages).
+
+RANKING SIGNALS
+Signals used for ranking include:
+
+On-page: title, headings, keywords, URL structure
+
+Off-page: backlinks, anchor text
+
+User behavior: click-through rate, dwell time
+
+Freshness: newer pages for time-sensitive topics
+
+Personalization: location, search history
+
+AUTOCOMPLETE AND QUERY SUGGESTION
+Uses query logs, language models, and popularity trends to help users refine queries.
+
+WEB-SCALE STORAGE
+Distributed file systems and databases used:
+GFS, HDFS, Bigtable, Spanner
+Indexes are sharded and replicated for speed and fault tolerance.
+
+ADVERTISING SYSTEMS
+Search engines run sponsored search markets such as Google Ads. Ranking uses auction models like Generalized Second Price combined with quality score.
+
+EVALUATION
+Evaluation metrics include Precision@k, Recall@k, MAP, and NDCG. User interaction data is used to refine ranking.
+
+CHALLENGES
+Large scale, continuously changing content, spam, multilingual data, multimedia indexing, and strict latency requirements.
+
+SUMMARY
+Web search engines rely on large-scale crawling, efficient indexing, advanced ranking models, link analysis, distributed systems, and behavioral signals to provide fast and relevant search results.

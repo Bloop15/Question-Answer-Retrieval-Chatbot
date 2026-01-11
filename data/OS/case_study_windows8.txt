@@ -1,0 +1,376 @@
+CHAPTER 11 — CASE STUDY: WINDOWS 8
+
+Windows 8 is a modern operating system designed by Microsoft with a hybrid kernel architecture, strong focus on backward compatibility, extensive driver support, and a redesigned UI (Metro).
+This chapter covers its architecture, process/thread model, memory management, file systems, security, and I/O subsystems.
+
+=========================================================
+1. WINDOWS 8 ARCHITECTURE
+=========================================================
+
+Windows uses a hybrid kernel, blending microkernel and monolithic concepts.
+
+Kernel components:
+
+Executive
+
+Kernel
+
+HAL (Hardware Abstraction Layer)
+
+Device drivers
+
+Windowing system
+
+Windows architecture is layered for portability and robustness.
+
+=========================================================
+2. SYSTEM COMPONENTS
+=========================================================
+✔ 2.1 Executive (Kernel Mode)
+
+Handles:
+
+Object management
+
+Process, thread management
+
+Virtual memory
+
+I/O manager
+
+Security
+
+✔ 2.2 Kernel
+
+Low-level tasks:
+
+Scheduling
+
+Synchronization
+
+Trap handling
+
+✔ 2.3 HAL (Hardware Abstraction Layer)
+
+Abstracts hardware details so Windows runs on varied devices without modification.
+
+✔ 2.4 User Mode Subsystems
+
+Win32 subsystem (core apps)
+
+Windows Store apps subsystem (Metro)
+
+.NET runtime
+
+POSIX subsystem (removed in Win8)
+
+=========================================================
+3. WINDOWS OBJECT MANAGER
+=========================================================
+
+Windows treats everything as an object.
+
+Objects include:
+
+Files
+
+Threads
+
+Processes
+
+Registry keys
+
+Named pipes
+
+Mutexes
+
+Events
+
+Objects have:
+
+Names
+
+Security descriptors
+
+Reference counts
+
+Methods
+
+Objects stored in hierarchical object namespaces.
+
+=========================================================
+4. PROCESS AND THREAD MANAGEMENT
+=========================================================
+✔ Processes
+
+Windows processes contain:
+
+Virtual address space
+
+Handle table
+
+Security token
+
+Threads
+
+✔ Threads
+
+Scheduling unit in Windows.
+
+Attributes include:
+
+Thread ID
+
+Registers
+
+Stack
+
+Priority
+
+4.1 Scheduling
+
+Windows uses a priority-based preemptive scheduler.
+
+Priorities:
+
+0–15: variable classes
+
+16–31: real-time classes
+
+Scheduler features:
+
+Quantum-based time slicing
+
+Priority boosting
+
+Priority inversion defenses
+
+=========================================================
+5. MEMORY MANAGEMENT
+=========================================================
+
+Windows uses a demand-paged virtual memory system.
+
+5.1 Virtual Address Space (VAS)
+
+Divided into:
+
+Kernel space (shared)
+
+User space (per process)
+
+5.2 Page Tables
+
+Windows supports:
+
+Page directories
+
+Page tables
+
+Large pages
+
+Copy-on-write
+
+5.3 Working Set
+
+Each process has a working set:
+
+Subset of pages currently in memory
+
+Managed by working set manager
+
+=========================================================
+6. FILE SYSTEMS IN WINDOWS
+=========================================================
+✔ NTFS (New Technology File System)
+
+Primary FS, supports:
+
+Journaling
+
+Access control lists (ACLs)
+
+Encryption (EFS)
+
+Compression
+
+Sparse files
+
+Hard links / junctions
+
+Master File Table (MFT)
+
+✔ ReFS (Resilient File System)
+
+Designed for:
+
+High reliability
+
+Auto-correction using checksums
+
+✔ FAT32/exFAT
+
+Used for removable media.
+
+=========================================================
+7. WINDOWS REGISTRY
+=========================================================
+
+The registry stores:
+
+OS configuration
+
+Application settings
+
+Driver information
+
+User preferences
+
+Organized into hives and keys.
+
+=========================================================
+8. I/O SYSTEM & DEVICE DRIVERS
+=========================================================
+
+Windows uses a layered driver model:
+
+✔ Highest → Lowest:
+
+User-mode drivers
+
+Kernel-mode drivers
+
+HAL
+
+I/O subsystem includes:
+
+Plug and Play manager
+
+Power manager
+
+I/O request packets (IRPs)
+
+Device stacks
+
+Windows uses I/O completion ports for high-performance servers.
+
+=========================================================
+9. WINDOWS SECURITY MODEL
+=========================================================
+
+Security features:
+
+✔ Access Tokens
+
+Store:
+
+User SID
+
+Group SIDs
+
+Privileges
+
+Attached to each process/thread.
+
+✔ Access Control Lists (ACLs)
+
+Define permissions on objects.
+
+Two types:
+
+DACL (Discretionary)
+
+SACL (Auditing)
+
+✔ Integrity Levels
+
+Protect against privilege escalation.
+
+✔ Secure Boot
+
+Ensures OS integrity at startup.
+
+✔ BitLocker
+
+Provides full-disk encryption.
+
+=========================================================
+10. WINDOWS NETWORKING
+=========================================================
+
+Networking stack includes:
+
+Winsock
+
+TCP/IP
+
+SMB (file sharing)
+
+Firewalls
+
+VPNs
+
+Windows integrates:
+
+IPv4 & IPv6
+
+QoS
+
+Network Access Protection (NAP)
+
+=========================================================
+11. WINDOWS SERVICES
+=========================================================
+
+Background daemons in Windows.
+
+Features:
+
+Run under various user accounts
+
+Can auto-start on boot
+
+Controlled by SCM (Service Control Manager)
+
+Examples:
+
+Windows Update
+
+Print Spooler
+
+DNS Client
+
+Security Center
+
+=========================================================
+12. METRO UI (WINDOWS 8 SPECIFIC)
+=========================================================
+
+Windows 8 introduced:
+
+Tile-based interface
+
+Charm bar
+
+Windows Store apps
+
+Sandboxed app containers
+
+Store apps run with strict permissions.
+
+=========================================================
+13. DIFFERENCES: WINDOWS VS UNIX/LINUX
+=========================================================
+Feature	Windows	UNIX/Linux
+Kernel	Hybrid	Monolithic / Hybrid
+Permissions	ACLs	rwx model
+System calls	Win32 API	POSIX
+IPC	Named pipes, COM	Pipes, signals, sockets
+Default FS	NTFS	ext4/XFS
+Registry	Yes	No (text-based configs)
+GUI	Integrated	Optional (X/Wayland)
+Summary
+
+Windows 8 is a hybrid-kernel OS with a strong emphasis on compatibility, security, and modularity.
+It uses advanced systems like NTFS, ACL-based security, I/O request packets, working-set–based memory management, and object-based kernel architecture.
+The Metro UI and integrated app container model distinguish Windows 8 from classical desktop systems.

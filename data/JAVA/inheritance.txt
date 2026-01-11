@@ -1,0 +1,163 @@
+INHERITANCE IN JAVA
+
+Inheritance is an important object oriented programming concept which allows a class to acquire the fields and methods of another class. It improves code reusability, maintainability, extensibility, and supports polymorphism.
+
+WHAT IS INHERITANCE
+
+Inheritance allows one class (subclass or child class) to inherit properties and behavior from another class (superclass or parent class).
+
+Example:
+class Animal {
+void eat() { System.out.println("Eating"); }
+}
+class Dog extends Animal {
+void bark() { System.out.println("Barking"); }
+}
+
+TYPES OF INHERITANCE IN JAVA
+
+Java supports the following types of inheritance:
+Single inheritance: one parent and one child.
+class A { }
+class B extends A { }
+
+Multilevel inheritance: A becomes parent of B, and B becomes parent of C.
+class A { }
+class B extends A { }
+class C extends B { }
+
+Hierarchical inheritance: multiple classes inherit from a single parent.
+
+Java does not support multiple inheritance with classes to avoid ambiguity (diamond problem). However, it supports multiple inheritance using interfaces.
+
+WHY MULTIPLE INHERITANCE IS NOT SUPPORTED
+
+Java prevents the diamond problem. If a class inherits from two classes that have the same method, ambiguity occurs. To avoid this, multiple inheritance using classes is not allowed.
+
+SUPERCLASS AND SUBCLASS
+
+A subclass inherits:
+Non private fields
+Non private methods
+
+A subclass does not inherit:
+Constructors
+Private members
+Final methods
+
+SUPER KEYWORD
+
+super refers to parent class. It is used to call parent class constructor, access parent fields, and call parent methods.
+super.display();
+super(10);
+
+METHOD OVERRIDING
+
+A subclass can redefine a method from the parent class with the same name, parameters, and return type.
+The parent method must not be final or private.
+
+Example:
+class Animal {
+void sound() { System.out.println("Some sound"); }
+}
+class Dog extends Animal {
+@Override
+void sound() { System.out.println("Bark"); }
+}
+
+@Override ANNOTATION
+
+Used to ensure proper method overriding. The compiler shows an error if the method signature is incorrect.
+
+CONSTRUCTOR CALLING ORDER
+
+When creating a child class object:
+Parent class constructor executes first, then child class constructor.
+
+Example:
+class A { A() { System.out.println("A"); } }
+class B extends A { B() { System.out.println("B"); } }
+new B();
+
+Output:
+A
+B
+
+IS-A RELATIONSHIP
+
+Inheritance represents an IS-A relationship.
+Dog is-a Animal
+Car is-a Vehicle
+
+This is important for runtime polymorphism.
+
+COMPOSITION VS INHERITANCE
+
+Inheritance represents an IS-A relationship.
+Composition represents a HAS-A relationship.
+class Car {
+Engine e = new Engine();
+}
+Composition is preferred when the relationship is not strictly IS-A.
+
+FINAL METHODS AND FINAL CLASSES
+
+A final method cannot be overridden.
+A final class cannot be inherited.
+
+ABSTRACT CLASSES
+
+Abstract classes provide partial implementation and enforce subclass-specific behavior.
+abstract class Animal {
+abstract void sound();
+}
+Used as parent classes in hierarchies.
+
+ACCESS MODIFIERS AND INHERITANCE
+
+public: inherited and accessible in child class
+protected: inherited and accessible even in different package subclasses
+default: inherited within same package only
+private: not inherited
+
+EXAMPLE PROGRAM
+
+class Animal {
+void eat() {
+System.out.println("Eating...");
+}
+}
+class Dog extends Animal {
+void bark() {
+System.out.println("Barking...");
+}
+}
+class Test {
+public static void main(String[] args) {
+Dog d = new Dog();
+d.eat();
+d.bark();
+}
+}
+
+Output:
+Eating...
+Barking...
+
+ADVANTAGES OF INHERITANCE
+
+Code reusability
+Avoids duplication
+Supports polymorphism
+Better structure and maintenance
+Easy extension of existing systems
+
+DISADVANTAGES OF INHERITANCE
+
+Increases coupling between classes
+Deep inheritance hierarchies complicate code
+Misuse can lead to fragile design
+
+SUMMARY
+
+Inheritance allows classes to reuse and extend existing code. It supports IS-A relationships, method overriding, and polymorphism. Java restricts multiple inheritance using classes to avoid ambiguity. Key concepts include extends, super, abstract classes, access modifiers, and constructor order.

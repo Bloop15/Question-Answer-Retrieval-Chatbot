@@ -1,0 +1,126 @@
+ENCAPSULATION IN JAVA
+
+Encapsulation is one of the fundamental principles of object oriented programming. It is the process of binding data (variables) and the methods that operate on that data into a single unit called a class. Encapsulation also protects internal data by preventing direct access and providing controlled access through getter and setter methods.
+
+WHAT IS ENCAPSULATION
+
+Encapsulation means:
+Binding data and methods together.
+Protecting data from unauthorized access.
+Controlling modification through methods.
+
+In simple terms, encapsulation hides internal data and exposes only necessary operations.
+
+A real life example is an ATM machine which hides internal logic like PIN verification and only exposes operations such as withdraw and deposit.
+
+HOW ENCAPSULATION WORKS IN JAVA
+
+Encapsulation is implemented using the following steps:
+
+Declare variables as private to restrict direct access.
+
+Provide public getter and setter methods for controlled access.
+
+Example:
+class Student {
+private int age;
+private String name;
+public int getAge() {
+return age;
+}
+public void setAge(int age) {
+this.age = age;
+}
+}
+
+WHY USE PRIVATE VARIABLES
+
+Private variables cannot be accessed directly from outside the class. This protects the internal state of the object and prevents accidental or invalid modifications. Validation can be added inside setter methods to ensure correct values.
+
+Example of invalid state without encapsulation:
+s.age = -10;
+
+GETTERS AND SETTERS
+
+Getter method returns the value of a private field.
+Setter method updates the field, usually with validation.
+
+Example with validation:
+public void setAge(int age) {
+if(age > 0)
+this.age = age;
+else
+System.out.println("Invalid age");
+}
+
+ADVANTAGES OF ENCAPSULATION
+
+Data protection and security.
+Controlled and validated access.
+Modularity and maintainability.
+Improved flexibility and loose coupling.
+Better readability and organization of code.
+
+Encapsulation is essential for large scale application development.
+
+ENCAPSULATION AND ACCESS MODIFIERS
+
+Access modifiers define visibility:
+private: accessible only within the same class.
+default: accessible within the same package.
+protected: accessible in same package and subclasses.
+public: accessible everywhere.
+
+Encapsulation mainly uses private to hide data and public to expose safe methods.
+
+ENCAPSULATION EXAMPLE
+
+class BankAccount {
+private double balance;
+public double getBalance() {
+return balance;
+}
+public void deposit(double amount) {
+if(amount > 0)
+balance += amount;
+}
+public void withdraw(double amount) {
+if(amount <= balance)
+balance -= amount;
+else
+System.out.println("Insufficient balance");
+}
+}
+
+public class Test {
+public static void main(String[] args) {
+BankAccount b = new BankAccount();
+b.deposit(5000);
+b.withdraw(1200);
+System.out.println(b.getBalance());
+}
+}
+
+ENCAPSULATION VS ABSTRACTION
+
+Encapsulation focuses on data protection using private fields and getters or setters. Abstraction focuses on hiding implementation complexity using abstract classes or interfaces. Encapsulation protects internal data while abstraction exposes required behaviors.
+
+REAL WORLD USE CASES
+
+Encapsulation is used when data must be kept private:
+Bank account information
+Student marks
+Employee salary
+Medical records
+Vehicle internal mechanisms
+Library management data
+
+COMMON MISTAKES
+
+Keeping fields public, which breaks encapsulation.
+No validation in setter methods.
+Using getters and setters unnecessarily when direct field access within the class is allowed.
+
+SUMMARY
+
+Encapsulation groups data and the methods operating on that data into a class. Private variables hide internal details and public getter and setter methods provide controlled access. Encapsulation ensures security, maintainability, and clean object oriented design. It is widely used in nearly all Java applications.

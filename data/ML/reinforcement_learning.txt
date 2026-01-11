@@ -1,0 +1,116 @@
+REINFORCEMENT LEARNING (Ethem Alpaydin, ML 2nd Edition)
+
+Reinforcement Learning (RL) is a learning framework where an agent learns by interacting with an environment and receiving rewards. The goal is to maximize long-term return. RL differs from supervised learning because there are no labeled examples; learning happens through trial and error guided by reward signals.
+
+Applications include robotics, game AI, autonomous vehicles, and recommendation systems.
+
+ELEMENTS OF A REINFORCEMENT LEARNING SYSTEM
+
+Agent: learner making decisions
+Environment: external system agent interacts with
+State (s): description of environment at a given time
+Action (a): choices available to agent
+Reward (r): numerical feedback signal
+Policy (π): mapping from states to actions
+Value functions (V, Q): expected future return from states or state-action pairs
+
+MARKOV DECISION PROCESS (MDP)
+
+RL problems are modeled as Markov Decision Processes. An MDP consists of:
+S: states
+A: actions
+T(s, a, s’): transition probability
+R(s, a): reward function
+γ: discount factor
+
+Markov property: future state depends only on current state and action.
+
+RETURN AND VALUE FUNCTIONS
+
+Return (discounted future rewards):
+G_t = r_(t+1) + γ r_(t+2) + γ² r_(t+3) + ...
+
+State-value function:
+Vπ(s) = expected return starting from state s under policy π
+
+Action-value function:
+Qπ(s, a) = expected return from state s taking action a under policy π
+
+BELLMAN EQUATIONS
+
+Value functions satisfy recursive Bellman equations.
+
+Bellman expectation equation:
+Vπ(s) = sum over a [π(a|s) sum over s’ T(s,a,s’) (R + γ Vπ(s’))]
+
+Bellman optimality equation:
+V*(s) = max over a [sum over s’ T(s,a,s’) (R + γ V*(s’))]
+
+Similar equations exist for Q*(s, a).
+
+TYPES OF RL METHODS
+
+5.1 Dynamic Programming (DP): requires full knowledge of transition model. Includes policy iteration and value iteration.
+5.2 Monte Carlo (MC): learns from full episodes; does not require model.
+5.3 Temporal Difference (TD): updates after each step using bootstrapping. Example update:
+V(s) ← V(s) + α (r + γ V(s’) − V(s))
+
+Q-LEARNING (OFF-POLICY TD CONTROL)
+
+Learns optimal Q-values regardless of behavior policy.
+Q(s,a) ← Q(s,a) + α (r + γ max_a’ Q(s’,a’) − Q(s,a))
+Forms basis of Deep Q-Networks.
+
+SARSA (ON-POLICY TD CONTROL)
+
+Update uses the action actually taken by the agent.
+Q(s,a) ← Q(s,a) + α (r + γ Q(s’,a’) − Q(s,a))
+
+EXPLORATION VS EXPLOITATION
+
+Agent must balance exploring unknown actions and exploiting the best-known action.
+Epsilon-greedy is a common strategy:
+with probability epsilon pick random action; otherwise pick best action.
+
+FUNCTION APPROXIMATION
+
+For large or continuous state spaces, tabular methods are infeasible.
+Function approximators like linear models, neural networks, and kernels are used:
+Q(s,a; θ) where θ are model parameters.
+
+DEEP REINFORCEMENT LEARNING
+
+Combines RL with deep neural networks.
+Important developments:
+DQN, Double DQN, Dueling Networks, Actor-Critic, A3C, PPO
+Used in Atari games, robotics, and autonomous driving.
+
+POLICY SEARCH METHODS
+
+Directly optimize policy parameters instead of value functions.
+Policy Gradient:
+θ ← θ + α ∇θ J(θ)
+Works well with continuous action spaces.
+
+ACTOR-CRITIC METHODS
+
+Actor updates the policy.
+Critic estimates value function.
+More stable than pure policy gradients.
+
+PARTIALLY OBSERVED ENVIRONMENTS
+
+In POMDPs, the agent does not observe full state.
+Solutions include belief state estimation and recurrent networks.
+
+REINFORCEMENT LEARNING CHALLENGES
+
+Credit assignment
+Sparse rewards
+Exploration difficulty
+Instability with deep networks
+High computational cost
+
+Summary
+
+Reinforcement learning enables agents to learn behavior through interaction and rewards. Key components include MDPs, value functions, Bellman equations, and TD-based algorithms like Q-learning and SARSA. Deep reinforcement learning scales RL to complex environments using neural function approximators.

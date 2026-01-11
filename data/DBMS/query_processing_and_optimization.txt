@@ -1,0 +1,103 @@
+QUERY PROCESSING AND OPTIMIZATION
+
+Query processing is how a DBMS interprets and executes an SQL query. Query optimization selects the best execution plan based on indexes, file organization, selectivity, and cost estimation. The goal is to minimize I/O and CPU cost while returning correct results efficiently.
+
+Stages of Query Processing
+
+1.1 Parsing and Translation
+• SQL query converted into a parse tree
+• Syntax and semantic checks
+• Translated into a logical relational algebra plan
+
+1.2 Query Optimization
+• Evaluate multiple logical and physical plans
+• Apply algebraic simplifications
+• Choose lowest-cost plan using statistics
+
+1.3 Query Execution
+• Execute final physical plan using operators like joins, sorting, scanning
+• Return result to user
+
+Cost Models
+
+I/O operations are the primary cost factor.
+Cost depends on: table size, access paths, join algorithms, selectivity of filters.
+Goal: minimize disk block reads.
+
+Query Plans
+
+Logical Plan: describes operations (WHAT to do) using relational algebra.
+Physical Plan: describes execution strategy (HOW to do it) using algorithms like index scan, hash join, etc.
+
+Query Execution Operators
+
+4.1 Selection (σ)
+Methods: table scan, index scan, binary search (if sorted)
+Cost lowest when using an index
+
+4.2 Projection (π)
+Remove unwanted columns; duplicate removal may require sorting or hashing
+
+4.3 Sorting
+Used in ORDER BY, GROUP BY, duplicate elimination
+External merge-sort when data exceeds memory
+
+4.4 Join Algorithms
+• Nested Loop Join
+Simple: O(|R| × |S|)
+Block nested loop reduces scans
+• Sort-Merge Join
+Sort both inputs then merge; good for sorted data
+• Hash Join
+Build hash table on smaller relation; best for equality joins
+
+4.5 Aggregation
+Uses hashing or sorting for functions like COUNT, SUM, MIN, MAX
+
+Heuristic Optimization Techniques
+
+• Push selections down to reduce tuples early
+• Push projections down to reduce columns early
+• Join smaller relations first
+• Use indexes where possible
+• Avoid Cartesian products
+
+Cost-Based Optimization
+
+Uses statistics from catalog:
+• Table cardinality
+• Distinct values
+• Histograms
+• Index selectivity
+Evaluates alternative access paths and join orders to choose cheapest plan.
+
+Access Path Selection
+
+Full table scan vs:
+• Index scan (point or range queries)
+• Index-only scan
+• Bitmap index scan
+Optimizer chooses path with least cost given statistics.
+
+Join Order Optimization
+
+Order of joins affects cost significantly.
+Search space grows rapidly with number of tables → use dynamic programming or heuristics.
+
+Pipelining vs Materialization
+
+Materialization: intermediate results stored on disk (more I/O).
+Pipelining: operators pass output directly to next step (more efficient).
+Modern DBMS prefer pipelining.
+
+SQL Optimization Hints (DB-Specific)
+
+Users may guide optimizer:
+Example: hash join hint
+USE_HASH_JOIN in supported DBMS
+
+Summary
+
+Query processing: SQL → parsing → optimization → execution
+Optimization reduces I/O using indexes, join order improvements, and cost evaluation.
+Joins are typically the most expensive operations, so choosing correct algorithms and access paths is essential for high-performance database systems.

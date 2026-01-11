@@ -1,0 +1,29 @@
+# Virtual environment
+chatbot/
+venv/
+env/
+Lib/
+Scripts/
+Include/
+share/
+pyvenv.cfg
+
+# Environment variables
+.env
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Streamlit
+.streamlit/
+
+# Uploaded / test images
+Images/
+*.png
+*.jpg
+*.jpeg
+
+# OS files
+.DS_Store
+Thumbs.db

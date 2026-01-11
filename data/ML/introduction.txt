@@ -1,0 +1,105 @@
+CHAPTER 1 — INTRODUCTION
+
+Machine Learning enables computers to improve performance using data, instead of relying only on explicit programming. ML systems learn patterns from examples and use them for prediction, classification, pattern discovery, and decision-making.
+
+1. What is Machine Learning
+
+Arthur Samuel (1959):
+Machine Learning gives computers the ability to learn without being explicitly programmed.
+
+Tom Mitchell’s definition:
+A program learns from experience E on task T with performance measure P if performance improves with experience.
+
+Example:
+Task: classify emails
+Experience: labeled emails
+Performance: accuracy
+
+2. Why Machine Learning
+
+Useful when rules are too complex to define manually or the system must adapt over time.
+Applications include speech recognition, recommendation systems, fraud detection, medical diagnosis, robotics, and natural language processing.
+
+3. Types of Learning
+
+3.1 Supervised Learning
+Learns from labeled data. Used for classification and regression.
+
+3.2 Unsupervised Learning
+Learns structure from unlabeled data. Used for clustering and dimensionality reduction.
+
+3.3 Reinforcement Learning
+Learns by interacting with an environment and maximizing reward. Used in games, robotics, and autonomous systems.
+
+4. Describing a Learning Problem
+
+A learning problem includes:
+
+Input space: possible inputs
+
+Output space: target labels or values
+
+Hypothesis space: set of allowed models
+
+Loss function: measures prediction error
+
+Learning algorithm: chooses the best model from data
+
+Training set teaches the model. Test set estimates generalization to new data.
+
+5. Generalization
+
+Generalization means the model performs well on unseen data.
+Training error vs test error are used to evaluate it.
+
+6. Overfitting and Underfitting
+
+Overfitting: model too complex, memorizes training data, poor test performance.
+Underfitting: model too simple, poor performance on both training and test sets.
+
+7. Bias and Variance Tradeoff
+
+High bias: overly simple model, underfitting.
+High variance: overly complex model, overfitting.
+Goal is a balance for best test performance.
+
+8. Data and Features
+
+Features are measurable properties of data.
+Examples: pixel values in images, word frequencies in text.
+Feature engineering improves representation and performance.
+
+9. Machine Learning Pipeline
+
+Typical steps:
+
+Data collection
+
+Preprocessing
+
+Feature extraction
+
+Model selection
+
+Training
+
+Evaluation
+
+Deployment and monitoring
+
+10. Related Disciplines
+
+ML builds on statistics, optimization, information theory, algorithms, and cognitive science.
+
+11. Parametric and Nonparametric Models
+
+Parametric models: fixed number of parameters, simpler (e.g., linear regression).
+Nonparametric models: grow with data, more flexible (e.g., KNN, decision trees).
+
+12. Goal of Machine Learning
+
+To learn a function that fits data well and generalizes to unseen inputs while optimizing a performance metric.
+
+Summary
+
+Machine Learning enables computers to learn patterns automatically from data. Key topics include supervised, unsupervised, and reinforcement learning; generalization; the ML pipeline; and the bias-variance tradeoff. The ultimate aim is to build systems that improve with experience.

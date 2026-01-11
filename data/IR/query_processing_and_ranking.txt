@@ -1,0 +1,106 @@
+QUERY PROCESSING AND RANKING IN INFORMATION RETRIEVAL
+
+Query processing converts a user query into a ranked list of relevant documents. Ranking ensures that the most relevant documents appear first.
+
+QUERY PROCESSING STEPS
+
+1.1 Query Tokenization
+Splitting query text into words or tokens.
+Example: "Machine Learning basics" → machine, learning, basics
+
+1.2 Normalization
+Lowercasing, removing punctuation, normalizing numbers, handling variations.
+
+1.3 Stopword Removal
+Removing common words such as the, is, and, of, to.
+
+1.4 Stemming or Lemmatization
+Converting terms to their root form.
+running → run
+studies → study
+
+1.5 Query Expansion (optional)
+Adding related terms using synonyms, thesaurus, embeddings, or relevance feedback.
+Example: car expanded to automobile
+
+RETRIEVE CANDIDATE DOCUMENTS
+
+Documents that contain any of the query terms are retrieved using the inverted index.
+Example:
+machine → D1, D2, D3
+learning → D1, D4
+
+RANKED RETRIEVAL
+
+Modern IR systems use ranked retrieval where each document receives a score and results are sorted by relevance. Common ranking models include:
+TF-IDF with cosine similarity
+BM25
+Language Models
+Neural models like BERT or DPR
+
+TERM WEIGHTING
+
+4.1 TF-IDF
+Weight = term frequency in document multiplied by inverse document frequency.
+TF-IDF(t, d) = TF(t, d) × log(N / df(t))
+
+COSINE SIMILARITY
+
+Measures similarity between query and document vector.
+Value ranges from 0 to 1.
+cos(d, q) = (d . q) / (|d| × |q|)
+
+BM25 RANKING
+
+A widely used probabilistic ranking function.
+Score(d, q) = Σ IDF(t) × ((TF(t, d) × (k + 1)) / (TF(t, d) + k × (1 - b + b × (|d| / avgdl))))
+Typical parameters: k ≈ 1.2 to 2.0 and b ≈ 0.75
+Used in Lucene, Elasticsearch, Solr
+
+POSTINGS LIST PROCESSING
+
+AND queries use intersection.
+OR queries use union.
+NOT queries use set difference.
+Ranked retrieval scores all candidate documents.
+
+TOP-K RETRIEVAL
+
+Goal is to find the best k documents efficiently without fully scoring all documents.
+Techniques include priority queues, WAND, Block-Max WAND, score upper bounds.
+
+FULL QUERY PROCESSING PIPELINE
+
+Parse query
+Retrieve candidate documents
+Compute ranking scores
+Sort results by score
+Optional machine learning re-ranking using models such as BERT or LambdaMART
+Return top-k ranked documents to user
+
+QUERY OPTIMIZATION
+
+Use skip pointers
+Block-based score bounds
+Caching of popular queries
+Early termination when top-k is already determined
+
+QUERY TYPES
+
+Keyword queries: database indexing
+Phrase queries: "machine learning"
+Proximity queries: machine NEAR learning
+Structured queries: title:"data mining" AND year:2020
+Natural language queries: question answering
+
+LEARNING TO RANK
+
+Machine learning techniques that improve ranking.
+Pointwise method predicts relevance score.
+Pairwise method compares document pairs such as RankNet and SVMRank.
+Listwise method optimizes full ranking order such as LambdaMART and ListNet.
+Used in large search engines and e-commerce search.
+
+Summary
+
+Query processing identifies candidate documents through an inverted index. Ranking uses scoring models such as TF-IDF, cosine similarity, BM25, and neural relevance models. Modern IR emphasizes efficient top-k results, optimized postings processing, and machine-learned ranking techniques.

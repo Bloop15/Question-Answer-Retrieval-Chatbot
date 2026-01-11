@@ -1,0 +1,123 @@
+BAYESIAN DECISION THEORY
+
+Bayesian decision theory is a statistical approach to classification. It assumes class probabilities and class conditional densities are known and chooses the class with the highest posterior probability. It gives the minimum possible classification error when true distributions are known.
+
+PROBABILISTIC CLASSIFICATION FRAMEWORK
+
+Given a feature vector x and classes w1, w2, …, wc:
+
+Class prior probability: P(wi)
+Likelihood: p(x | wi)
+
+Bayes rule gives posterior probability:
+P(wi | x) = p(x | wi) * P(wi) / p(x)
+
+The evidence p(x) is obtained by summing over all classes:
+p(x) = sum over j of p(x | wj) * P(wj)
+
+BAYES CLASSIFIER (MINIMUM ERROR CLASSIFIER)
+
+The Bayes classifier assigns x to the class with the highest posterior probability:
+Choose class wi if P(wi | x) is maximum
+
+Since p(x) is the same for all classes, the decision can be simplified to:
+Choose wi if p(x | wi) * P(wi) is maximum
+
+DECISION REGIONS AND BOUNDARIES
+
+The feature space is divided into decision regions for each class.
+Boundaries occur where the posteriors of two classes are equal:
+P(wi | x) = P(wj | x)
+
+These boundaries are called Bayes decision boundaries.
+
+BAYES RISK (EXPECTED LOSS)
+
+If misclassifications have different costs, define:
+lambda_ij = loss when true class is wi but decision is wj
+
+Expected loss when choosing class wj:
+R(wj | x) = sum over i of lambda_ij * P(wi | x)
+
+Optimal rule:
+Choose the class with the minimum expected risk
+
+Special case: If all mistakes have equal cost → minimum error classifier.
+
+DISCRIMINANT FUNCTIONS
+
+A classifier can be defined using discriminant functions gi(x):
+Choose class i if gi(x) is greater than gj(x) for all j not equal to i
+
+For a Bayes classifier:
+gi(x) = log [ p(x | wi) * P(wi) ]
+
+Log form helps numerical stability.
+
+GAUSSIAN CLASS CONDITIONAL DENSITIES
+
+A common model for p(x | wi) is the Gaussian (normal) distribution with mean vector mu_i and covariance matrix Sigma_i.
+This model is widely used in classification.
+
+BAYES CLASSIFICATION USING GAUSSIANS
+
+Case 1: All classes share the same covariance matrix
+Decision boundaries become linear.
+This leads to Linear Discriminant Analysis.
+
+Case 2: Different covariance matrices
+Decision boundaries become quadratic.
+This leads to Quadratic Discriminant Analysis.
+
+PARAMETER ESTIMATION FROM DATA
+
+In practice, class priors and densities are estimated:
+P(wi) = number of samples in class wi / total samples
+Mean mu_i = average of samples in class wi
+Covariance Sigma_i = sample covariance of class wi
+
+OVERFITTING AND REGULARIZATION
+
+Problems occur when the number of features is large and class sample sizes are small.
+Covariance estimation becomes unreliable.
+
+Solutions:
+Regularize the covariance matrix
+Assume shared covariance
+Reduce dimensionality (for example PCA)
+
+NAIVE BAYES (SPECIAL CASE)
+
+Assumes that features are independent given the class:
+p(x | wi) = product over j of p(xj | wi)
+
+Advantages:
+Fast learning
+Works well with small data
+Common in text classification
+
+MAP AND ML ESTIMATION
+
+MAP estimation:
+Choose class with maximum posterior probability.
+Used when priors are included.
+
+ML estimation:
+Maximizes likelihood without priors.
+Used when no class prior preference exists.
+
+RELATIONSHIP TO OTHER METHODS
+
+Linear discriminant classifiers arise from Gaussian models with shared covariance.
+Logistic regression approximates posterior probabilities directly (discriminative approach).
+Kernel density approximations remove strong Gaussian assumptions.
+
+Bayesian decision theory forms the foundation of generative probabilistic classifiers.
+
+SUMMARY
+
+Bayesian decision theory defines the optimal classifier by choosing the class with the highest posterior probability.
+It accounts for prior probabilities, likelihoods, and classification losses.
+Gaussian models lead to linear or quadratic boundaries.
+Parameter estimation can be done using MAP or ML.
+The theory underlies many classical and modern machine learning algorithms.

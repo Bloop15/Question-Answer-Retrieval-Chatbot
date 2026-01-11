@@ -1,0 +1,129 @@
+INDEXING (B+ TREES & HASHING)
+
+Indexing improves query performance by reducing the number of disk accesses. Without indexes, DBMS must scan entire tables.
+
+An index stores a search key and a pointer to the corresponding record or block.
+
+Ordered Indexes (Tree-Based)
+
+Common structure: B+ Tree
+Records stored in sorted order → supports equality and range queries.
+
+B+ Tree Indexes
+
+A B+ Tree is a balanced search tree optimized for disk storage.
+
+Properties:
+• Data stored only in leaf nodes
+• Internal nodes store keys for navigation
+• All leaves at same level (balanced)
+• Linked leaf nodes → fast range access
+• Lookup time: O(log n)
+
+Operations:
+• Search: traverse root → leaf
+• Insert: add in leaf; split if needed
+• Delete: remove; merge or redistribute if underflow
+
+Advantages:
+• Efficient equality and range search
+• Supports sorted access
+• Low height → fast disk lookup
+
+Types of Indexes
+
+Primary Index:
+• Based on primary key or candidate key
+• Unique
+• Typically clustered (same physical order as data)
+
+Secondary Index:
+• Based on non-primary attributes
+• Can be multiple per table
+• Usually non-clustered
+
+Clustering Index:
+• Determines physical ordering of data
+• Only 1 per table
+• Very fast for range queries
+
+Dense vs Sparse Index:
+• Dense: entry for every search key → faster, more space
+• Sparse: entry per block → less space, requires ordered file
+
+Primary → usually Sparse
+Secondary → usually Dense
+
+Multi-Level Indexing
+
+Index itself may be large → additional index levels.
+B+ Tree = multi-level index design.
+
+Hash Indexing
+
+Hash function maps keys to buckets:
+bucket = h(key)
+
+Static Hashing:
+• Fixed bucket count
+• Overflow if bucket full
+• Managed by overflow chains
+
+Fast for equality searches but no range support.
+
+Dynamic Hashing
+
+Adjusts structure as data grows.
+
+Extendible Hashing:
+• Directory maps hash values
+• Directory doubles when needed
+• Bucket splits dynamically
+• Fewer overflows
+
+Linear Hashing:
+• No directory
+• Buckets split gradually
+• Smooth expansion
+
+Bitmap Indexes
+
+Used for low-cardinality columns (e.g., gender, boolean, status).
+Fast for analytic AND/OR queries.
+Not suitable for high-cardinality attributes.
+
+B+ Tree vs Hash Index Comparison
+
+Feature	B+ Tree	Hash
+Supports Range Queries	Yes	No
+Ordering Maintained	Yes	No
+Space Usage	Higher	Lower
+Insert/Delete	Moderate	Very Fast
+Best Use Case	OLTP + OLAP	Fast equality lookup
+
+Index Selection Guidelines
+
+Create indexes on:
+• Columns frequently used in WHERE
+• Join attributes
+• Ordering (ORDER BY) and grouping (GROUP BY) columns
+
+Avoid indexes on:
+• Small tables
+• Columns with frequent updates
+• High-cardinality attributes for bitmap indexes
+
+Summary
+
+Indexes drastically improve retrieval performance.
+Main index types:
+• B+ Tree → equality + range
+• Hash → fast equality
+Additional concepts:
+• Primary, secondary, clustered, non-clustered
+• Dense vs sparse indexing
+• Multi-level indexing
+• Dynamic hashing
+• Bitmap indexes
+
+Index tuning is key to optimizing database performance.

@@ -1,0 +1,90 @@
+C uses the standard I/O library (stdio.h) to perform input and output with streams such as stdin, stdout, and stderr. These streams connect to keyboards, screens, and files.
+
+Character Input and Output:
+getchar():
+Reads a single character and returns its ASCII value or EOF.
+int c = getchar();
+
+putchar():
+Outputs a single character.
+putchar('A');
+
+Formatted Output:
+printf():
+printf("format string", values);
+Format specifiers include:
+%d %i %u %ld %lld for integers
+%f %lf %e %g for floating point
+%c for character
+%s for string
+%x %X for hexadecimal
+%p for pointer
+Example:
+printf("Result: %d\n", x);
+
+Formatted Input:
+scanf():
+Reads formatted input from standard input.
+scanf("%d %f", &x, &y);
+Requires variable addresses. Matching format specifiers is essential.
+
+String Input and Output:
+fgets() reads a line safely:
+fgets(str, sizeof(str), stdin);
+puts() prints a string with a newline:
+puts("Hello");
+gets() is unsafe and deprecated.
+
+File Input and Output:
+FILE pointer required for file operations.
+Opening:
+FILE *fp = fopen("data.txt", "r");
+Modes: r (read), w (write), a (append), r+ (read/write), binary versions rb, wb.
+Check for errors:
+if (fp == NULL) { printf("Cannot open file"); }
+
+Closing:
+fclose(fp);
+
+Reading:
+getc(fp) reads a character
+fgets(buffer, size, fp) reads a line
+fscanf(fp, ...) reads formatted data
+
+Writing:
+putc('A', fp) writes a character
+fputs("Hello", fp) writes a string
+fprintf(fp, "Value: %d", x) formatted file output
+
+Binary File I/O:
+Used for structs and efficient storage.
+Reading:
+fread(&var, sizeof(var), 1, fp);
+Writing:
+fwrite(&var, sizeof(var), 1, fp);
+
+Error Handling:
+feof(fp) detects end-of-file
+ferror(fp) detects I/O error
+perror("Message") prints error based on errno
+
+Command-Line Arguments:
+main can receive input arguments:
+int main(int argc, char *argv[])
+argc is number of arguments
+argv is an array of strings
+Example:
+./prog input.txt output.txt
+argv[1] = "input.txt"
+
+Example: Copy one file to another:
+int c;
+FILE *in = fopen("input.txt", "r");
+FILE *out = fopen("output.txt", "w");
+while ((c = getc(in)) != EOF)
+putc(c, out);
+fclose(in);
+fclose(out);
+
+Summary:
+Standard I/O in C includes character I/O (getchar, putchar), formatted I/O (printf, scanf), string I/O (fgets, puts), file handling (fopen, fclose, fscanf, fprintf), binary I/O (fread, fwrite), and command-line argument processing.

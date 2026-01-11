@@ -1,0 +1,196 @@
+CONSTRUCTORS IN JAVA
+
+A constructor is a special method used to initialize an object when it is created. Its purpose is to assign initial values to object fields. Constructors have the same name as the class, have no return type, and are called automatically using the new keyword.
+
+WHAT IS A CONSTRUCTOR
+
+A constructor is executed when an object is created.
+
+Example:
+class Student {
+Student() {
+System.out.println("Constructor called");
+}
+}
+
+Student s = new Student();
+
+CHARACTERISTICS OF CONSTRUCTORS
+
+They have the same name as the class.
+They have no return type.
+They are invoked automatically when creating an object.
+They cannot be abstract, static, final, or synchronized.
+They are used to initialize objects.
+
+TYPES OF CONSTRUCTORS
+
+Java supports three types:
+Default constructor
+No argument constructor
+Parameterized constructor
+
+3.1 DEFAULT CONSTRUCTOR
+
+Provided by Java if no constructor is defined. It initializes variables with default values.
+Example:
+class A {
+int x; // default value 0
+}
+
+Equivalent default constructor:
+A() { }
+
+Default values:
+int = 0
+boolean = false
+objects = null
+
+3.2 NO ARGUMENT CONSTRUCTOR
+
+Explicitly defined by programmer.
+class A {
+A() {
+System.out.println("No argument constructor");
+}
+}
+
+3.3 PARAMETERIZED CONSTRUCTOR
+
+Takes parameters to initialize fields.
+Example:
+class Student {
+int roll;
+String name;
+Student(int r, String n) {
+roll = r;
+name = n;
+}
+}
+
+Student s1 = new Student(101, "Alice");
+Student s2 = new Student(102, "Bob");
+
+CONSTRUCTOR OVERLOADING
+
+A class can have multiple constructors with different parameter lists.
+
+Example:
+class Box {
+int l, b, h;
+Box() {
+l = b = h = 1;
+}
+Box(int x) {
+l = b = h = x;
+}
+Box(int l, int b, int h) {
+this.l = l;
+this.b = b;
+this.h = h;
+}
+}
+
+THIS TO CALL ANOTHER CONSTRUCTOR
+
+this() is used to call another constructor in the same class. It must be the first statement.
+
+class A {
+A() {
+this(10);
+System.out.println("Default");
+}
+A(int x) {
+System.out.println("Parameterized " + x);
+}
+}
+
+DIFFERENCE BETWEEN CONSTRUCTOR AND METHOD
+
+Constructor has the same name as class, has no return type, invoked automatically, used for initialization, and is not inherited.
+Method has any valid name, can have a return type, called explicitly, is used for performing tasks, and is inherited.
+
+COPY CONSTRUCTOR IN JAVA
+
+Java does not have built in copy constructors. But they can be implemented manually.
+
+class Student {
+int roll;
+String name;
+Student(Student s) {
+this.roll = s.roll;
+this.name = s.name;
+}
+}
+
+Student s1 = new Student(101, "Sam");
+Student s2 = new Student(s1);
+
+PRIVATE CONSTRUCTORS
+
+Used to restrict object creation. Useful in Singleton design pattern.
+
+class Singleton {
+private Singleton() { }
+}
+
+CONSTRUCTOR CHAINING
+
+Constructor chaining is calling one constructor from another.
+
+Within same class: this()
+Between parent and child class: super()
+
+Example:
+class Parent {
+Parent() {
+System.out.println("Parent");
+}
+}
+class Child extends Parent {
+Child() {
+super();
+System.out.println("Child");
+}
+}
+
+ORDER OF EXECUTION IN CHILD OBJECT CREATION
+
+First static blocks (parent then child)
+Then instance blocks (parent then child)
+Then parent constructor
+Then child constructor
+
+COMMON ERRORS
+
+Missing parentheses: Student; is wrong. Correct: Student();
+Returning a value inside constructor is not allowed.
+Calling this() not as the first statement causes an error.
+
+EXAMPLE PROGRAM
+
+class Student {
+int roll;
+String name;
+Student() {
+roll = 0;
+name = "Unknown";
+}
+Student(int r, String n) {
+roll = r;
+name = n;
+}
+void display() {
+System.out.println(roll + " " + name);
+}
+public static void main(String[] args) {
+Student s1 = new Student();
+Student s2 = new Student(101, "Alice");
+s1.display();
+s2.display();
+}
+}
+
+SUMMARY
+
+Constructors are special methods used to initialize objects. They can be default, no argument, or parameterized. Java supports constructor overloading and chaining using this() and super(). Copy constructors can be created manually. Constructors are essential for proper object initialization in object oriented programming.

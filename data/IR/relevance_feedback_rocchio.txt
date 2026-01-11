@@ -1,0 +1,116 @@
+RELEVANCE FEEDBACK (ROCCHIO ALGORITHM)
+
+Relevance feedback improves search results by adjusting the query based on which retrieved documents are relevant or irrelevant. It is commonly used in the Vector Space Model, learning user intent during retrieval.
+
+WHAT IS RELEVANCE FEEDBACK?
+
+Relevance feedback is an iterative loop:
+
+User submits an initial query
+
+System retrieves documents
+
+User marks results as relevant or not relevant
+
+System updates the query
+
+More accurate results are retrieved
+
+The updated query is moved closer to relevant documents and farther from non-relevant ones.
+
+TYPES OF RELEVANCE FEEDBACK
+
+2.1 Explicit Relevance Feedback
+User directly marks documents as relevant or irrelevant.
+Used in legal search, academic search, and patent retrieval.
+
+2.2 Implicit Relevance Feedback
+System infers relevance from:
+Click behavior
+Time spent on page
+Scrolling
+Used in web search engines and recommendation systems.
+
+2.3 Pseudo Relevance Feedback (PRF)
+Top retrieved documents are assumed relevant.
+Used for improving search without user involvement.
+
+ROCCHIO ALGORITHM
+
+Rocchio is based on vector space representation and TF-IDF weighting. It modifies the query vector using centroids of relevant and non-relevant document vectors.
+
+3.1 Rocchio Update Formula
+
+Q_new = α Q_orig + (β / |D_r|) Σ d∈D_r d − (γ / |D_nr|) Σ d∈D_nr d
+
+Where:
+Q_orig = original query vector
+D_r = set of relevant documents
+D_nr = set of non-relevant documents
+α, β, γ = control parameters
+
+Typical values:
+α = 1
+β = 0.75
+γ = 0.15
+
+INTUITION BEHIND ROCCHIO
+
+Increases weights of terms appearing in relevant documents
+Decreases weights of terms from non-relevant documents
+Retains influence of original query terms
+
+This results in more accurate retrieval in the next iteration.
+
+EXAMPLE (Illustrative)
+
+Q_orig = [1, 0, 1]
+Relevant docs = [1,1,1] and [1,2,1]
+Non-relevant doc = [0,1,0]
+
+Compute centroids and apply Rocchio formula to obtain an improved query vector.
+
+QUERY EXPANSION USING ROCCHIO
+
+Terms from relevant documents are added to the query with increased weight. This addresses synonymy and vocabulary mismatch.
+
+PSEUDO RELEVANCE FEEDBACK
+
+Steps:
+Retrieve top k documents
+Assume they are relevant
+Apply Rocchio to update query
+Retrieve again using updated query
+
+Advantages:
+No user interaction
+Improves recall
+
+Disadvantage:
+Assumption may introduce noise
+
+ADVANTAGES
+
+Improves recall
+Learns true user intent
+Handles vocabulary mismatch
+Boosts performance in domain-specific search
+
+LIMITATIONS
+
+Requires user involvement for explicit feedback
+May incorporate irrelevant results in PRF
+More computation required
+May not be suitable for large real-time web search
+
+APPLICATIONS
+
+Academic and legal search engines
+Enterprise search
+Digital libraries
+Recommendation systems
+RAG-based retrieval systems
+
+Summary
+
+Relevance feedback refines a query using relevance judgments. The Rocchio Algorithm updates the query vector by moving it toward relevant document vectors and away from non-relevant ones. It improves retrieval effectiveness, especially in cases where vocabulary mismatch exists.

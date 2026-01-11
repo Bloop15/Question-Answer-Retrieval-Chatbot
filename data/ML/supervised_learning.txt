@@ -1,0 +1,106 @@
+SUPERVISED LEARNING (Ethem Alpaydin, ML 2nd Edition)
+
+Supervised learning is the task of learning a mapping from inputs to outputs using labeled examples. The model is trained on input-output pairs so it can predict outputs for unseen inputs.
+
+It includes two main tasks: classification and regression.
+
+DEFINITION
+
+Training data consists of input-output pairs:
+(x1, y1), (x2, y2), ..., (xn, yn)
+
+The goal is to learn a function f such that:
+f(x) predicts y accurately for new x.
+
+Classification: output is a discrete class
+Regression: output is a continuous value
+
+CLASSIFICATION
+
+Classification assigns an input to a specific class.
+Examples include spam filtering, digit recognition, and medical diagnosis.
+
+Binary Classification: two possible classes
+Multi-class Classification: more than two classes
+Probabilistic Classification: outputs class probabilities such as P(y|x)
+
+Decision boundary: the surface separating regions of different predicted classes.
+
+REGRESSION
+
+Regression predicts a numeric value.
+Examples: predicting house prices, weather forecasting.
+
+Models include linear regression, polynomial regression, and nonlinear regression.
+
+COMPONENTS OF A SUPERVISED LEARNING SYSTEM
+
+Model or hypothesis: represents the mapping from input to output
+Loss function: measures prediction error
+Learning algorithm: optimizes model parameters to minimize loss
+Training data: used to learn
+Test data: used to evaluate generalization performance
+
+GENERALIZATION
+
+Goal: perform well on unseen data, not just memorizing training examples.
+
+Good generalization requires enough data, appropriate model complexity, and regularization.
+
+BIAS–VARIANCE TRADEOFF
+
+High bias: model too simple, underfits
+High variance: model too complex, overfits
+Goal: balance both for best performance
+
+EVALUATION METRICS
+
+Classification metrics:
+Accuracy, Precision, Recall, F1-score, ROC-AUC
+
+Regression metrics:
+Mean Squared Error (MSE), Root MSE (RMSE), Mean Absolute Error (MAE), R² score
+
+TRAINING AND VALIDATION
+
+Training set: used to fit model
+Validation set: used for hyperparameter tuning
+Test set: used only for final performance estimation
+
+TYPES OF SUPERVISED MODELS
+
+Parametric models: fixed number of parameters
+Examples: linear regression, logistic regression
+
+Nonparametric models: complexity grows with data
+Examples: KNN, decision trees
+
+Probabilistic models: model distributions
+Examples: naive Bayes, Bayesian networks
+
+Neural networks: learn complex nonlinear functions
+
+NOISE IN DATA
+
+Data may contain incorrect labels, missing values, or measurement noise.
+Robust algorithms perform better under noise.
+
+REGULARIZATION
+
+Reduces overfitting by penalizing model complexity.
+Common methods: L1, L2, early stopping, weight decay
+
+OCCAM’S RAZOR
+
+Prefer simpler models that fit the data well.
+Too simple → underfit; too complex → overfit.
+
+SUPERVISED VS UNSUPERVISED VS REINFORCEMENT LEARNING
+
+Supervised learning: labeled data, goal is prediction
+Unsupervised learning: no labels, goal is pattern discovery
+Reinforcement learning: reward signals, goal is action selection
+
+Summary
+
+Supervised learning uses labeled data to learn mappings for prediction tasks. It includes classification and regression, focuses on generalization, and faces challenges such as noise, overfitting, and appropriate model complexity selection.

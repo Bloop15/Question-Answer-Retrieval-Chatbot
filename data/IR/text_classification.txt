@@ -1,0 +1,139 @@
+TEXT CLASSIFICATION
+
+Text classification assigns predefined labels to text documents. It is widely used in Information Retrieval, Natural Language Processing, and Machine Learning.
+
+Examples:
+Spam vs Not Spam
+Sentiment polarity
+News topic categorization
+Document routing
+Intent detection
+
+WHAT IS TEXT CLASSIFICATION?
+
+Given a document d and a set of categories C = {c1, c2, …, cn},
+the task is to determine class(d) ∈ C.
+
+It is typically supervised learning when trained with labeled data.
+
+TYPES OF TEXT CLASSIFICATION
+
+2.1 Binary Classification
+Two possible labels, e.g., Spam / Not Spam.
+
+2.2 Multi-class Classification
+Document assigned exactly one label from multiple classes.
+
+2.3 Multi-label Classification
+Document may belong to multiple categories.
+
+2.4 Hierarchical Classification
+Labels are structured in a taxonomy, e.g.,
+Sports → Cricket → ODI.
+
+TEXT REPRESENTATION METHODS
+
+Documents must be converted into numeric vectors before classification.
+
+3.1 Bag of Words (BoW)
+Term frequency counts; ignores word order.
+
+3.2 TF-IDF
+Weighted vectors that reduce the influence of common words.
+
+3.3 Word Embeddings
+Dense vectors such as Word2Vec, GloVe, FastText.
+Capture semantic similarity.
+
+3.4 Contextual Embeddings
+Transformer-based models: BERT, RoBERTa.
+Meaning depends on context; best performance today.
+
+CLASSICAL MACHINE LEARNING MODELS
+
+Used commonly with BoW or TF-IDF.
+
+4.1 Naive Bayes
+Simple and effective baseline; probabilistic model.
+
+4.2 Logistic Regression
+Strong performance with regularization.
+
+4.3 Support Vector Machines (SVM)
+Very effective for high-dimensional sparse data.
+
+4.4 k-Nearest Neighbors (k-NN)
+Instance-based; slower during prediction.
+
+4.5 Decision Trees / Random Forests
+Less effective for sparse high-dimensional text features.
+
+NEURAL NETWORK MODELS
+
+Useful for large datasets and capturing linguistic patterns.
+
+5.1 Feedforward Neural Networks
+Simple architecture over TF-IDF vectors.
+
+5.2 Convolutional Neural Networks (CNNs)
+Capture n-gram patterns; popular for sentence classification.
+
+5.3 RNNs, LSTMs, GRUs
+Model sequential dependencies; used in sentiment analysis.
+
+5.4 Transformers
+State-of-the-art performance.
+Pretrained models: BERT, DistilBERT, ALBERT.
+Fine-tuned for classification tasks.
+
+TRAINING PROCESS
+
+Steps:
+Data preprocessing (tokenization, normalization)
+Feature extraction (TF-IDF or embeddings)
+Train/test split
+Model training
+Evaluation using classification metrics
+
+EVALUATION METRICS
+
+Accuracy
+Precision
+Recall
+F1-score
+Confusion matrix
+Micro/macro averaging (for multi-class and imbalanced datasets)
+ROC-AUC (for binary classification)
+
+APPLICATIONS
+
+Spam filtering
+Sentiment analysis
+News categorization
+Topic labeling
+Toxic comment detection
+Search engine query classification
+Email routing
+Recommendation filters
+Social media monitoring
+Customer support automation
+
+CHALLENGES
+
+High dimensionality
+Synonymy and polysemy
+Imbalanced classes
+Domain shift
+Sarcasm and figurative language
+Multilingual and noisy data
+
+MODERN TRENDS
+
+Pretrained transformers with fine-tuning
+Zero-shot classification (LLM-based)
+Prompt-based classification
+Lightweight transformer variants for deployment
+
+Summary
+
+Text classification assigns correct labels to documents by converting text into numerical features and using ML or DL models. Classical models (Naive Bayes, SVM, Logistic Regression) work well with TF-IDF, while deep learning and transformers achieve state-of-the-art performance, especially for semantic-rich tasks.

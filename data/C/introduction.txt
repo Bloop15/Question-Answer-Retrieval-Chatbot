@@ -1,0 +1,95 @@
+C is a general-purpose procedural programming language developed by Dennis Ritchie at Bell Labs in the early 1970s. It is widely used for operating systems, embedded systems, compilers, device drivers, and high-performance applications. C is the foundation for many modern languages including C++, Java, C#, Go, and Rust.
+
+History and Features:
+C was created for UNIX development. It was standardized as ANSI C (C89/C90), later updated to C99, C11, and C18.
+Key features:
+Low-level memory access
+Fast execution
+Portable across platforms
+Procedural programming model
+Rich operators and minimal standard library
+
+Structure of a C Program:
+A program consists of preprocessor directives, function definitions, variable declarations, and statements.
+Example:
+#include <stdio.h>
+int main()
+{
+return 0;
+}
+
+First Program Example:
+#include <stdio.h>
+int main()
+{
+printf("Hello, World!\n");
+return 0;
+}
+#include <stdio.h> includes standard I/O functions. main is the entry point. return 0 indicates successful execution.
+
+Compilation and Execution:
+C programs must be compiled.
+Steps:
+Preprocessing → Compilation → Assembly → Linking
+Linux/macOS:
+gcc program.c -o program
+./program
+Windows (MinGW):
+gcc program.c -o program.exe
+program.exe
+
+Tokens in C:
+Smallest elements of a program:
+Keywords
+Identifiers
+Constants
+String literals
+Operators
+Punctuation characters such as ; {} ()
+
+Variables and Data Types:
+Basic types: int, float, double, char
+Derived types: arrays, pointers, structures, functions
+Examples:
+int a;
+float b;
+char c = 'A';
+
+Constants and Literals:
+Integer, floating, character, string, and enumeration constants.
+Examples:
+10
+3.14
+'A'
+"Hello"
+
+Basic Input and Output:
+Uses stdio.h.
+printf for output, scanf for input.
+Example:
+scanf("%d", &x);
+
+Operators (Brief Overview):
+Arithmetic: + - * / %
+Relational: < <= > >= == !=
+Logical: && || !
+Bitwise: & | ^ ~ << >>
+Assignment: = += -= *=
+Conditional: ?:
+Increment and decrement: ++ --
+
+Example Program:
+#include <stdio.h>
+int main()
+{
+int a, b, sum;
+printf("Enter two numbers: ");
+scanf("%d %d", &a, &b);
+sum = a + b;
+printf("Sum = %d\n", sum);
+return 0;
+}
+Demonstrates input, output, variables, arithmetic, and control flow.
+
+Summary:
+C is efficient, portable, and close to hardware. It supports a structured approach to programming and remains widely used in system-level and performance-critical applications. Understanding C fundamentals is essential for deeper computer science and software development concepts.

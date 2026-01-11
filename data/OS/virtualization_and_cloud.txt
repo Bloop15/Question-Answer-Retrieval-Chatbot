@@ -1,0 +1,327 @@
+CHAPTER 7 — VIRTUALIZATION AND THE CLOUD
+
+Virtualization allows multiple operating systems or applications to run on a single physical machine by abstracting hardware resources.
+Cloud computing builds on virtualization to deliver scalable, flexible computing services.
+
+=========================================================
+1. WHAT IS VIRTUALIZATION?
+=========================================================
+
+Virtualization creates an abstract view of hardware so multiple isolated environments can run concurrently.
+
+Key goals:
+
+Resource sharing
+
+Isolation
+
+Security
+
+Flexibility
+
+Better utilization
+
+=========================================================
+2. VIRTUAL MACHINES (VMs)
+=========================================================
+
+A Virtual Machine (VM) simulates complete hardware, allowing guest OSes to run unmodified.
+
+Components:
+
+Virtual CPU
+
+Virtual memory
+
+Virtual devices
+
+Virtual disk
+
+2.1 Type 1 vs Type 2 Hypervisors
+✔ Type 1 (Bare-Metal)
+
+Runs directly on hardware.
+Examples:
+
+VMware ESXi
+
+Microsoft Hyper-V
+
+Xen
+
+✔ Type 2 (Hosted)
+
+Runs on a host OS.
+Examples:
+
+VirtualBox
+
+VMware Workstation
+
+=========================================================
+3. VIRTUALIZATION CHALLENGES
+=========================================================
+3.1 Trap and Emulate
+
+Guest OS executes privileged instructions → hypervisor intercepts.
+
+3.2 Performance Overhead
+
+Virtualization incurs:
+
+CPU overhead
+
+I/O overhead
+
+Memory translation delays
+
+3.3 Security
+
+VM isolation must be strong to prevent breakout or side-channel attacks.
+
+=========================================================
+4. HARDWARE SUPPORT FOR VIRTUALIZATION
+=========================================================
+
+Modern CPUs support virtualization:
+
+Intel VT-x / AMD-V
+
+Privileged instruction trapping
+
+Extended page tables (EPT/NPT)
+
+Virtual interrupt delivery
+
+Benefits:
+
+Faster VMs
+
+Fewer traps
+
+Nested virtualization
+
+=========================================================
+5. MEMORY VIRTUALIZATION
+=========================================================
+
+Occurs in two layers:
+
+Guest OS uses virtual → physical (guest)
+
+Hypervisor maps guest physical → machine physical
+
+Efficient mapping done using:
+
+Shadow page tables
+
+Nested page tables (EPT/NPT)
+
+=========================================================
+6. I/O VIRTUALIZATION
+=========================================================
+
+I/O is difficult to virtualize due to device complexity.
+
+Methods:
+
+Device emulation
+
+Paravirtualized drivers (virtio)
+
+Hardware-assisted I/O virtualization (SR-IOV)
+
+=========================================================
+7. CONTAINERS (OS-LEVEL VIRTUALIZATION)
+=========================================================
+
+Containers virtualize the OS, not hardware.
+
+Examples:
+
+Docker
+
+LXC
+
+Kubernetes Pods
+
+Characteristics:
+
+Lightweight
+
+Fast startup
+
+Share host kernel
+
+Isolated via namespaces & cgroups
+
+7.1 Namespaces
+
+Provide isolation for:
+
+Processes
+
+Users
+
+Network
+
+File system
+
+IPC
+
+7.2 Control Groups (cgroups)
+
+Limit and monitor:
+
+CPU
+
+Memory
+
+I/O
+
+Network bandwidth
+
+=========================================================
+8. PARAVIRTUALIZATION
+=========================================================
+
+Guest OS is modified to cooperate with hypervisor.
+
+Examples:
+
+Xen paravirtualized mode
+
+virtio drivers
+
+Advantages:
+
+Lower overhead
+
+Faster I/O
+
+=========================================================
+9. CLOUD COMPUTING
+=========================================================
+
+Cloud computing delivers computing resources as services over the Internet.
+
+Characteristics:
+
+On-demand
+
+Elastic scalability
+
+Measured billing
+
+Multi-tenant
+
+Highly available
+
+9.1 Service Models
+✔ IaaS (Infrastructure as a Service)
+
+Provides:
+
+Virtual machines
+
+Storage
+
+Networks
+Providers: AWS EC2, Azure VMs
+
+✔ PaaS (Platform as a Service)
+
+Provides:
+
+Application platforms
+
+Databases
+
+Runtime environments
+Examples: Google App Engine, Heroku
+
+✔ SaaS (Software as a Service)
+
+Applications hosted online.
+Examples: Gmail, Office 365, Salesforce
+
+=========================================================
+10. VIRTUALIZATION IN THE CLOUD
+=========================================================
+
+Cloud uses virtualization to:
+
+Consolidate workloads
+
+Isolate tenants
+
+Migrate virtual machines
+
+Balance loads
+
+10.1 VM Migration
+
+Live migration:
+
+Copy memory pages gradually
+
+Minimize downtime
+Used for:
+
+Load balancing
+
+Hardware maintenance
+
+Fault tolerance
+
+=========================================================
+11. SERVERLESS COMPUTING
+=========================================================
+
+Applications run in ephemeral containers triggered by events.
+
+Examples:
+
+AWS Lambda
+
+Azure Functions
+
+Google Cloud Functions
+
+Benefits:
+
+No server management
+
+Automatic scaling
+
+Pay-per-use
+
+=========================================================
+12. SECURITY IN VIRTUALIZED SYSTEMS
+=========================================================
+Risks:
+
+VM escape
+
+Side-channel attacks
+
+Hypervisor vulnerabilities
+
+Multi-tenant leakage
+
+Mitigations:
+
+Strong isolation
+
+Secure hypervisors
+
+Hardware-backed virtualization
+
+Encrypted memory (e.g., AMD SEV)
+
+Summary
+
+Virtualization enables multiple isolated systems to run on one physical machine.
+Hypervisors, nested page tables, and paravirtualization provide efficient virtualization.
+Containers offer lightweight isolation, and cloud computing builds on virtualization to deliver scalable services.
+Modern systems rely heavily on VMs, containers, and cloud platforms for flexibility and efficiency.

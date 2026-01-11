@@ -1,0 +1,173 @@
+NEURAL IR / DENSE RETRIEVAL (BERT, DPR, COLBERT)
+
+Neural Information Retrieval (Neural IR) uses deep learning models such as Transformers (BERT) to retrieve documents based on semantic similarity rather than exact keyword matching.
+
+Dense retrieval encodes queries and documents into vectors and retrieves relevant documents using vector similarity.
+
+Used in:
+• Search engines
+• RAG systems
+• QA systems (ChatGPT, Gemini, Claude)
+• Vector databases (FAISS, Pinecone, Milvus)
+
+LIMITATIONS OF CLASSICAL IR
+
+Traditional methods (TF-IDF, BM25) have drawbacks:
+• No semantic understanding
+• Vocabulary mismatch (e.g., car vs automobile)
+• Bag-of-words assumption
+• No contextual meaning
+
+Neural models overcome these using context-aware embeddings.
+
+WHAT IS DENSE RETRIEVAL?
+
+Dense retrieval represents:
+• Queries as embedding vectors
+• Documents as embedding vectors
+
+Similarity computed using dot product or cosine similarity:
+score(q, d) = dot( f(q), g(d) )
+
+Where f and g are neural encoders.
+
+NEURAL ENCODERS FOR IR
+
+3.1 BERT (Bidirectional Encoder Representations from Transformers)
+• Provides contextualized embeddings
+• Better representation of meaning
+• Direct BERT encoding for all documents is slow → optimized retrieval models used instead
+
+BI-ENCODER MODELS
+
+Two encoders (possibly shared):
+• One for queries
+• One for documents
+
+Advantages:
+• Efficient retrieval using vector search
+• Can precompute document embeddings
+
+Disadvantages:
+• Lower accuracy than model using cross-interaction
+
+DUAL ENCODER: DPR (Dense Passage Retrieval)
+
+Developed by Facebook AI.
+
+Architecture:
+• Query encoder (BERT)
+• Passage encoder (BERT)
+
+Training objective:
+• Maximize similarity for positive passage
+• Minimize similarity for negative passages
+
+Uses hard negatives, in-batch negatives.
+
+Advantages:
+• Fast large-scale retrieval
+• Good semantic matching
+
+Limitations:
+• Loses token-level interactions
+
+CROSS-ENCODER MODELS
+
+Query and document are concatenated and fed into a single BERT model.
+
+Pros:
+• Best accuracy
+
+Cons:
+• Slow for large retrieval
+• Used mainly for re-ranking top-k results
+
+LATE INTERACTION MODELS: COLBERT
+
+ColBERT encodes query and document tokens separately and computes maximum similarity between token embeddings.
+
+Scoring:
+score(q, d) = Σ max dot(q_i, d_j)
+
+Advantages:
+• Better accuracy than bi-encoders
+• Faster than cross-encoders
+• Scales to millions of documents
+
+TRAINING NEURAL RETRIEVERS
+
+Training uses contrastive learning.
+
+Loss functions:
+• Contrastive loss
+• Triplet loss
+• InfoNCE
+
+Training data uses:
+• Positive passages
+• Hard negatives
+• In-batch negatives
+
+Popular datasets:
+• MS MARCO
+• Natural Questions
+• HotpotQA
+
+APPROXIMATE NEAREST NEIGHBOR (ANN) SEARCH
+
+Dense vectors require efficient search algorithms.
+
+ANN libraries and systems:
+• FAISS
+• ScaNN
+• Annoy
+• HNSW
+• Pinecone, Milvus, Weaviate
+
+Improves retrieval complexity compared to brute-force search.
+
+HYBRID RETRIEVAL
+
+Combines sparse + dense retrieval.
+
+Example score:
+score = α × BM25 + β × dot(q, d)
+
+Advantages:
+• Handles both lexical and semantic similarity
+• Best observed performance in practice
+
+USE CASES OF NEURAL IR
+
+• Search engines
+• Retrieval-Augmented Generation (RAG)
+• Enterprise search
+• Question answering
+• E-commerce search
+• Recommender systems
+• Legal and medical information retrieval
+
+LIMITATIONS OF NEURAL IR
+
+• Requires GPUs and large compute
+• Expensive to train and maintain
+• ANN indexing required
+• Domain adaptation needed
+• Hard to interpret decisions
+
+MODERN STATE-OF-THE-ART
+
+• ColBERTv2 / PLAID: optimized late-interaction retrieval
+• SPLADE: sparse transformer retrieval
+• Contriever: unsupervised dense retriever
+• OpenAI Embeddings (text-embedding-3-large)
+• Multimodal retrieval (CLIP, ALIGN)
+
+Summary
+
+Neural IR uses dense vector representations learned using deep neural models to match queries and documents semantically. Key architectures include:
+
+• Bi-encoders (e.g., DPR) for efficient retrieval
+• Cross-encoders for re-ranking with higher accuracy
+• Late-interaction models (e.g., ColBERT) balancing speed and accuracy

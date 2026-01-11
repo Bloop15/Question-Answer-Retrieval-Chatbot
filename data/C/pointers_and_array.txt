@@ -1,0 +1,96 @@
+Pointers store memory addresses and allow direct access to memory. Arrays are contiguous memory blocks. Understanding their relationship is essential for efficient C programming.
+
+Pointers:
+A pointer variable stores the address of another variable.
+Example:
+int x = 10;
+int *p = &x;
+*p accesses the value at the address stored in p.
+&x gives the address of x.
+
+Pointer Initialization:
+Pointers must be initialized before use.
+int x = 5;
+int *p = &x;
+Uninitialized pointers cause undefined behavior.
+
+Null Pointer:
+A pointer pointing to no valid memory.
+int *p = NULL;
+Used for initialization, error handling, and marking list ends.
+
+Pointer Arithmetic:
+Pointer movement is based on the size of the pointed type.
+p + 1 moves to the next element in memory.
+Valid operations: p++, p--, p + n, p - n, subtracting two pointers.
+Invalid: adding or multiplying pointers.
+Example:
+int arr[5] = {10, 20, 30, 40, 50};
+int *p = arr;
+p++; now points to arr[1].
+
+Arrays:
+int arr[5];
+arr[i] accesses the i-th element.
+
+Relationship Between Arrays and Pointers:
+Arrays decay into pointers to first element in most expressions.
+int arr[3] = {1,2,3};
+int *p = arr;
+arr[i] is equivalent to *(arr + i).
+Arrays are not pointers but behave similarly in expressions.
+
+Passing Arrays to Functions:
+Arrays are passed as pointers.
+void print(int arr[], int n);
+is equivalent to:
+void print(int *arr, int n);
+
+Strings:
+A string is a char array ending with '\0'.
+char s[] = "Hello";
+Requires string.h for standard string functions.
+
+Pointer to Pointer:
+Provides multiple levels of indirection.
+int x = 10;
+int *p = &x;
+int **pp = &p;
+**pp gives 10.
+
+Multidimensional Arrays:
+int matrix[3][4];
+Access with matrix[i][j].
+When passed to functions, the second dimension must be fixed.
+
+Arrays of Pointers:
+char *names[] = {"Alice", "Bob", "Charlie"};
+Useful for string lists and function pointer tables.
+
+Pointer-to-Array vs Array-of-Pointers:
+int *p[10]; array of 10 int pointers
+int (*q)[10]; pointer to an array of 10 ints
+
+Dynamic Arrays (malloc):
+int *arr = malloc(n * sizeof(int));
+Memory must be released using free(arr).
+
+Common Pointer Errors:
+Dereferencing uninitialized or NULL pointers
+Using freed memory (dangling pointers)
+Pointer arithmetic mistakes
+Out-of-bounds array access
+
+Pointers with Functions:
+Used for modifying caller variables and efficiently passing large arrays.
+Example:
+void increment(int *p) { (*p)++; }
+
+Pointer-Based Array Iteration:
+int arr[5] = {1,2,3,4,5};
+int *p = arr;
+for(int i = 0; i < 5; i++)
+printf("%d ", *(p + i));
+
+Summary:
+Pointers and arrays are closely linked. Arrays decay to pointers, pointer arithmetic enables efficient traversal, strings are char arrays, multidimensional arrays use row-major layout, pointer-to-pointer supports layered structures, and dynamic arrays require malloc and free. Mastering pointers is key to understanding memory and performance in C.

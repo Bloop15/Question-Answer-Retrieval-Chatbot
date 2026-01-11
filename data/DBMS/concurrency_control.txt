@@ -1,0 +1,107 @@
+CONCURRENCY CONTROL
+
+Concurrency control ensures simultaneous transactions execute correctly without violating consistency or ACID properties. Goals include serializability, avoiding anomalies, and maximizing parallelism.
+
+Transaction Anomalies:
+Lost update: overwriting another uncommitted update
+Dirty read: reading uncommitted data
+Unrepeatable read: data changes between reads
+Phantom read: new rows appear between reads
+
+LOCK-BASED PROTOCOLS
+
+Locks control concurrent data access.
+Types:
+Shared lock (S): read access, multiple allowed
+Exclusive lock (X): write access, exclusive
+
+Lock compatibility:
+S with S: yes
+S with X: no
+X with X: no
+
+Two-Phase Locking (2PL):
+Growing phase: acquire locks only
+Shrinking phase: release locks only
+Guarantees conflict serializability
+
+Strict 2PL:
+X-locks held until commit/abort
+Prevents dirty reads
+Simplifies recovery
+
+Rigorous 2PL:
+All locks held until commit
+Most restrictive, highest isolation
+
+TIMESTAMP ORDERING PROTOCOLS
+
+Each transaction gets timestamp TS.
+Enforces order → avoids deadlock.
+If conflict violates timestamp order → newer transaction aborts and restarts.
+
+Thomas Write Rule:
+Ignores outdated writes
+Improves concurrency vs. basic timestamp ordering
+
+MULTIVERSION CONCURRENCY CONTROL (MVCC)
+
+Maintains multiple versions of data.
+Readers use snapshots; writers create new versions.
+Readers do not block writers and vice versa.
+Used in PostgreSQL, Oracle, MySQL InnoDB.
+
+DEADLOCKS
+
+Deadlock: transactions wait on each other’s locks and cannot proceed.
+
+Coffman conditions:
+Mutual exclusion
+Hold and wait
+No preemption
+Circular wait
+
+Deadlock handling:
+Prevention:
+Wait-Die: older waits, younger aborts
+Wound-Wait: older aborts younger
+Avoidance:
+Banker’s algorithm (rarely used in DBMS)
+Detection and recovery:
+Wait-for graph; cycle → choose victim to rollback
+
+GRANULARITY OF LOCKING
+
+Granularity levels:
+Database → File → Table → Page → Record → Field
+Fine granularity = more concurrency, higher overhead
+
+Intention locks for hierarchy:
+IS: intends shared lock at lower level
+IX: intends exclusive lock at lower level
+SIX: shared on object + intent-exclusive below
+
+CONCURRENCY CONTROL AND SQL ISOLATION
+
+Isolation levels:
+Read Uncommitted: dirty reads allowed
+Read Committed: prevents dirty reads
+Repeatable Read: prevents dirty and unrepeatable reads, phantoms possible
+Serializable: highest isolation, uses strict 2PL or predicate/range locks
+
+PHANTOM PROBLEM
+
+Phantoms occur when new rows match query predicate during transaction.
+Solutions:
+Predicate locks
+Range/index locking (next-key locking)
+MVCC snapshot isolation
+
+Summary:
+Concurrency control maintains correctness in multi-transaction environments using:
+Locking (2PL, strict 2PL)
+Timestamp ordering
+MVCC
+Deadlock handling
+Hierarchical/intention locks
+Isolation levels in SQL determine anomaly prevention and performance balance.

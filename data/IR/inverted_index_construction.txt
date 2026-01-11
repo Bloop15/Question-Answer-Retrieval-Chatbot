@@ -1,0 +1,158 @@
+INVERTED INDEX CONSTRUCTION
+
+The inverted index is the core data structure in Information Retrieval systems. It maps each term to the list of documents in which the term appears, enabling fast full-text search.
+
+What Is an Inverted Index?
+
+An inverted index contains:
+• Dictionary (Vocabulary): unique terms in the document collection
+• Posting List: document IDs containing the term
+
+Example:
+Term | Posting List
+information | {D1, D4, D7}
+retrieval | {D1, D2, D5, D9}
+
+Posting list may also include:
+• Term frequency per document
+• Positions for phrase queries
+
+Why Inverted Index?
+
+Without indexing: full scan of the corpus → slow
+With inverted index: fast retrieval and scalable to large data sets
+
+Used in: Google Search, Lucene, Elasticsearch, Solr
+
+Steps in Index Construction
+
+Main stages:
+• Document collection
+• Tokenization
+• Stopword removal
+• Stemming / Lemmatization
+• Normalization
+• Build dictionary and postings
+• Write index to disk
+
+Text Processing
+
+4.1 Tokenization
+Split text into tokens
+Example: "Machine Learning Basics" → [machine, learning, basics]
+
+4.2 Stopword Removal
+Remove common words (the, is, and, of)
+
+4.3 Stemming
+Reduce words to roots (running → run)
+
+4.4 Lemmatization
+Convert to dictionary form (studies → study)
+
+4.5 Normalization
+Lowercasing, punctuation removal, number handling
+
+Dictionary and Postings Structure
+
+Dictionary stores:
+• Term
+• Pointer to postings list
+• Document frequency (df)
+
+Postings list contains:
+• Document ID
+• Term frequency (tf)
+• Positions (optional)
+
+Example:
+term: database
+(D1: tf=2, pos=[4,9])
+(D3: tf=1, pos=[2])
+
+Algorithms for Index Construction
+
+Small collections:
+• Extract term-doc pairs
+• Sort
+• Merge duplicates
+• Write final index
+
+BSBI (Blocked Sort-Based Indexing)
+
+Used when data doesn’t fit in memory:
+• Break documents into blocks
+• Create index per block
+• Sort and write block to disk
+• Merge all block indexes
+
+Efficient for large datasets
+
+SPIMI (Single Pass In-Memory Indexing)
+
+Used in large-scale search engines:
+• Add terms and append postings directly
+• No sorting of term-doc pairs
+• Write partial indexes when memory full
+• Merge at the end
+
+Used by: Lucene
+
+Index Compression
+
+Reduces storage and speeds up I/O
+
+Techniques:
+• Front-coding (common prefixes)
+• Delta encoding (gaps instead of full docIDs)
+• Variable byte encoding
+• Golomb encoding
+
+Phrase and Proximity Queries
+
+Store term positions to support:
+• Phrase queries: “information retrieval”
+• Near queries: words close to each other
+
+Check adjacency using position lists
+
+Updating an Inverted Index
+
+Dynamic IR systems require:
+• Insert
+• Delete
+• Update
+
+Techniques:
+• LSM Trees (log-structured merge trees)
+• Periodic merging of in-memory index with on-disk segments
+
+Used by: Elasticsearch, Lucene, Bigtable
+
+Query Processing Using Inverted Index
+
+Boolean retrieval:
+• AND → intersection of postings
+• OR → union
+• NOT → difference
+
+Ranked retrieval:
+• Use term weights (TF-IDF)
+• Compute similarity scores
+
+Advantages
+
+• Fast search over large document sets
+• Efficient storage (with compression)
+• Supports Boolean and ranked retrieval
+• Scales to billions of documents
+
+Limitations
+
+• Cannot resolve synonyms automatically
+• Cannot extract semantic meaning
+• Updates may be expensive without LSM techniques
+
+Summary
+
+Inverted indexing stores a mapping from terms to documents and supports fast retrieval. Index construction involves text preprocessing, postings generation, sorting/merging, and potential compression. Dynamic indexing techniques such as LSM trees support updates efficiently. It is the foundation of modern IR systems and search engines.

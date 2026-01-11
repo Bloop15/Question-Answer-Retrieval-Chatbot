@@ -1,0 +1,82 @@
+A data model defines how data is structured, organized, and manipulated in a database. It specifies the logical structure, semantics, constraints, and operations on data.
+
+Purpose of Data Models:
+Clarify data requirements
+Support effective design
+Ensure consistency and avoid redundancy
+Define valid operations
+Improve communication between designers and users
+
+Components of a Data Model:
+Structural component: how data is organized
+Manipulation component: operations such as insert, update, delete, query
+Integrity rules: constraints to maintain correctness
+
+Types of Data Models:
+
+Object-Based Data Models
+
+a) Entity–Relationship (ER) Model:
+Uses entities, attributes, and relationships
+Used at conceptual design level
+
+b) Enhanced ER (EER) Model:
+Adds specialization, generalization, inheritance, aggregation
+Used for complex systems
+
+Record-Based Data Models
+
+a) Hierarchical Model:
+Tree structure (parent–child, one parent per child)
+Fast for 1-to-many
+Not suitable for many-to-many; rigid structure
+
+b) Network Model:
+Graph-based structure with links
+Supports many-to-many
+More flexible but complex to design and navigate
+
+c) Relational Model:
+Tables (relations) with rows (tuples) and columns (attributes)
+Based on set theory and relational algebra
+Simple, flexible, strong theoretical foundation
+Most widely used model in DBMS
+
+Object-Based Data Models (OODBMS):
+Uses objects, classes, methods, inheritance
+Useful for multimedia, CAD, and real-time systems
+
+Object–Relational Model (ORDBMS):
+Hybrid of relational + object models
+Supports user-defined and complex data types
+Used in PostgreSQL, Oracle, SQL Server
+
+Semi-Structured and NoSQL Models:
+
+a) Key-Value stores: Redis, DynamoDB
+b) Document model (JSON/XML): MongoDB
+c) Column-family model: Cassandra, HBase
+d) Graph model (nodes and edges): Neo4j
+
+Schema and Instance:
+Schema: overall database design (static)
+Instance: data at a point in time (dynamic)
+
+Levels of Data Abstraction:
+Physical level: disk storage structures
+Logical level: tables, relationships
+View level: user-specific views
+Supports data independence
+
+Data Independence:
+Logical independence: logical changes do not affect views
+Physical independence: storage changes do not affect logical schema
+
+Integrity Constraints:
+Domain constraints
+Key constraints
+Entity integrity
+Referential integrity
+
+Summary:
+Data models define representation and manipulation of data in DBMS. Major types include hierarchical, network, relational, object, and NoSQL models. Understanding schemas, abstraction levels, and integrity rules is essential for consistent and efficient database design.

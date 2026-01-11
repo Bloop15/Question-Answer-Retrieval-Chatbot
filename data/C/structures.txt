@@ -1,0 +1,101 @@
+Structures group variables of different data types under one name and are used to model complex data. They are essential for implementing linked lists, trees, stacks, queues, file records, and other dynamic data structures.
+
+Declaring and Defining Structures:
+Use the struct keyword to define user-defined types.
+Example:
+struct Student {
+int roll;
+float marks;
+char name[50];
+};
+This creates a type but does not allocate memory.
+
+Creating Structure Variables:
+struct Student s1, s2;
+Memory is allocated only when variables are created.
+Variables may also be declared during struct definition.
+
+Accessing Structure Members:
+Use dot operator for normal variables.
+s1.roll = 10;
+Use arrow operator for pointers to structures.
+struct Student *p = &s1;
+p->marks = 90.0;
+
+Initialization:
+struct Point p = {10, 20};
+struct Student s = {101, 95.5, "Alice"};
+Designated initializers (C99):
+struct Point p = {.y = 20, .x = 10};
+
+Arrays of Structures:
+struct Student class[50];
+class[0].roll = 101;
+Useful for storing multiple records.
+
+Structures and Functions:
+Pass by value copies entire structure.
+void print(struct Student s);
+Pass by pointer allows modification and is more efficient.
+void update(struct Student *s);
+
+Nested Structures:
+struct Date { int d, m, y; };
+struct Employee { char name[50]; struct Date join; };
+Access with emp.join.y.
+
+Self-Referential Structures:
+Used in linked lists and trees.
+struct Node {
+int data;
+struct Node *next;
+};
+
+typedef with Structures:
+typedef struct Student {
+int roll;
+float marks;
+} Student;
+Now declare with Student s1;
+
+Structure Padding and Alignment:
+Compilers add padding for alignment.
+Order members to minimize padding if needed.
+
+Structure Assignment:
+Allowed directly:
+p2 = p1;
+
+Passing Structures by Reference:
+Efficient for large data.
+void modify(struct Data *d);
+
+Returning Structures:
+A function may return a structure by value.
+
+Structures vs Arrays:
+Arrays store same-type elements for bulk data.
+Structures store mixed types for records.
+
+Bitfields in Structures:
+Specify exact bit width.
+struct Flags {
+unsigned int a:1;
+unsigned int b:3;
+unsigned int c:4;
+};
+Used in compression and hardware control.
+
+Example:
+struct Student {
+int roll;
+float marks;
+char name[20];
+};
+void print(struct Student s)
+{
+printf("%d %s %.2f\n", s.roll, s.name, s.marks);
+}
+
+Summary:
+Structures define custom data types with mixed members. They support modular and efficient data representation, dynamic data structures, and direct memory management. Pointers to structures enable powerful operations such as self-referencing for linked structures and efficient data manipulation.

@@ -1,0 +1,170 @@
+GENERICS IN JAVA
+
+Generics allow types such as classes and interfaces to be specified as parameters when defining classes, interfaces, and methods. They provide type safety, compile time checking, code reusability, and prevent ClassCastException. Generics were introduced in Java 5.
+
+WHAT ARE GENERICS
+
+Generics allow specifying the type of data a class, interface, or method will work with.
+
+Without generics:
+ArrayList list = new ArrayList();
+list.add("Hello");
+list.add(10); // allowed but leads to runtime errors
+
+With generics:
+ArrayList<String> list = new ArrayList<>();
+list.add("Hello");
+list.add(10); // compile time error
+
+GENERIC CLASSES
+
+A class may have a type parameter.
+class Box<T> {
+T value;
+void set(T value) { this.value = value; }
+T get() { return value; }
+}
+
+Usage:
+Box<String> b = new Box<>();
+b.set("Java");
+
+GENERIC INTERFACES
+
+interface Container<T> {
+T get();
+}
+
+Example:
+class Store<T> implements Container<T> {
+T item;
+public T get() { return item; }
+}
+
+GENERIC METHODS
+
+Methods can declare their own type parameters.
+public <T> void show(T data) {
+System.out.println(data);
+}
+
+Usage:
+show(10);
+show("Hello");
+
+MULTIPLE TYPE PARAMETERS
+
+class Pair<K, V> {
+K key;
+V value;
+}
+
+Usage:
+Pair<Integer, String> p = new Pair<>();
+
+GENERICS WITH COLLECTIONS
+
+Most collection classes use generics.
+ArrayList<Integer> list = new ArrayList<>();
+HashMap<String, Integer> map = new HashMap<>();
+TreeSet<Double> set = new TreeSet<>();
+
+TYPE INFERENCE (DIAMOND OPERATOR)
+
+Introduced in Java 7.
+ArrayList<String> list = new ArrayList<>();
+
+The compiler infers the type automatically.
+
+BOUNDED TYPE PARAMETERS
+
+Restrict the allowed type.
+
+Upper bound:
+<T extends Number>
+Example:
+class Data<T extends Number> { }
+
+Lower bound:
+
+<? super Integer> 9. WILDCARDS IN GENERICS Used for flexibility. Unbounded wildcard: List<?> list
+
+Can refer to any type list.
+
+Upper bounded wildcard:
+List<? extends Number>
+Accepts Integer, Float, etc. Used mainly for reading.
+
+Lower bounded wildcard:
+List<? super Integer>
+Accepts Integer’s supertypes like Number and Object. Used mainly for writing.
+
+GENERIC CONSTRUCTORS
+
+class Demo {
+<T> Demo(T val) {
+System.out.println(val);
+}
+}
+
+TYPE ERASURE
+
+Generic type information exists only at compile time. At runtime, generics are removed.
+
+Consequences:
+ArrayList<Integer> and ArrayList<String> become same raw type at runtime.
+Cannot create arrays of generic types.
+Cannot use primitive types with generics.
+
+Example not allowed:
+List<int> list = new ArrayList<>();
+
+GENERICS WITH INHERITANCE
+
+List<Object> l = new ArrayList<String>(); // not allowed
+List<? extends Object> l = new ArrayList<String>(); // allowed
+
+GENERICS VS POLYMORPHISM
+
+Generics work at compile time.
+Polymorphism works at runtime.
+Generics detect type errors earlier.
+
+EXAMPLE PROGRAM
+
+class Box<T> {
+T item;
+void set(T item) { this.item = item; }
+T get() { return item; }
+}
+public class Test {
+public static void main(String[] args) {
+Box<Integer> b = new Box<>();
+b.set(100);
+System.out.println(b.get());
+}
+}
+
+Output:
+100
+
+REAL WORLD USE CASES
+
+Used in:
+Collections framework
+Comparable and Comparator
+Stream API
+Optional
+Custom container classes
+
+BEST PRACTICES
+
+Prefer generics over raw types.
+Use diamond operator.
+Use bounded wildcards for flexibility.
+Avoid mixing raw and generic types.
+Use generics to ensure type safety.
+
+SUMMARY
+
+Generics make Java code type safe, reusable, and flexible. They eliminate runtime type errors and enhance compile time validation. Generics are used widely in collections, utilities, and modern Java applications.

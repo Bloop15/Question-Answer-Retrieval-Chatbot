@@ -1,0 +1,131 @@
+INTRODUCTION TO DATABASES
+
+A database is an organized collection of related data that is stored, managed, and accessed electronically.
+A Database Management System (DBMS) is software used to create, store, retrieve, update, and secure databases.
+
+Databases are used in banking, e-commerce, airlines, hospitals, universities, social media, and most modern applications.
+
+What Is Data?
+
+Data is raw facts or figures such as:
+Numbers, text, dates, sensor readings
+
+When processed, data becomes meaningful information.
+
+What Is a Database?
+
+A structured collection of related data stored for quick and efficient access.
+Example table: STUDENT(RollNo, Name, Branch, GPA)
+
+Databases reduce redundancy and maintain consistency.
+
+What Is a DBMS?
+
+Software that provides:
+Defining, storing, retrieving, updating, securing, and managing data
+
+Examples: MySQL, Oracle, PostgreSQL, SQL Server, MongoDB
+
+DBMS vs File-Based System
+
+File System Issues:
+• Redundancy
+• Inconsistency
+• Weak security
+• No concurrency control
+• Difficult maintenance
+
+DBMS Advantages:
+• Security and authorization
+• Backup and recovery
+• Data integrity
+• Minimal redundancy
+• Better concurrency
+• Centralized control
+
+Need for a DBMS
+
+DBMS provides:
+• Controlled redundancy
+• High consistency
+• Secure access
+• Integrity constraints
+• Parallel user access
+• Crash recovery
+• Data independence
+
+Components of DBMS
+
+• Storage Manager
+• Query Processor
+• Transaction Manager
+• Concurrency Control Manager
+• Recovery Manager
+• Metadata Catalog (Data Dictionary)
+
+Database Users
+
+• End users
+• Application programmers
+• Database administrators (DBA)
+• System analysts
+• Database designers
+
+Data Abstraction
+
+Three levels of architecture:
+• Physical level – how data is stored
+• Logical level – what data is stored
+• View level – what users see
+
+DBMS hides storage details from users.
+
+Data Independence
+
+• Logical data independence – change logical schema without affecting applications
+• Physical data independence – change storage without affecting schema
+
+Database Architecture
+
+• Single-tier
+• Two-tier (client-server)
+• Three-tier (UI → application server → DBMS)
+
+Metadata
+
+Metadata = information about database structure
+Stored in system catalog: tables, data types, permissions, constraints
+
+Advantages of DBMS
+
+• Eliminates redundancy
+• Ensures consistency
+• Enforces security
+• Supports concurrency
+• Maintains integrity
+• Provides backup and recovery
+• Handles large data and complex queries
+• Allows data sharing
+
+Disadvantages of DBMS
+
+• Expensive to implement
+• Requires skilled personnel
+• Uses more system resources
+• Complexity increases setup and maintenance
+
+Applications of Databases
+
+• Banking
+• Airline reservations
+• Online shopping
+• Social media
+• Libraries
+• Hospitals
+• Payroll systems
+• Mobile apps
+
+Summary
+
+A DBMS manages and stores large amounts of structured data efficiently and securely.
+It overcomes limitations of file-based systems and supports key features such as concurrency, integrity, recovery, security, and data independence.

@@ -1,0 +1,109 @@
+LINEAR DISCRIMINANT FUNCTIONS
+
+Linear discriminant functions classify data using a linear combination of features.
+General form: g(x) = wᵀx + w₀
+Decision rule: If g(x) ≥ 0 → Class ω₁, else → Class ω₂.
+The boundary wᵀx + w₀ = 0 defines a hyperplane that separates classes.
+
+1. Linear Decision Boundary
+
+A hyperplane divides the feature space into two regions.
+In 2D it is a line, in 3D a plane, and in higher dimensions a hyperplane.
+
+2. Multiple Classes
+
+Multiple linear discriminants are defined:
+
+gᵢ(x) = wᵢᵀx + wᵢ₀ for class i
+Assign x to the class with the highest discriminant value.
+
+Common strategies:
+
+One-vs-Rest
+
+One-vs-One
+
+Direct multiclass discriminant model
+
+3. Linear Separability
+
+A dataset is linearly separable if a hyperplane exists that correctly separates all classes.
+If not linearly separable, nonlinear transformations or kernels may be required.
+
+4. Perceptron Algorithm
+
+Used to learn a linear classifier.
+Update rule when sample is misclassified:
+w = w + η y x
+w₀ = w₀ + η y
+η is learning rate, y in {−1, +1}.
+Converges only if the data is linearly separable.
+
+5. Gradient Descent for Linear Models
+
+Parameters can be learned by minimizing a loss function.
+
+For regression: squared error loss
+For classification: logistic loss
+Gradient descent updates weights in direction that reduces loss.
+
+6. Least Squares Classification
+
+Uses linear regression for classification and assigns class labels based on sign of output.
+Simple but sensitive to outliers and not optimal for overlapping class distributions.
+
+7. Logistic Regression
+
+Probabilistic linear classifier.
+Model: P(y=1|x) = 1 / (1 + e^(−wᵀx))
+Predict class 1 if probability ≥ 0.5.
+Optimized using convex loss functions.
+Widely used in practice.
+
+8. Linear Discriminant Analysis (LDA)
+
+Derived from Gaussian class-conditional distributions with equal covariance.
+Produces linear boundaries from a generative model perspective.
+
+9. Support Vector Machines (Linear SVM)
+
+Find the hyperplane that maximizes the margin, improving generalization.
+Only support vectors (closest points) determine the decision boundary.
+
+10. Regularization
+
+Controls model complexity and prevents overfitting.
+
+L2 (Ridge): λ||w||², keeps weights small
+L1 (Lasso): λ||w||₁, encourages sparse weights (feature selection)
+
+11. Discriminant Functions and Regions
+
+Every linear discriminant divides space into two half-spaces.
+For multiclass problems, boundaries are piecewise linear.
+
+12. Advantages and Limitations
+
+Advantages:
+
+Simple and fast
+
+Interpretable
+
+Effective in high-dimensional settings
+
+Works well with regularization
+
+Limitations:
+
+Cannot model nonlinear boundaries without transformations
+
+Sensitive to feature scaling
+
+Perceptron requires separable data to converge
+
+Summary
+
+Linear discriminant functions classify data using hyperplanes.
+Models such as Perceptron, Logistic Regression, LDA, and Linear SVM rely on this approach.
+They are efficient and widely used but limited to linear boundaries unless extended with kernels or nonlinear transformations.

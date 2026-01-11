@@ -1,0 +1,95 @@
+Greedy Algorithms build a solution step-by-step by choosing the locally optimal choice at each stage, hoping that these choices lead to a globally optimal solution. They are simple, fast, and effective for many optimization problems but do not always guarantee optimality.
+
+Core Concepts of Greedy Algorithms:
+
+Greedy Choice Property:
+A globally optimal solution can be obtained by choosing the best local decision at each step.
+Example: Prim’s algorithm always picks the smallest feasible edge and still gets the minimum spanning tree.
+
+Optimal Substructure:
+Optimal solution contains optimal solutions to its subproblems.
+Example: Fractional knapsack continues to be optimal after taking the best ratio item.
+
+Both properties must hold for greedy to work correctly.
+
+Elements of a Greedy Algorithm:
+Select the best feasible choice using a selection criterion.
+Add it to the solution.
+Update the remaining options.
+Repeat until no feasible choices remain.
+Greedy algorithms do not backtrack.
+
+Classic Greedy Examples:
+
+Fractional Knapsack:
+Take items in decreasing order of value/weight ratio.
+Time: O(n log n)
+
+Job Sequencing with Deadlines:
+Sort jobs by profit and schedule latest possible slot before deadline.
+Time: O(n log n)
+
+Prim’s Minimum Spanning Tree:
+Pick minimum weight edge connecting tree to a new vertex.
+Time: O(n²) with matrix, O(E log V) with priority queue
+
+Kruskal’s Minimum Spanning Tree:
+Sort edges by weight, add if no cycle.
+Uses Union-Find.
+Time: O(E log E)
+
+Dijkstra’s Shortest Path:
+Graph with non-negative edge weights.
+Pick vertex with minimum tentative distance and relax neighbors.
+Time: O((V + E) log V)
+
+Huffman Coding:
+Combine two least frequent symbols to create optimal prefix code.
+Time: O(n log n)
+
+When Greedy Works:
+
+Problem has optimal substructure
+
+Local optimal choices ensure global optimality
+
+Subproblems are independent
+
+Choices once made cannot become invalid later
+
+Problems where greedy succeeds:
+Fractional knapsack
+MST (Prim, Kruskal)
+Huffman coding
+Activity selection
+
+Problems where greedy fails:
+0/1 knapsack
+Graph coloring
+Scheduling with precedence constraints
+
+Activity Selection:
+Choose activity with earliest finishing time to maximize compatibility.
+Time: O(n log n)
+
+Coin Change Problem:
+Greedy works only for canonical currency systems.
+Fails for systems such as {1,3,4}.
+
+Benefits of Greedy Algorithms:
+Fast execution (often O(n) or O(n log n))
+Simple and easy to implement
+Low memory usage
+Effective for many real-world optimization tasks
+
+Limitations:
+Not always optimal
+No backtracking or revision of choices
+Requires correctness proof for each problem
+
+Greedy vs Dynamic Programming:
+Greedy: Works only if greedy choice property exists; usually faster
+Dynamic Programming: Works for more problems but may take higher time and space
+
+Summary:
+Greedy algorithms construct solutions by repeatedly taking the best immediate decision. They are efficient and intuitive, ideal when correctness can be proven. Greedy strategies excel in MST, scheduling, compression, and other optimization problems where local decisions ensure global optimality.

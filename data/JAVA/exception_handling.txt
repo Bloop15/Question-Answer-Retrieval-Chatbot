@@ -1,0 +1,172 @@
+EXCEPTION HANDLING IN JAVA
+
+Exception handling in Java is used to handle runtime errors gracefully. It prevents program crashes and ensures smooth execution by providing alternate flows using try, catch, finally, throw, throws, and custom exceptions.
+
+WHAT IS AN EXCEPTION
+
+An exception is an event that disrupts normal program flow during runtime. Common causes include:
+Division by zero
+Invalid array index
+Null pointer access
+File not found
+
+If not handled, the program terminates abnormally.
+
+EXCEPTION HIERARCHY
+
+java.lang.Object
+└── Throwable
+├── Exception
+│ ├── RuntimeException
+│ └── Checked exceptions
+└── Error
+
+2.1 Throwable
+Base class for all exceptions and errors.
+Useful methods: getMessage(), printStackTrace()
+
+2.2 Exception
+Represents recoverable problems.
+Two types:
+Checked exceptions (checked at compile time)
+Examples: IOException, SQLException, FileNotFoundException
+Unchecked exceptions (runtime errors)
+Examples: NullPointerException, ArithmeticException, ArrayIndexOutOfBoundsException
+
+2.3 Error
+Serious issues not intended for handling by the application.
+Examples: StackOverflowError, OutOfMemoryError
+
+EXCEPTION HANDLING KEYWORDS
+
+Java provides five keywords:
+try
+catch
+finally
+throw
+throws
+
+3.1 try block
+Contains code that may throw an exception.
+Example:
+try {
+int x = 10 / 0;
+}
+
+3.2 catch block
+Handles exceptions thrown by try block.
+catch(ArithmeticException e) {
+System.out.println("Cannot divide by zero");
+}
+Multiple catch blocks allowed.
+
+3.3 finally block
+Executes always, even if exception occurs. Used for cleanup.
+finally {
+System.out.println("Finally block runs");
+}
+
+3.4 throw keyword
+Used to explicitly throw an exception.
+throw new IllegalArgumentException("Invalid input");
+
+3.5 throws keyword
+Used in method declaration to signal that the method may throw exceptions.
+void read() throws IOException { }
+
+MULTIPLE CATCH BLOCKS
+
+More specific exceptions must be caught before general ones.
+try {
+int a = arr[10];
+}
+catch(ArrayIndexOutOfBoundsException e) {
+System.out.println("Invalid index");
+}
+catch(Exception e) {
+System.out.println("General exception");
+}
+
+NESTED TRY CATCH
+
+try {
+try {
+int x = 10 / 0;
+}
+catch(ArithmeticException e) {
+System.out.println("Inner catch");
+}
+}
+catch(Exception e) {
+System.out.println("Outer catch");
+}
+
+TRY WITH RESOURCES (Java 7 and later)
+
+Automatically closes resources such as file streams and database connections.
+try(FileInputStream fis = new FileInputStream("a.txt")) {
+}
+catch(IOException e) {
+}
+
+CUSTOM EXCEPTIONS
+
+User defined exceptions created by extending Exception or RuntimeException.
+class AgeException extends Exception {
+public AgeException(String msg) {
+super(msg);
+}
+}
+
+Usage:
+if(age < 18)
+throw new AgeException("Not eligible");
+
+COMMON BUILT IN EXCEPTIONS
+
+ArithmeticException: division by zero
+NullPointerException: null object access
+ArrayIndexOutOfBoundsException: invalid array index
+NumberFormatException: invalid conversion to number
+ClassCastException: invalid type casting
+IOException: input output error
+FileNotFoundException: file not found
+SQLException: database error
+
+EXCEPTION PROPAGATION
+
+If a method does not handle an exception, it is passed to the calling method and continues up the call stack until handled. Propagation stops once a catch block handles it.
+
+EXAMPLE PROGRAM
+
+class Demo {
+public static void main(String[] args) {
+try {
+int a = 5 / 0;
+}
+catch(ArithmeticException e) {
+System.out.println("Cannot divide by zero");
+}
+finally {
+System.out.println("Always executed");
+}
+}
+}
+
+Output:
+Cannot divide by zero
+Always executed
+
+BEST PRACTICES
+
+Catch specific exceptions first.
+Use finally for cleanup.
+Do not ignore exceptions silently.
+Use meaningful error messages.
+Use custom exceptions where necessary.
+Prefer try with resources for I/O code.
+Avoid overusing exceptions in performance critical areas.
+
+SUMMARY
+
+Java exception handling prevents abnormal termination of programs by handling runtime errors using try, catch, finally, throw, throws, and custom exceptions. It improves software reliability and robustness by providing controlled error handling and recovery mechanisms.

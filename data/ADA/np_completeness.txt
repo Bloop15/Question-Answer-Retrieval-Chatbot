@@ -1,0 +1,84 @@
+NP-Completeness is a major concept in theoretical computer science that classifies decision problems based on computational difficulty. It helps identify problems for which no known polynomial-time solution exists and guides the design of efficient algorithms or alternatives like heuristics.
+
+Complexity Classes:
+
+Class P:
+Problems solvable in polynomial time on a deterministic machine.
+Examples: Binary search, Merge sort, Dijkstra, MST
+P = { problems solvable in O(n^k) time }
+
+Class NP:
+Problems whose solutions can be verified in polynomial time.
+NP means “verifiable efficiently,” not “non-polynomial.”
+Examples: SAT, Subset Sum, Graph Coloring, Hamiltonian Cycle
+NP = { problems with solutions verifiable in polynomial time }
+
+NP-Hard:
+At least as hard as every problem in NP.
+Not necessarily decision problems and may not be verifiable in polynomial time.
+Example: TSP optimization version
+Meaning: If we solve an NP-Hard problem efficiently, all NP problems become easy.
+
+NP-Complete:
+Problems that are in NP and NP-Hard.
+They are the hardest problems in NP.
+Examples: SAT, 3-SAT, Clique, Vertex Cover, Subset Sum, Hamiltonian Cycle, Graph Coloring, Partition
+If any NP-Complete problem is solved in polynomial time, then P = NP.
+
+The P vs NP Question:
+Open unsolved problem in computer science.
+Does P = NP?
+If solutions can be verified quickly, can they also be found quickly?
+Most believe P ≠ NP, but no proof exists.
+Solving it wins a $1 million prize.
+
+Polynomial-Time Reduction:
+Used to compare problem difficulty.
+A reduces to B (A ≤p B) means:
+If B is solvable efficiently, then A is too.
+Reductions must be computable in polynomial time.
+
+Proving NP-Completeness (general steps):
+
+Show the problem is in NP (solutions verifiable in polynomial time)
+
+Reduce a known NP-Complete problem to it (Y ≤p X)
+Once both are shown, the problem is NP-Complete.
+
+Important NP-Complete Problems:
+SAT (first NP-Complete problem, Cook-Levin theorem)
+Subset Sum
+Vertex Cover
+Clique
+Hamiltonian Cycle
+Graph Coloring
+These are commonly used for reductions.
+
+NP-Hard Optimization Problems:
+Some are not in NP because solutions aren’t easily verifiable.
+Examples:
+TSP optimization
+Knapsack optimization
+Scheduling problems
+Bin packing
+Set cover
+These often require exponential search.
+
+Consequences of NP-Completeness:
+If any NP-Complete problem has a polynomial-time solution:
+P = NP
+All NP problems become easy
+Modern cryptography breaks
+Computational complexity theory changes entirely
+
+Solving NP-Complete Problems in Practice:
+Since polynomial-time solutions are unlikely, use:
+Approximation algorithms (near-optimal solutions)
+Heuristics (fast, no guarantees)
+Local search (hill-climbing, etc.)
+Dynamic programming (only for small inputs)
+Branch and Bound (uses pruning)
+Backtracking (systematic search)
+
+Summary:
+NP-Completeness identifies the hardest problems in NP. No polynomial-time algorithm is known for them. The concept helps determine when exact solutions are infeasible and when to apply heuristics, approximation, or exponential-time methods.

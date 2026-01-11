@@ -1,0 +1,74 @@
+UNIX system calls provide low-level control for files, processes, and devices. They operate directly with the operating system and are essential for system programming and OS-level tools.
+
+File Descriptors:
+UNIX treats all files, terminals, and devices as byte streams identified by integer descriptors.
+Standard descriptors:
+0 stdin
+1 stdout
+2 stderr
+open() returns the next available descriptor.
+
+open():
+Opens a file and returns a descriptor.
+int open(const char *path, int flags, mode_t mode);
+Common flags: O_RDONLY, O_WRONLY, O_RDWR, O_CREAT, O_TRUNC, O_APPEND
+Example:
+int fd = open("log.txt", O_WRONLY | O_CREAT, 0644);
+
+read():
+Reads bytes from a descriptor.
+ssize_t read(int fd, void *buf, size_t count);
+Returns: number of bytes read, 0 on EOF, −1 on error.
+
+write():
+Writes bytes to a descriptor.
+ssize_t write(int fd, const void *buf, size_t count);
+Used for logging, binary output, and low-level writes.
+
+close():
+Releases a descriptor.
+close(fd);
+
+lseek():
+Repositions file offset.
+off_t lseek(int fd, off_t offset, int whence);
+whence: SEEK_SET, SEEK_CUR, SEEK_END
+
+File Status:
+stat() retrieves metadata:
+file size, permissions, ownership, timestamps
+
+unlink():
+Deletes a directory entry for a file.
+unlink("file.txt");
+
+dup() and dup2():
+Duplicate descriptors for redirection.
+Example:
+int fd = open("output.txt", O_WRONLY | O_CREAT, 0644);
+dup2(fd, 1); // redirect stdout to file
+
+Example Programs:
+Copy file (cp style):
+while ((n = read(fd1, buf, sizeof(buf))) > 0)
+write(fd2, buf, n);
+
+Word/line count (wc style):
+Tracks newlines and transitions into/out of words.
+
+Error Handling:
+System calls set errno on failure.
+perror("open failed");
+
+Standard I/O vs System Calls:
+Standard I/O (stdio): buffered, easier, portable
+UNIX system calls: unbuffered, precise control
+
+Summary:
+UNIX system calls provide direct OS interaction with:
+open, read, write, close for data
+lseek for offset movement
+stat for metadata
+unlink for deletion
+dup and dup2 for I/O redirection
+They form the foundation for shells, system utilities, embedded software, and OS development.

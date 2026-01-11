@@ -1,0 +1,96 @@
+Control flow determines the order in which statements execute in a C program. C includes constructs for decision making, loops, branching, and scoping.
+
+Conditional Statements:
+Used to select actions based on conditions.
+
+if statement:
+if (condition) {
+statements;
+}
+Executes block if condition is non-zero.
+
+if–else:
+if (condition) {
+statements;
+} else {
+alternate statements;
+}
+
+Nested if–else: multiple levels of decision making.
+
+else-if ladder: multiple mutually exclusive conditions.
+if (x == 1) { ... }
+else if (x == 2) { ... }
+else { ... }
+
+switch Statement:
+Used for multi-way branching on int, char, or enum values.
+switch (expression) {
+case 1: statements; break;
+case 2: statements; break;
+default: statements;
+}
+break prevents fall-through. Expressions cannot be float or string.
+
+Loops in C:
+Used to repeat execution while condition is true.
+
+while loop:
+Entry-controlled; may execute zero times.
+while (condition) { body; }
+
+for loop:
+General looping with initialization, condition, update.
+for (init; condition; update) { body; }
+
+do–while loop:
+Exit-controlled; executes at least once.
+do { body; } while (condition);
+
+Loop Control Statements:
+break: exits loop or switch immediately.
+continue: skips remaining body and moves to next iteration.
+goto: jumps to labeled statement; should be used sparingly.
+
+Nested Loops:
+Loops inside loops. Total iterations = product of loop counts.
+
+Blocks and Scope:
+A block is enclosed in braces {}.
+Variables declared inside a block are local to that block.
+Inner blocks can use outer variables; outer cannot use inner.
+Variable shadowing is allowed (inner redeclares same name).
+
+Common Pitfalls and Best Practices:
+Use braces for clarity to avoid confusing indentation errors.
+Avoid infinite loops unless intentional.
+Use for loop when iteration count is known.
+Avoid excessive use of goto; prefer structured control flow.
+
+Examples:
+
+Prime check using for and break:
+int isPrime = 1;
+for (int i = 2; i <= n/2; i++) {
+if (n % i == 0) {
+isPrime = 0;
+break;
+}
+}
+
+Menu using switch:
+switch (choice) {
+case 1: printf("Add"); break;
+case 2: printf("Subtract"); break;
+default: printf("Invalid");
+}
+
+Summation using while:
+int sum = 0, i = 1;
+while (i <= n) {
+sum += i;
+i++;
+}
+
+Summary:
+Control flow constructs include conditional statements (if-else, switch), loops (while, for, do-while), and jump statements (break, continue, goto). Block structure defines scope and variable lifetime. These constructs determine program behavior and structure in C.

@@ -1,0 +1,343 @@
+CHAPTER 3 — MEMORY MANAGEMENT
+
+Memory management controls how a program’s address space is mapped to physical memory.
+The OS ensures efficient, safe, and transparent use of main memory for all processes.
+
+This is one of the core responsibilities of any operating system.
+
+=========================================================
+1. MEMORY ABSTRACTION — ADDRESS SPACES
+=========================================================
+
+Memory abstraction allows each process to believe it has its own private memory.
+
+✔ Address Space
+
+The set of legal addresses a process can use.
+
+Contains:
+
+Text (code)
+
+Data (global variables)
+
+Heap (dynamic memory)
+
+Stack (function calls)
+
+Processes are isolated — one cannot access another’s memory.
+
+=========================================================
+2. SWAPPING (EARLY MEMORY MANAGEMENT)
+=========================================================
+
+Used in early systems and still in simplified OSes.
+
+Process swapping:
+
+Bring entire process into memory → run → swap it out to disk
+
+Swap space → dedicated area on disk
+
+Downsides:
+
+Very slow (disk is much slower than RAM)
+
+Requires contiguous allocation
+
+=========================================================
+3. CONTIGUOUS MEMORY ALLOCATION
+=========================================================
+
+Memory divided into fixed or variable-sized partitions.
+
+3.1 Fixed Partitioning
+
+Memory broken into fixed-size chunks
+
+Internal fragmentation (unused memory inside partitions)
+
+3.2 Variable Partitioning
+
+Variable-sized regions allocated as needed
+
+Suffer from external fragmentation (scattered free spaces)
+
+Allocation strategies:
+
+First fit
+
+Best fit
+
+Worst fit
+
+Next fit
+
+=========================================================
+4. VIRTUAL MEMORY
+=========================================================
+
+Virtual memory decouples logical and physical memory.
+
+Key idea:
+
+Programs operate on virtual addresses that are mapped to physical addresses by hardware + OS.
+
+Benefits:
+
+Larger address spaces
+
+Isolation between processes
+
+Efficient memory usage
+
+Only needed portions of a program are loaded
+
+Mechanisms:
+
+Paging
+
+Segmentation
+
+Combined paging + segmentation
+
+=========================================================
+5. PAGING
+=========================================================
+
+Paging divides memory into fixed-size blocks:
+
+Pages → virtual memory blocks (inside process)
+
+Frames → physical memory blocks
+
+A page table maps pages → frames.
+
+Advantages:
+
+No external fragmentation
+
+Simplifies allocation
+
+Easy swapping
+
+Disadvantages:
+
+Page tables may be large
+
+Extra memory references → overhead
+
+5.1 Page Table Structure
+
+Each entry contains:
+
+Frame number
+
+Present/absent bit
+
+Protection bits (R/W/X)
+
+Reference bit
+
+Dirty bit
+
+5.2 Multi-level Paging
+
+To reduce page table size:
+
+Use hierarchical page tables (2-level, 3-level, 4-level)
+
+Page directory → page tables → frames
+
+Modern systems (x86-64) use 4–5 levels.
+
+=========================================================
+6. PAGE FAULTS
+=========================================================
+
+Occurs when a page is not in memory.
+
+Steps:
+
+Hardware traps to OS
+
+OS loads page from disk into a free frame
+
+Page table updated
+
+Process resumes
+
+Page faults are extremely slow → thousands of CPU cycles.
+
+=========================================================
+7. MEMORY REPLACEMENT ALGORITHMS
+=========================================================
+
+When memory is full, OS must choose a victim page.
+
+Popular algorithms:
+7.1 FIFO (First-In First-Out)
+
+Oldest page evicted.
+
+7.2 Optimal (Belady’s Algorithm)
+
+Evict page used farthest in future.
+(Not implementable → used as benchmark.)
+
+7.3 LRU (Least Recently Used)
+
+Evict page not used for longest time.
+
+7.4 NFU (Not Frequently Used)
+
+Counts references.
+
+7.5 Clock Algorithm
+
+Approximates LRU using a circular buffer & reference bits.
+
+=========================================================
+8. THRASHING
+=========================================================
+
+Occurs when the system spends more time servicing page faults than running processes.
+
+Symptoms:
+
+CPU utilization drops
+
+Constant swapping
+
+Poor performance
+
+Solutions:
+
+Working set model
+
+Page fault frequency (PFF) control
+
+=========================================================
+9. SEGMENTATION
+=========================================================
+
+Segments represent logical units (functions, arrays, stacks).
+
+Advantages:
+
+Supports modular programming
+
+Protection at segment level
+
+Easy sharing of code and data
+
+Disadvantage:
+
+External fragmentation
+
+More complex than paging
+
+=========================================================
+10. PAGING + SEGMENTATION (Combined Scheme)
+=========================================================
+
+Used in Intel architectures:
+
+Logical address → segment selector + offset
+
+Segment contains a page table
+
+Pages map to physical memory frames
+
+Provides:
+
+Logical modularity
+
+Efficient memory management
+
+Protection
+
+=========================================================
+11. KERNEL MEMORY MANAGEMENT
+=========================================================
+
+Kernel memory is often allocated differently.
+
+Techniques:
+
+Slab allocator
+
+Buddy system
+
+Fixed-size caches for kernel objects
+
+Goals:
+
+Reduce fragmentation
+
+Fast allocation & deallocation
+
+Efficient cache usage
+
+=========================================================
+12. NUMA (Non-Uniform Memory Access)
+=========================================================
+
+Modern multiprocessor systems have cores grouped into nodes, each with local memory.
+
+Local memory access → fast
+Remote memory access → slower
+
+OS considerations:
+
+Page placement
+
+NUMA-aware scheduling
+
+=========================================================
+13. MEMORY-MAPPED FILES
+=========================================================
+
+OS maps file contents directly into virtual memory.
+
+Benefits:
+
+Faster file access
+
+No explicit I/O operations
+
+Shared memory between processes
+
+=========================================================
+14. OVERLAYING
+=========================================================
+
+Technique used before virtual memory.
+
+Only part of program loaded at a time
+
+Programmer manually splits program into pieces
+
+Outdated, replaced by paging
+
+=========================================================
+15. COPY-ON-WRITE (COW)
+=========================================================
+
+Used by UNIX/Linux during fork():
+
+Parent & child share the same physical pages
+
+If either writes → OS copies page
+
+Benefits:
+
+Fast process creation
+
+Saves memory
+
+Summary
+
+Memory management enables programs to use memory safely and efficiently.
+Virtual memory, paging, segmentation, page tables, and replacement algorithms form the backbone of modern systems.
+Memory abstractions allow many processes to coexist while ensuring isolation, performance, and optimal resource usage.
